@@ -17,6 +17,7 @@ function init() {
 
 
     LocalConfig.addUrl(".google.com");
+    LocalConfig.addUrl(".google.com.hk");
     LocalConfig.addUrl(".chrome.com");
     LocalConfig.addUrl(".facebook.com");
 
@@ -61,21 +62,6 @@ function setProxyIcon() {
         }
     );
 }
-
-function addUrl(curl) {
-    Logger.info("add url=" + curl);
-    if(curl.length>0){
-        Logger.info(curl);
-        LocalConfig.addUrl(curl);
-        closePopup();
-        Settings.setValue('pacScriptData', LocalConfig.pacScript());
-        //function (proxyMode, proxyString, proxyExceptions, proxyConfigUrl)
-        ProxyPlugin.setProxy("auto", "socks5://127.0.0.1:1080", "", ProxyPlugin.memoryPath);
-    }
-}
-
-
-
 
 $(document).ready(function(){
     init();

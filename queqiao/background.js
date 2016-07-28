@@ -15,20 +15,23 @@ var AddNewUrl = (function(url){
 	}
 })();
 
-
+function refreshProxy(){
+	Settings.setValue('pacScriptData', LocalConfig.pacScript());
+	//function (proxyMode, proxyString, proxyExceptions, proxyConfigUrl)
+	ProxyPlugin.setProxy("auto", "socks5://127.0.0.1:1080", "", ProxyPlugin.memoryPath);
+}
 
 function checkForValidUrl(tabId, changeInfo, tab) {
 	var requestUrl = LocalConfig.getDomain(tab.url).toLowerCase();
 	articleData.type = "GETURL";
 	articleData.url = requestUrl;
-
-	Logger.debug("LocalConfig.pacScript()=" + LocalConfig.pacScript());
+	//Logger.debug("curlUrl=" + requestUrl);
 };
 
 /**
  * new tab when url update
  */
-chrome.tabs.onUpdated.addListener(checkForValidUrl);
+//chrome.tabs.onUpdated.addListener(checkForValidUrl);
 
 
 
@@ -39,11 +42,11 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
 	if(request.type == "GETURL"){
 		articleData = request;
 		articleData.url = LocalConfig.getDomain(request.url);
-		Logger.info("request type right url= " +  articleData.url);
+		//Logger.info("request type right url= " +  articleData.url);
 	}else{
 		articleData.type = "ERROR";
 		articleData.url = "www.chewen.com";
-		Logger.warning("request type is error for " +  request.type);
+		//Logger.warning("request type is error for " +  request.type);
 	}
 	/*Logger.info("request.type=" + request.type);
 	sendResponse({farewell: "cnblog"});
@@ -84,21 +87,23 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
 });
 
 
-chrome.browserAction.onClicked.addListener(function(tab) {
+/*chrome.browserAction.onClicked.addListener(function(tab) {
 	// 扩展向内容脚本发送消息
 	chrome.tabs.sendMessage(tab.id,{
 		type: "hello to content script!"
 	}, function(response) {
 		//console.log(response.farewell);
 	});
-});
+});*/
 
 
+/*
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 	chrome.tabs.sendMessage(tabs[0].id, testMsg, function(response) {
 		Logger.info("send type=hello response:" + response);
 	});
 });
+*/
 
 
 

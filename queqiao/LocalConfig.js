@@ -13,11 +13,20 @@ LocalConfig.size = 0;
 LocalConfig.proxyUrl = "SOCKS5 127.0.0.1:1080";
 
 LocalConfig.addUrl = function addValue(url) {
+    if(url.indexOf(":")>=0){
+        url = this.getDomain(url);
+    }
+    url.replace("www", "");
+    for (var i = 0; i < this.data.length; i++) {
+        if(url === this.data[i]){
+            return;
+        }
+    }
     this.data.push(url);
     this.size++;
 };
 
-LocalConfig.removeUrl = function remove(index) {
+LocalConfig.removeUrlByIndex = function remove(index) {
     if(index>=0){
         this.data.splice(index, 1);
         this.size--;
