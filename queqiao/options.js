@@ -12,7 +12,7 @@ function init(){
     for (var i in urlArray) {
         var url = urlArray[i];
         Logger.info("url=" + url);
-        var trHTML = '<tr><td>'+url+'</td><td><button type="submit" class="btn btn-danger delBtn" key="'+i+'">删除</button></td></tr>';
+        var trHTML = '<tr><td>'+i+'</td><td>'+url+'</td><td><button type="submit" class="btn btn-danger delBtn" key="'+i+'">删除</button></td></tr>';
         $("#urlTable").append(trHTML);
     }
 }

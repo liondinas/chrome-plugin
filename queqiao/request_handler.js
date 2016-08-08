@@ -24,6 +24,9 @@ chrome.webRequest.onBeforeRequest.addListener (
          return {redirectUrl:"http://www.chewen.com"}
          }*/
 
+
+        //TODO checkthe url is in array, then show diffrent icon
+
         chrome.browserAction.setIcon(iconOn);
         return {cancel: false};;
     },
@@ -34,21 +37,14 @@ chrome.webRequest.onBeforeRequest.addListener (
 
 chrome.webRequest.onCompleted.addListener (
     function(page) {
-        var iconOff = {
-            path: "images/off.png"
-        };
-
-        var iconOn = {
-            path: "images/on.png"
-        };
         var url = page.url;
         var httpStatus = page.statusCode;
 
         if(httpStatus>=399){
             Logger.log("httpStatus="+httpStatus + " for url=" + url, Logger.Types.warning);
-            chrome.browserAction.setIcon(iconOff);
+            LocalConfig.setIcon("off");
         }else{
-            chrome.browserAction.setIcon(iconOn);
+            LocalConfig.setIcon("on");
         }
 
     },
@@ -57,13 +53,6 @@ chrome.webRequest.onCompleted.addListener (
 
 chrome.webRequest.onErrorOccurred.addListener (
     function(info) {
-        var iconOff = {
-            path: "images/off.png"
-        };
-
-        var iconOn = {
-            path: "images/on.png"
-        };
 
         var url = info.url;
         var error = info.error;
@@ -82,13 +71,7 @@ chrome.webRequest.onErrorOccurred.addListener (
             Logger.log("url=" + url + " is error, errorInfo=" + error, Logger.Types.error);
         }
 
-        chrome.browserAction.setIcon(iconOff);
-        /*if(url.indexOf("popup.html")===-1){
-            chrome.tabs.create({url:"popup.html"});
-        }*/
-        /*chrome.tabs.executeScript(null, {file: 'content.js'}, function() {
-            console.log('Success');
-        });*/
+        LocalConfig.setIcon("off");
 
     },
     {urls: ["<all_urls>"]}
