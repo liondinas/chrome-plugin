@@ -14,18 +14,21 @@ LocalConfig.proxyUrl = "SOCKS5 127.0.0.1:1080";
 
 
 LocalConfig.init = function () {
+
+    var objJSON = JSON.parse(localStorage.getItem("queqiaoJSON"));
+    if(objJSON!=null){
+        $.each(objJSON,function(name,value) {
+            LocalConfig.addUrl(value);
+        });
+        Logger.info("init LocalConfig with nothing"+ this.data.length);
+    }
+
     if(this.data.length<=0){
         this.addUrl(".google.com");
         this.addUrl(".google.com.hk");
         this.addUrl(".chrome.com");
         this.addUrl(".facebook.com");
-        chrome.storage.sync.get(["queqiaoVal"],function(urlArray){
-            Logger.info("init LocalConfig from local" + urlArray);
-            this.data = urlArray;
-        });
-
-    }else{
-        Logger.info("init LocalConfig with nothing"+ this.data.length);
+        Logger.info("init first"+ this.data.length);
     }
 };
 
@@ -37,7 +40,11 @@ LocalConfig.addUrl = function addValue(url) {
     if(url.indexOf(":")>=0){
         url = this.getDomain(url);
     }
-    url.replace("www", "");
+
+    Logger.info("before www="+ url);
+
+    url = url.replace(/www/, "");
+    Logger.info("after www="+ url);
     for (var i = 0; i < this.data.length; i++) {
         if(url === this.data[i]){
             return;
@@ -45,10 +52,7 @@ LocalConfig.addUrl = function addValue(url) {
     }
     this.data.push(url);
     this.size++;
-    chrome.storage.sync.set({'queqiaoVal': LocalConfig.data}, function() {
-        // Notify that we saved.
-        Logger.info("queqiaoVal addUrl")
-    });
+    localStorage.setItem("queqiaoJSON", this.getDataJSONStr());
 };
 
 
@@ -62,10 +66,7 @@ LocalConfig.removeUrlByIndex = function remove(index) {
         this.size--;
     }
 
-    chrome.storage.sync.set({'queqiaoVal': LocalConfig.data}, function() {
-        // Notify that we saved.
-        Logger.info("queqiaoVal remove url")
-    });
+    localStorage.setItem("queqiaoJSON", this.getDataJSONStr());
 
 };
 
@@ -78,7 +79,7 @@ LocalConfig.pacScript = function getPacScript() {
 
     if(this.data.size<=0){
         chrome.storage.sync.get(["queqiaoVal"],function(urlArray){
-            Logger.info("get from local" + urlArray)
+            Logger.info("get from local" + urlArray);
             this.data = urlArray;
         });
     }
@@ -131,6 +132,16 @@ LocalConfig.getDomain = function getDomainFromUrl(url){
     if(typeof match != "undefined" && null != match)
         host = match[1];
     return host;
+};
+
+
+
+LocalConfig.getDataJSONStr = function () {
+    var dataStr = {};
+    for(var i=0; i<this.data.length; i++){
+        dataStr[i] = this.data[i];
+    }
+    return JSON.stringify(dataStr);
 };
 
 
