@@ -38,7 +38,8 @@ LocalConfig.init = function () {
  */
 LocalConfig.addUrl = function addValue(url) {
     if(url.indexOf(":")>=0){
-        url = this.getDomain(url);
+        //url = this.getDomain(url);
+        url = this.getUrlDomain(url);
     }
 
     Logger.info("before www="+ url);
@@ -123,7 +124,7 @@ LocalConfig.goPage = function goPage(url) {
  * @param url
  * @returns {string} eg. https://www.baidu.com
  */
-LocalConfig.getDomain = function getDomainFromUrl(url){
+LocalConfig.getDomainFromUrl = function getDomainFromUrl(url){
     var host = "null";
     if(typeof url == "undefined" || null == url)
         url = window.location.href;
@@ -132,6 +133,20 @@ LocalConfig.getDomain = function getDomainFromUrl(url){
     if(typeof match != "undefined" && null != match)
         host = match[1];
     return host;
+};
+
+
+
+LocalConfig.getUrlDomain = function getUrlDomain(url){
+　　　　var arrUrl = url.split("//");
+    if(arrUrl.length>0){
+        var start = arrUrl[1].indexOf("/");
+        var relUrl = arrUrl[1].substring(0, start);
+        relUrl = relUrl.replace(/www/, "");  
+        return relUrl;
+    }
+
+　　　　return "";
 };
 
 

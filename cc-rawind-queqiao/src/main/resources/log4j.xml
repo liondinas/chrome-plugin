@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<!-- 必须项 -->
+	<appender name="infoAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="Encoding" value="UTF-8" />
+		<param name="File" value="/data/logs/queqiao/stdout.log" />
+		<param name="Append" value="true" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{dd HH:mm:ss,SSS\} %-5p] [%t] %c{2\} - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMax" value="INFO" />
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+
+	<!-- 必须项 -->
+	<appender name="errorAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="Encoding" value="UTF-8" />
+		<param name="File" value="/data/logs/queqiao/stderr.log" />
+		<param name="Append" value="true" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{dd HH:mm:ss,SSS\} %-5p] [%t] %c{2\} - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMax" value="ERROR" />
+			<param name="LevelMin" value="WARN" />
+		</filter>
+	</appender>
+	<!-- 必须项 -->
+	<!-- 定义以com.chewen开头的类的日志级别 -->
+	<logger name="com.chewen" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="infoAppender" />
+		<appender-ref ref="errorAppender" />
+	</logger>
+
+	<!-- Root Logger -->
+	<!-- 必须项 -->
+	<root>
+		<priority value="INFO" />
+		<appender-ref ref="infoAppender" />
+		<appender-ref ref="errorAppender" />
+	</root>
+</log4j:configuration>
