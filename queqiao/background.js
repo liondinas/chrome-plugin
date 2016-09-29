@@ -44,6 +44,7 @@ function init() {
 
 	LocalConfig.init();
 
+    QueqiaoUser.init();
 
 	Settings.setValue('pacScriptData', LocalConfig.pacScript());
 

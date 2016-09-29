@@ -68,7 +68,7 @@ chrome.webRequest.onErrorOccurred.addListener (
         }else if(url.indexOf("popup")>=0){
             Logger.debug("popup error" + error);
         }else{
-            Logger.log("url=" + url + " is error, errorInfo=" + error, Logger.Types.error);
+            Logger.info("url=" + url + " is error, errorInfo=" + error);
         }
 
         LocalConfig.setIcon("off");

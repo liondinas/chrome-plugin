@@ -30,6 +30,7 @@ LocalConfig.init = function () {
         this.addUrl(".facebook.com");
         Logger.info("init first"+ this.data.length);
     }
+
 };
 
 /**
