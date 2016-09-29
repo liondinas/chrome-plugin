@@ -1,4 +1,4 @@
-package com.rawind.queqiao.web.controllers;
+package com.rawind.queqiao.web.controllers.plugin;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

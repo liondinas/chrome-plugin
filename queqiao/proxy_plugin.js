@@ -179,7 +179,7 @@ ProxyPlugin._parseProxy = function (str) {
         return {}
 };
 ProxyPlugin.setProxy = function (proxyMode, proxyString, proxyExceptions, proxyConfigUrl) {
-    Logger.info("pacScript =" +  LocalConfig.pacScript());
+    //Logger.info("pacScript =" +  LocalConfig.pacScript());
     if (ProxyPlugin.disabled) return 0;
     var config;
     ProxyPlugin.proxyMode = Settings.setValue('proxyMode', proxyMode);

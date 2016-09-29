@@ -23,7 +23,8 @@
 		"storage",
 		"<all_urls>",
 		"webRequest",
-		"webRequestBlocking"
+		"webRequestBlocking",
+		"cookies"
 	],
 	"browser_action": {
 		"default_icon": "images/off.png",

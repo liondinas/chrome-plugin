@@ -41,11 +41,8 @@ LocalConfig.addUrl = function addValue(url) {
         //url = this.getDomain(url);
         url = this.getUrlDomain(url);
     }
-
-    Logger.info("before www="+ url);
-
+   
     url = url.replace(/www/, "");
-    Logger.info("after www="+ url);
     for (var i = 0; i < this.data.length; i++) {
         if(url === this.data[i]){
             return;
