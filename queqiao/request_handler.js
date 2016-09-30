@@ -9,6 +9,28 @@
 
 
 
+chrome.webRequest.onBeforeSendHeaders.addListener(
+  function(details) {
+   /* for (var i = 0; i < details.requestHeaders.length; ++i) {
+      if (details.requestHeaders[i].name === 'User-Agent') {
+        details.requestHeaders.splice(i, 1);
+        break;
+      }
+    }*/
+    var headers = details.requestHeaders;  
+    headers.push({
+      name: 'Proxy-Authorization',
+      value: 'Basic dGVzdHVzZXI6dGVzdA=='
+    }); 
+    return {requestHeaders: headers};
+  },
+  {urls: ["<all_urls>"]},
+  ["blocking", "requestHeaders"]
+);
+
+
+
+
 chrome.webRequest.onBeforeRequest.addListener (
     function(details) {
         var iconOff = {

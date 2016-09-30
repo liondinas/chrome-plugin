@@ -10,6 +10,7 @@ import com.rawind.queqiao.web.model.QueqiaoUser;
 import com.rawind.queqiao.web.service.HostHolderService;
 import com.rawind.queqiao.web.service.QueqiaoProxyService;
 import com.rawind.queqiao.web.service.QueqiaoUserService;
+import com.rawind.queqiao.web.util.QqBase64;
 
 import net.paoding.rose.web.Invocation;
 import net.paoding.rose.web.annotation.Param;
@@ -53,8 +54,16 @@ public class ProxyController {
 				}			
 			}
 			
+			
+			//"Proxy-Authorization"= "Basic Base64.encode(user:password)" 
+			String headerKey = "Proxy-Authorization"; 
+			String headerValue = "Basic " + QqBase64.encodeStr(user.getName()+":"+user.getPassWord()); 
+			//conn.setRequestProperty(headerKey, headerValue); 
+
+			
 			data.put("type", "0");
 			data.put("url", proxy);
+			data.put("userName", user.getName());
 			return AjaxOutput.success("data", data);
 			
 		}

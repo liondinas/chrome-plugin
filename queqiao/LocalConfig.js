@@ -10,7 +10,8 @@ LocalConfig.data = new Array();
 
 LocalConfig.size = 0;
 
-LocalConfig.proxyUrl = "SOCKS5 127.0.0.1:1080";
+//LocalConfig.proxyUrl = "SOCKS5 127.0.0.1:1080";
+LocalConfig.proxyUrl = "PROXY 101.200.121.195:3118";
 
 
 LocalConfig.init = function () {
@@ -92,6 +93,7 @@ LocalConfig.pacScript = function getPacScript() {
     pacScriptData = pacScriptData + urls;
 
     pacScriptData = pacScriptData + "return 'DIRECT';}";
+    Logger.info("pacScriptData=" + pacScriptData);
     return pacScriptData;
 };
 

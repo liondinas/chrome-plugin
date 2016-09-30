@@ -4,18 +4,6 @@
 
 
 
-function getCookies(domain, name, callback) {
-    chrome.cookies.get({"url": domain, "name": name}, function(cookie) {
-        if(callback) {           
-            callback(cookie);
-        }
-    });
-}
-
-
-
-
-
 var extension;
 
 function init(){
@@ -26,11 +14,14 @@ function init(){
     extension = chrome.extension.getBackgroundPage();
     var urlArray = extension.LocalConfig.data;
     for (var i in urlArray) {
-        var url = urlArray[i];
-        Logger.info("url=" + url);
+        var url = urlArray[i];        
         var trHTML = '<tr><td>'+i+'</td><td>'+url+'</td><td><button type="submit" class="btn btn-danger delBtn" key="'+i+'">删除</button></td></tr>';
         $("#urlTable").append(trHTML);
     }
+
+    var currUser = extension.QueqiaoUser;
+    Logger.info("QueqiaoUser.userName="+ currUser.userName);
+    $("#userName").html('<i class="icon-user"></i>'+currUser.userName+'<i class="caret"></i>');
 }
 
 
@@ -51,7 +42,7 @@ function delUrl() {
 
 function checkLogin(){
     //usage:
-    QueqiaoUser.getCookies("http://proxy.xiaochengzi.vip", "user", function(userCookie) {
+    QueqiaoUser.getCookiesSync("http://proxy.xiaochengzi.vip", "user", function(userCookie) {
         if(userCookie){
             Logger.info('userCookie='+userCookie.value);
         }else{

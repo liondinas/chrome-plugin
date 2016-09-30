@@ -13,7 +13,7 @@ articleData.url = "www.chewen.com"
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     if(request.type == "GETURL"){
         articleData = request;
-        articleData.url = LocalConfig.getDomain(request.url);
+        articleData.url = LocalConfig.getDomainFromUrl(request.url);
         //Logger.info("request type right url= " +  articleData.url);
     }else{
         articleData.type = "ERROR";

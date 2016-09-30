@@ -3,6 +3,7 @@ package com.rawind.queqiao.web.model;
 import java.io.Serializable;
 
 import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
 
 
 
@@ -15,6 +16,7 @@ public class QueqiaoProxy implements Serializable{
 	 */
 	private static final long serialVersionUID = 6623998263114477903L;
 
+	@Id
 	private long id;
 	
 	private int type;

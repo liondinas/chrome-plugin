@@ -12,7 +12,8 @@ var AddNewUrl = (function(url){
 		LocalConfig.addUrl(url);
 		Settings.setValue('pacScriptData', LocalConfig.pacScript());
 		//function (proxyMode, proxyString, proxyExceptions, proxyConfigUrl)
-		ProxyPlugin.setProxy("auto", "socks5://127.0.0.1:1080", "", ProxyPlugin.memoryPath);
+		
+		ProxyPlugin.setProxy("auto", LocalConfig.proxyUrl, "", ProxyPlugin.memoryPath);
 		return ++i;
 	}
 })();
@@ -24,7 +25,7 @@ var AddNewUrl = (function(url){
 function refreshProxy(){
 	Settings.setValue('pacScriptData', LocalConfig.pacScript());
 	//function (proxyMode, proxyString, proxyExceptions, proxyConfigUrl)
-	ProxyPlugin.setProxy("auto", "socks5://127.0.0.1:1080", "", ProxyPlugin.memoryPath);
+	ProxyPlugin.setProxy("auto", LocalConfig.proxyUrl, "", ProxyPlugin.memoryPath);
 }
 
 /**

@@ -6,10 +6,15 @@
 
 var QueqiaoUser = {};
 
+/**
+* 0-not login, 1-lgoin and normal, 2-login and expired
+*/
 QueqiaoUser.status = 0;
 
 
 QueqiaoUser.userName = '';
+
+QueqiaoUser.proxyUrl = '';
 
 QueqiaoUser.userCookie = '';
 
@@ -31,23 +36,33 @@ QueqiaoUser.setCookie = function(userCookie){
 	Logger.info('PROXY_URL='+LocalConfig.proxyUrl);
 
 	$.ajax({
-		  type : "POST",
-		  url : 'http://proxy.xiaochengzi.vip/plugin/getproxy',
+		  type : "GET",
+		  url : 'http://proxy.xiaochengzi.vip/plugin/getProxy',
 		  data: {
 		  	userCookie : QueqiaoUser.userCookie
 		  },
 		  dataType : "json",
-		  async: false,
+		  async: true,
 		  beforeSend : function(xhr) {  
 		    /*var cookie = credentials["COOKIE"];//此处设置cookie
 		    console.info( "adding cookie: "+ cookie );          
 		    xhr.setRequestHeader('Cookie', cookie);*/
 		  },
-		  success : function(data, textStatus, xmLHttpRequest){
+		  success : function(retJson){
+		  	if (retJson['code'] != 0) {
+		  		Logger.info('getUerName code error='+JSON.stringify(retJson));	
+		  	}else{
+		  		var data = retJson['data'];
+		  		QueqiaoUser.userName = data.userName;
+		  		QueqiaoUser.proxyUrl = data.url;
+		  		QueqiaoUser.status = 1;
+		  		Logger.info('getUerName from net='+data.userName);	
+		  	}	
+		  	
 		  },
 		  error : function(xhr, ajaxOptions, thrownError) {
-		    credentials = null;
-		  }
+		    Logger.info('getUserName net error ='+thrownError);
+		  }  	
 	});
 
 };
