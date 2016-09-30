@@ -59,8 +59,9 @@ public class ProxyController {
 			String headerKey = "Proxy-Authorization"; 
 			String headerValue = "Basic " + QqBase64.encodeStr(user.getName()+":"+user.getPassWord()); 
 			//conn.setRequestProperty(headerKey, headerValue); 
-
 			
+			// proxy url="SOCKS5 127.0.0.1:1080";
+			// proxy url="PROXY 101.200.121.195:3118";
 			data.put("type", "0");
 			data.put("url", proxy);
 			data.put("userName", user.getName());

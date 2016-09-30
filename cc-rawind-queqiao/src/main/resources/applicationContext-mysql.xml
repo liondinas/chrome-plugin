@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-2.5.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+
+	<bean id="shoDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://10.3.63.11:6610/shop?autoReconnect=true&amp;failOverReadOnly=false&amp;useUnicode=true&amp;characterEncoding=utf8"></property>
+		<property name="username" value="18dx"></property>
+		<property name="password" value="18dxadmin"></property>
+		<property name="initialSize" value="20" />
+		<property name="maxActive" value="300" />
+		<property name="maxWait" value="60000" />
+		<property name="minIdle" value="20"></property>
+		<property name="maxIdle" value="300"></property>
+		<property name="removeAbandoned" value="true"></property>
+		<property name="removeAbandonedTimeout" value="60"></property>
+		<property name="logAbandoned" value="true"></property>
+		<property name="minEvictableIdleTimeMillis" value="3600000"></property>
+		<property name="numTestsPerEvictionRun" value="50"></property>
+		<property name="timeBetweenEvictionRunsMillis" value="300000"></property>
+		<property name="testWhileIdle" value="true"></property>
+		<property name="validationQuery" value="SELECT 1"></property>
+	</bean>
+	
+	<bean id="jade.dataSourceFactory" class="com.shop.component.mysql.dbsource.ShopDataSourceFactory">
+		<property name="dataSource">    
+            <ref bean="shoDataSource" />    
+        </property> 
+	</bean>
+	
+	<bean class="com.shop.component.mysql.dbsource.ShopDataSourceTransaction">
+		<constructor-arg ref="jade.dataSourceFactory"/>
+	</bean>
+</beans>
