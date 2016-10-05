@@ -1,16 +1,19 @@
 package com.rawind.queqiao.web.controllers.admin;
 
-import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.chewen.tools.commons.util.AjaxOutput;
 import com.rawind.queqiao.web.controllers.user.LoginController;
+import com.rawind.queqiao.web.model.QueqiaoProxy;
 import com.rawind.queqiao.web.model.QueqiaoUser;
 import com.rawind.queqiao.web.service.HostHolderService;
 import com.rawind.queqiao.web.service.PassportService;
+import com.rawind.queqiao.web.service.QueqiaoProxyService;
 import com.rawind.queqiao.web.service.QueqiaoUserExtrService;
 import com.rawind.queqiao.web.service.QueqiaoUserService;
 
@@ -22,8 +25,8 @@ import net.paoding.rose.web.annotation.rest.Post;
 
 
 
-@Path("/user")
-public class UserMgrController {
+@Path("/node")
+public class NodeMgrController {
 
 	private static final Log logger = LogFactory.getLog(LoginController.class);
 	
@@ -38,75 +41,63 @@ public class UserMgrController {
 	
 	@Autowired
 	private HostHolderService hostHolderService;
+		
+	@Autowired
+	private QueqiaoProxyService queqiaoProxyService;
 	
 	@Get("list")
-	public String showUserList(Invocation inv) {
+	public String showNodeList(Invocation inv) {
 		
 		
 		
 		inv.addModel("user", hostHolderService.getQueqiaoAdmin());
 		
 		
-		int totalCount = queqiaoUserService.countByStatus(0);
-		List<QueqiaoUser> userList = queqiaoUserService.findByStatus(0, 0, totalCount);
+		int totalCount = queqiaoProxyService.countByType(0);
+		List<QueqiaoProxy> proxyList = queqiaoProxyService.getByType(0, 0, totalCount);
 		
-		inv.addModel("userList", userList);
+		inv.addModel("proxyList", proxyList);
 		
 		
-		return "admin_user_list";
+		return "admin_node_list";
+	}
+	
+	
+	@Get("add")
+	public String showAddNode(Invocation inv) {
+		
+		
+		
+		inv.addModel("user", hostHolderService.getQueqiaoAdmin());
+		
+					
+		
+		return "admin_node_add";
 	}
 	
 	
 	
 	
-	@Get("edit/{userId}")
-	public String showUserEdit(Invocation inv, @Param("userId") long userId) {
+	@Post("addPost")
+	public String postAddNode(Invocation inv, @Param("proxyType") int proxyType, @Param("proxyUrl") String proxyUrl) {
 		
 		
-		QueqiaoUser user = queqiaoUserService.getQueqiaoUserById(userId);
-		if(user==null){
-			return "@参数错误";
+		if(proxyType == 0){
+			return AjaxOutput.failure("请选择类型");
 		}
 		
-		inv.addModel("userList", user);
+		if(StringUtils.isBlank(proxyUrl)){
+			return AjaxOutput.failure("请填写节点类型");
+		}
 		
-		
-		
-		return "admin_user_edit";
-	}
-	
-	
-	
+		QueqiaoProxy proxy = new QueqiaoProxy();
+		proxy.setStatus(QueqiaoProxy.STATUS_NORMAL);
+		proxy.setUrl(proxyUrl);
+		proxy.setType(proxyType);
 
-	@Post("editpost")
-	public String postUserEdit(Invocation inv, @Param("userId") long userId, 
-			@Param("proxyId") int proxyId, 
-			@Param("proxyUrl") String proxyUrl,
-			@Param("expireDate") Date expireDate) {
+		queqiaoProxyService.addProxy(proxy);
 		
-		
-		
-		
-		
-		
-		
-		return "admin_user_edit";
-	}
-	
-	
-	
-	
-	
-	
-	@Get("my_info")
-	public String showMyInfo(Invocation inv) {
-		
-		
-		inv.addModel("user", hostHolderService.getQueqiaoAdmin());
-		
-		
-		
-		return "admin_user_myinfo";
+		return AjaxOutput.success("ok");
 	}
 	
 }

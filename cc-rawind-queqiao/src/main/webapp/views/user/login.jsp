@@ -74,8 +74,6 @@
 </head>
 <body class="bg-black">
 
-<?php echo validation_errors(); ?>
-
 <div class="form-box" id="login-box">
     <div class="header">${SITE_NAME} - 用户登录</div>
     <form action="/user/doLogin" role="form" name="reg" id="loginForm"  method="post" accept-charset="utf-8">

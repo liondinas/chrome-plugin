@@ -97,14 +97,14 @@
 
 				<!-- sidebar menu: : style can be found in sidebar.less -->
 				<ul class="sidebar-menu">
-					<li class="active"><a href="/admin/user/list"> <i class="fa fa-dashboard"></i> <span>用户列表</span>
+					<li><a href="/admin/user/list"> <i class="fa fa-dashboard"></i> <span>用户列表</span>
 					</a></li>
 
 					<li><a href="/admin/node/list"> <i class="fa fa-sitemap"></i>
 							<span>节点列表</span>
 					</a></li>
 
-					<li><a href="/admin/user/my_info"> <i class="fa fa-user"></i> <span>我的信息</span>
+					<li  class="active"><a href="/admin/user/my_info"> <i class="fa fa-user"></i> <span>我的信息</span>
 					</a></li>
 
 					<li><a href="/user/profile_update"> <i
@@ -124,7 +124,7 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-					用户 <small>User</small>
+					个人信息 <small>Info</small>
 				</h1>
 			</section>
 			<!-- Main content -->
@@ -135,43 +135,19 @@
 						<!-- general form elements -->
 						<div class="box box-primary">
 							<div class="box-header">
-								<h3 class="box-title">用户列表</h3>
+								<h3 class="box-title">我的信息</h3>
 							</div>
-
-							<div class="table-responsive">
-								<table class="table table-striped">
-									<thead>
-										<tr>
-											<th>昵称</th>
-											<th>邮箱</th>
-											<th>代理地址</th>
-											<th>注册日期</th>
-											<th>登陆时间</th>
-											<th>状态</th>
-											<th></th>
-										</tr>
-									</thead>
-
-									<tbody>
-										<c:forEach items="${userList}" var="user">
-											<tr >				            					
-				            					<td>${user.name}</td>
-				            					<td>${user.email}</td>
-				            					<td>${user.proxyStr}</td>				  
-				            					<td><fmt:formatDate value="${user.createTime}" pattern="yyyy-MM-dd"/></td>
-				            					<td><fmt:formatDate value="${user.lastLoginTime}" pattern="yyyy-MM-dd HH:mm"/></td>
-				            					<td><c:choose><c:when test="${!empty user.expired}">过期</c:when><c:otherwise>正常</c:otherwise></c:choose></td>		
-				            					<td><button type="button" onclick="window.location.href='/admin/edit/${user.id}'" class="btn btn-success btn-xs">详情</button></td>		            				
-				          					</tr>																				
-										</c:forEach>
-									</tbody>
-								</table>
+							<!-- /.box-header -->
+							<div class="box-body">
+								<p>用户名: ${user.name}</p>
+								<p>邮箱: ${user.email}</p>
+								<p>
+									管理员: <span class="label label-info"> 是 </span>
+								</p>
 							</div>
+							<!-- /.box -->
 						</div>
 					</div>
-					<!-- /.box -->
-				</div>
-				<!-- /.row -->
 			</section>
 			<!-- /.content -->
 		</aside>

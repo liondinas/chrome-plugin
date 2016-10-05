@@ -97,10 +97,10 @@
 
 				<!-- sidebar menu: : style can be found in sidebar.less -->
 				<ul class="sidebar-menu">
-					<li class="active"><a href="/admin/user/list"> <i class="fa fa-dashboard"></i> <span>用户列表</span>
+					<li><a href="/admin/user/list"> <i class="fa fa-dashboard"></i> <span>用户列表</span>
 					</a></li>
 
-					<li><a href="/admin/node/list"> <i class="fa fa-sitemap"></i>
+					<li  class="active"><a href="/admin/node/list"> <i class="fa fa-sitemap"></i>
 							<span>节点列表</span>
 					</a></li>
 
@@ -124,7 +124,7 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-					用户 <small>User</small>
+					节点 <small>Node</small>
 				</h1>
 			</section>
 			<!-- Main content -->
@@ -135,38 +135,38 @@
 						<!-- general form elements -->
 						<div class="box box-primary">
 							<div class="box-header">
-								<h3 class="box-title">用户列表</h3>
+								<h3 class="box-title">新增节点</h3>								
 							</div>
 
-							<div class="table-responsive">
-								<table class="table table-striped">
-									<thead>
-										<tr>
-											<th>昵称</th>
-											<th>邮箱</th>
-											<th>代理地址</th>
-											<th>注册日期</th>
-											<th>登陆时间</th>
-											<th>状态</th>
-											<th></th>
-										</tr>
-									</thead>
+							<form  name="editForm" id="editForm" method="post"
+								action="/admin/node/addPost" accept-charset="utf-8">
+								<div class="box-body">
+									<div class="form-group">
+										<select name="proxyType" id="proxyType">
+											<option value="1">HTTP</option>
+											<option value="2">SOCKT</option>
+											<option value="3">SOCKTV5</option>
+										</select>
+									</div>
 
-									<tbody>
-										<c:forEach items="${userList}" var="user">
-											<tr >				            					
-				            					<td>${user.name}</td>
-				            					<td>${user.email}</td>
-				            					<td>${user.proxyStr}</td>				  
-				            					<td><fmt:formatDate value="${user.createTime}" pattern="yyyy-MM-dd"/></td>
-				            					<td><fmt:formatDate value="${user.lastLoginTime}" pattern="yyyy-MM-dd HH:mm"/></td>
-				            					<td><c:choose><c:when test="${!empty user.expired}">过期</c:when><c:otherwise>正常</c:otherwise></c:choose></td>		
-				            					<td><button type="button" onclick="window.location.href='/admin/edit/${user.id}'" class="btn btn-success btn-xs">详情</button></td>		            				
-				          					</tr>																				
-										</c:forEach>
-									</tbody>
-								</table>
-							</div>
+									<div class="form-group">
+										<input type="text" class="form-control"
+											placeholder="节点地址" id="proxyUrl" name="proxyUrl" required>
+									</div>
+									
+									
+									
+									<div class="form-group">
+										<label>地址例子： SOCKS5 127.0.0.1:1080, PROXY 101.200.121.195:3118</label>
+									</div>
+									
+								</div>
+								<!-- /.box-body -->
+								<div class="box-footer">
+									<button type="submit" name="action" value="add"
+										class="btn btn-primary">提交</button>
+								</div>
+							</form>
 						</div>
 					</div>
 					<!-- /.box -->
@@ -218,23 +218,55 @@
 		<!-- iCheck -->
 		<script src="${SITE_DOMAIN}/static/js/plugins/iCheck/icheck.min.js"
 			type="text/javascript"></script>
-		<!-- AdminLTE App -->
-		<script src="${SITE_DOMAIN}/static/js/AdminLTE/app.js"
-			type="text/javascript"></script>
 
-		<!-- Select js -->
-		<script src="${SITE_DOMAIN}/static/js/bootstrap-select.js"></script>
-		<script src="${SITE_DOMAIN}/static/js/bootstrap-switch.js"></script>
 
-		<script type="text/javascript">
-			$(window).on('load', function() {
+ 	<!-- jQuery 2.0.2 -->
+    <script src="${SITE_DOMAIN}/static/js/jquery-2.0.3.min.js"></script>
+    <script src="${SITE_DOMAIN}/static/js/jquery.validate.min.js"></script>
+    <script src="${SITE_DOMAIN}/static/js/jquery.form.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="${SITE_DOMAIN}/static/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="${SITE_DOMAIN}/static/js/md5.js" type="text/javascript"></script>
+		<script type="text/javascript">						
+			$(document).ready(function() {
+	        	console.log('admin login');
+	            var options = {
+	                target:        '#editForm',   // target element(s) to be updated with server response
+	                success:       showResponse,  // post-submit callback
+	                dataType:  'json'        // 'xml', 'script', or 'json' (expected server response type)
+	            };
 
-				$('.selectpicker').selectpicker({
-					'selectedText' : 'cat'
-				});
+	            $('#editForm').submit(function() {
+	            	
+	                if ($(this).valid()) {	                   	                   
+	                    $(this).ajaxSubmit(options);
+	                    return false;
+	                }
+	            });
 
-				// $('.selectpicker').selectpicker('hide');
-			});
+	            jQuery.validator.addMethod("onlyAlphaNumber", function(value, element) {
+	                return /^[a-zA-Z0-9]+$/.test(value);
+	            }, "Alpha and Number Only!");
+
+	            $('#editForm').validate( {
+	                    rules:{
+	                    	proxyUrl: {
+	                            required: true
+	                        }
+	                    }
+	                }
+	            )
+	        });
+
+	        // post-submit callback
+	        function showResponse(data) {
+	            if (data.code == "0") {
+	                window.location.href = "/admin/node/list";
+	            } else {
+	                alert(data.msg);
+	            }
+	        }
+			
 		</script>
 		<div id="analytics-code" style="display: none">统计代码</div>
 </body>

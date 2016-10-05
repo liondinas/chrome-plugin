@@ -29,7 +29,7 @@
     <script src="${SITE_DOMAIN}/static/js/md5.js" type="text/javascript"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-        	console.log('fffff');
+        	console.log('admin login');
             var options = {
                 target:        '#loginResult',   // target element(s) to be updated with server response
                 success:       showResponse,  // post-submit callback
@@ -74,10 +74,8 @@
 </head>
 <body class="bg-black">
 
-<?php echo validation_errors(); ?>
-
 <div class="form-box" id="login-box">
-    <div class="header">${SITE_NAME} - 用户登录</div>
+    <div class="header">${SITE_NAME} - 管理后台</div>
     <form action="/admin/doLogin" role="form" name="reg" id="loginForm"  method="post" accept-charset="utf-8">
     <div class="body bg-gray">
         <div class="form-group">

@@ -90,14 +90,14 @@ public class LoginInterceptor extends ControllerInterceptorAdapter implements Or
 		}
 		
 		if(user.isAdmin()){
-			if(user.isAdmin()){
+			if(uriStatus == 1){
 				hostHolderService.setQueqiaoAdmin(user);
 			}else{
 				return buildLogin(uriStatus);
 			}
 			
 		}else{
-			if(user.isAdmin()){
+			if(uriStatus == 1){
 				return buildLogin(uriStatus);
 			}else{
 				hostHolderService.setQueqiaoUser(user);

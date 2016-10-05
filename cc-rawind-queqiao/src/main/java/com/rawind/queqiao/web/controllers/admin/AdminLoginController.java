@@ -93,4 +93,12 @@ public class AdminLoginController {
 		
 		return AjaxOutput.failure("2");
 	}
+	
+	
+	@Get("logout")
+	public String gologout(Invocation inv){				
+		CookieUtils.getInstance().deleteCookie(inv.getResponse(), Constants.userCookie, "/");			
+		return "r:/admin/login";
+	}
+	
 }
