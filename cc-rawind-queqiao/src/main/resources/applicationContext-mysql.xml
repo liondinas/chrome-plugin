@@ -14,9 +14,9 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 
 	<bean id="shoDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://10.3.63.11:6610/shop?autoReconnect=true&amp;failOverReadOnly=false&amp;useUnicode=true&amp;characterEncoding=utf8"></property>
-		<property name="username" value="18dx"></property>
-		<property name="password" value="18dxadmin"></property>
+		<property name="url" value="jdbc:mysql://101.200.121.195:3306/squid?autoReconnect=true&amp;failOverReadOnly=false&amp;useUnicode=true&amp;characterEncoding=utf8"></property>
+		<property name="username" value="squidfar"></property>
+		<property name="password" value="chewen.18181818"></property>
 		<property name="initialSize" value="20" />
 		<property name="maxActive" value="300" />
 		<property name="maxWait" value="60000" />
@@ -32,13 +32,13 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 		<property name="validationQuery" value="SELECT 1"></property>
 	</bean>
 	
-	<bean id="jade.dataSourceFactory" class="com.shop.component.mysql.dbsource.ShopDataSourceFactory">
+	<bean id="jade.dataSourceFactory" class="com.rawind.queqiao.mysql.dbsource.ShopDataSourceFactory">
 		<property name="dataSource">    
             <ref bean="shoDataSource" />    
         </property> 
 	</bean>
 	
-	<bean class="com.shop.component.mysql.dbsource.ShopDataSourceTransaction">
+	<bean class="com.rawind.queqiao.mysql.dbsource.ShopDataSourceTransaction">
 		<constructor-arg ref="jade.dataSourceFactory"/>
 	</bean>
 </beans>

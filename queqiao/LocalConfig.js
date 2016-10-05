@@ -10,8 +10,8 @@ LocalConfig.data = new Array();
 
 LocalConfig.size = 0;
 
-//LocalConfig.proxyUrl = "SOCKS5 127.0.0.1:1080";
-LocalConfig.proxyUrl = "PROXY 101.200.121.195:3118";
+LocalConfig.proxyUrl = "SOCKS5 127.0.0.1:1080";
+//LocalConfig.proxyUrl = "PROXY 101.200.121.195:3118";
 
 
 LocalConfig.init = function () {

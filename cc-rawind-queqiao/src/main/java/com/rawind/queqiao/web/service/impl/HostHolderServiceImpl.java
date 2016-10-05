@@ -35,10 +35,22 @@ public class HostHolderServiceImpl implements HostHolderService{
 	public boolean isUserLogin() {
 		return getQueqiaoUser()!=null;
 	}
-	
-	
 
+	@Override
+	public void setQueqiaoAdmin(QueqiaoUser user) {
+		inv.addModel(ADMIN_KEY, user);
 		
+	}
+
+	@Override
+	public QueqiaoUser getQueqiaoAdmin() {
+		return (QueqiaoUser)inv.getModel(ADMIN_KEY);
+	}
+
+	@Override
+	public boolean isAdminLogin() {
+		return getQueqiaoAdmin() !=null;
+	}		
 	
 
 }

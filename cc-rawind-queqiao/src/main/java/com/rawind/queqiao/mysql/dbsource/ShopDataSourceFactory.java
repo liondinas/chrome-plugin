@@ -2,7 +2,7 @@ package com.rawind.queqiao.mysql.dbsource;
 
 import java.util.Map;
 
-import javax.sql.DataSource; 	
+import javax.sql.DataSource;
 
 import net.paoding.rose.jade.dataaccess.DataSourceFactory;
 import net.paoding.rose.jade.dataaccess.DataSourceHolder;

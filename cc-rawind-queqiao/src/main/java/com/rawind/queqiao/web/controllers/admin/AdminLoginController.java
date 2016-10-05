@@ -1,18 +1,25 @@
-package com.rawind.queqiao.web.controllers.user;
-
+package com.rawind.queqiao.web.controllers.admin;
 
 import java.util.Date;
+
+import net.paoding.rose.web.Invocation;
+import net.paoding.rose.web.annotation.DefValue;
+import net.paoding.rose.web.annotation.Param;
+import net.paoding.rose.web.annotation.Path;
+import net.paoding.rose.web.annotation.rest.Get;
+import net.paoding.rose.web.annotation.rest.Post;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.rawind.queqiao.web.Constants;
 import com.chewen.tools.commons.util.AjaxOutput;
 import com.chewen.tools.commons.util.CookieUtils;
 import com.chewen.tools.commons.util.CwIPUtil;
+import com.rawind.queqiao.web.Constants;
 import com.rawind.queqiao.web.annotation.IgnoreLogin;
 import com.rawind.queqiao.web.annotation.JsonResponse;
+import com.rawind.queqiao.web.controllers.user.LoginController;
 import com.rawind.queqiao.web.model.LoginResult;
 import com.rawind.queqiao.web.model.QueqiaoUser;
 import com.rawind.queqiao.web.service.PassportService;
@@ -22,21 +29,9 @@ import com.rawind.queqiao.web.util.UserAgentUtils;
 
 
 
-
-
-import net.paoding.rose.web.Invocation;
-import net.paoding.rose.web.annotation.DefValue;
-import net.paoding.rose.web.annotation.Param;
-import net.paoding.rose.web.annotation.Path;
-import net.paoding.rose.web.annotation.rest.Get;
-import net.paoding.rose.web.annotation.rest.Post;
-
-
-
 @IgnoreLogin()
 @Path("")
-public class LoginController {
-	
+public class AdminLoginController {
 	private static final Log logger = LogFactory.getLog(LoginController.class);
 	
 	@Autowired
@@ -50,9 +45,8 @@ public class LoginController {
 	
 	@Get("login")
 	public String goLogin(Invocation inv) {
-		int count = queqiaoUserExtrService.queryCountByStatus(0);
-		logger.info("queryCountByStatus="+count);
-		return "login";
+		logger.info("admin login ");
+		return "admin_login";
 	}
 	
 	@JsonResponse
@@ -68,7 +62,11 @@ public class LoginController {
 		LoginResult result = queqiaoUserService.login(email, password);
 		if(result.getResultCode()== LoginResult.CODE_SUCCESS){
 			QueqiaoUser user = result.getQueqiaoUser();
-			if(user!=null){				
+			if(user!=null){			
+				if(!user.isAdmin()){
+					return AjaxOutput.failure("登陆错误(-1)");
+				}
+				
 				String passport = passportService.genPsssport(user.getId(), UserAgentUtils.getInstance().getUserAgent(inv.getRequest()));
 				
 				int maxAge = -1;
@@ -95,6 +93,4 @@ public class LoginController {
 		
 		return AjaxOutput.failure("2");
 	}
-		
-	
 }

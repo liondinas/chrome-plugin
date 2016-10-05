@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 
 
+
 import com.chewen.tools.commons.util.AjaxOutput;
 import com.chewen.tools.commons.util.CookieUtils;
 import com.chewen.tools.commons.util.CwStringUtil;
@@ -22,6 +23,7 @@ import com.rawind.queqiao.web.Constants;
 import com.rawind.queqiao.web.annotation.IgnoreLogin;
 import com.rawind.queqiao.web.annotation.JsonResponse;
 import com.rawind.queqiao.web.model.PassportVerifyResult;
+import com.rawind.queqiao.web.model.QueqiaoUser;
 import com.rawind.queqiao.web.service.HostHolderService;
 import com.rawind.queqiao.web.service.PassportService;
 import com.rawind.queqiao.web.service.QueqiaoUserService;
@@ -59,6 +61,17 @@ public class LoginInterceptor extends ControllerInterceptorAdapter implements Or
 			return true;
 		}
 		
+		String uri = inv.getRequestPath().getUri();
+		logger.info("current uri =" + uri);
+		
+		
+		int uriStatus = 0;
+		if(uri.startsWith("/user")){
+			uriStatus = 0;
+		}else if(uri.startsWith("/admin")){
+			uriStatus = 1;
+		}
+		
 		
 		String passport = CookieUtils.getInstance().getCookieValue(inv.getRequest(), Constants.userCookie);
 		String userAgent = UserAgentUtils.getInstance().getUserAgent(inv.getRequest());
@@ -67,24 +80,45 @@ public class LoginInterceptor extends ControllerInterceptorAdapter implements Or
 			if(inv.getMethod().isAnnotationPresent(JsonResponse.class)){
 				return AjaxOutput.needLogin();
 			}
-			return "r:" + "/user/login";
+			return buildLogin(uriStatus);
 		}
 		long userId = CwStringUtil.conver2Int(passportService.obtainAdminId(passport), 0);
-		inv.addModel(Constants.invUserId, userId);
 		
-		hostHolderService.setQueqiaoUser(queqiaoUserService.getQueqiaoUserById(userId));
-		
-		
-		if(!hostHolderService.isUserLogin()){
-			if(inv.getMethod().isAnnotationPresent(JsonResponse.class)){
-				return AjaxOutput.needLogin();
-			}
-			return "r:" + "/user/login";
+		QueqiaoUser user = queqiaoUserService.getQueqiaoUserById(userId);		
+		if(user==null){
+			return buildLogin(uriStatus);
 		}
 		
+		if(user.isAdmin()){
+			if(user.isAdmin()){
+				hostHolderService.setQueqiaoAdmin(user);
+			}else{
+				return buildLogin(uriStatus);
+			}
+			
+		}else{
+			if(user.isAdmin()){
+				return buildLogin(uriStatus);
+			}else{
+				hostHolderService.setQueqiaoUser(user);
+			}
+			
+		}
+			
 		return true;
 	}
 	
 	
+	
+	
+	private String buildLogin(int uriStatus){
+		if(uriStatus == 0){
+			return "r:" + "/user/login";
+		}else if(uriStatus == 1){
+			return "r:" + "/admin/login";
+		}
+		
+		return "r:/";
+	}
 	
 }

@@ -15,6 +15,13 @@ public class QueqiaoUser implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -370840220654080672L;
+	
+	// 前台用户
+	public static final int KIND_CLIENT = 0;
+	
+	// 后台用户
+	public static final int KIND_ADMIN = 1;
+	
 	@Id
 	private long id;
 	private String name;
@@ -30,7 +37,9 @@ public class QueqiaoUser implements Serializable{
 	private long proxyId;
 	private String proxyStr;
 	private String from;
-	private Date upTime;
+	private Date upTime;	
+	private int kind = KIND_CLIENT;
+	
 	public long getId() {
 		return id;
 	}
@@ -122,12 +131,28 @@ public class QueqiaoUser implements Serializable{
 		this.upTime = upTime;
 	}	
 	
+	
+	public int getKind() {
+		return kind;
+	}
+	public void setKind(int kind) {
+		this.kind = kind;
+	}
+	
+	
+	
 	public boolean isExpired(){
 		if(expiredTime == null){
 			return true;
 		}
 		
 		return expiredTime.compareTo(new Date())>0;
+	}
+	
+	
+	
+	public boolean isAdmin(){
+		return kind == KIND_ADMIN;
 	}
 	
 	

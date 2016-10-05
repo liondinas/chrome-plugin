@@ -12,4 +12,15 @@ public interface HostHolderService {
 	
 	
 	boolean isUserLogin();
+	
+	
+	void setQueqiaoAdmin(QueqiaoUser user);
+	
+	
+	QueqiaoUser getQueqiaoAdmin();
+	
+	
+	boolean isAdminLogin();
+	
+	
 }
