@@ -7,10 +7,13 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.chewen.tools.commons.util.AjaxOutput;
 import com.rawind.queqiao.web.controllers.user.LoginController;
+import com.rawind.queqiao.web.model.QueqiaoProxy;
 import com.rawind.queqiao.web.model.QueqiaoUser;
 import com.rawind.queqiao.web.service.HostHolderService;
 import com.rawind.queqiao.web.service.PassportService;
+import com.rawind.queqiao.web.service.QueqiaoProxyService;
 import com.rawind.queqiao.web.service.QueqiaoUserExtrService;
 import com.rawind.queqiao.web.service.QueqiaoUserService;
 
@@ -38,6 +41,9 @@ public class UserMgrController {
 	
 	@Autowired
 	private HostHolderService hostHolderService;
+	
+	@Autowired
+	private QueqiaoProxyService queqiaoProxyService;
 	
 	@Get("list")
 	public String showUserList(Invocation inv) {
@@ -67,10 +73,13 @@ public class UserMgrController {
 		if(user==null){
 			return "@参数错误";
 		}
+		logger.info("userId=" + userId);
+		inv.addModel("user", user);
 		
-		inv.addModel("userList", user);
+		int totalCount = queqiaoProxyService.countByType(0);
+		List<QueqiaoProxy> proxyList = queqiaoProxyService.getByType(0, 0, totalCount);
 		
-		
+		inv.addModel("proxyList", proxyList);
 		
 		return "admin_user_edit";
 	}
@@ -80,17 +89,29 @@ public class UserMgrController {
 
 	@Post("editpost")
 	public String postUserEdit(Invocation inv, @Param("userId") long userId, 
-			@Param("proxyId") int proxyId, 
+			@Param("proxyId") long proxyId, 
 			@Param("proxyUrl") String proxyUrl,
 			@Param("expireDate") Date expireDate) {
 		
 		
+		QueqiaoUser user = queqiaoUserService.getQueqiaoUserById(userId);
+		if(user==null){
+			return AjaxOutput.failure("用户不存在");
+		}
 		
 		
+		QueqiaoProxy proxy = queqiaoProxyService.getById(proxyId);
+		if(proxy==null){
+			return AjaxOutput.failure("代理节点不存在");
+		}
 		
 		
+		user.setProxyId(proxy.getId());
+		user.setProxyStr(proxy.getUrl());
 		
-		return "admin_user_edit";
+		queqiaoUserService.update(user);
+				
+		return AjaxOutput.success("ok");
 	}
 	
 	

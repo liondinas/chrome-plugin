@@ -146,7 +146,7 @@
 											<th>邮箱</th>
 											<th>代理地址</th>
 											<th>注册日期</th>
-											<th>登陆时间</th>
+											<th>过期时间</th>
 											<th>状态</th>
 											<th></th>
 										</tr>
@@ -159,9 +159,9 @@
 				            					<td>${user.email}</td>
 				            					<td>${user.proxyStr}</td>				  
 				            					<td><fmt:formatDate value="${user.createTime}" pattern="yyyy-MM-dd"/></td>
-				            					<td><fmt:formatDate value="${user.lastLoginTime}" pattern="yyyy-MM-dd HH:mm"/></td>
+				            					<td><fmt:formatDate value="${user.expiredTime}" pattern="yyyy-MM-dd HH:mm"/></td>
 				            					<td><c:choose><c:when test="${!empty user.expired}">过期</c:when><c:otherwise>正常</c:otherwise></c:choose></td>		
-				            					<td><button type="button" onclick="window.location.href='/admin/edit/${user.id}'" class="btn btn-success btn-xs">详情</button></td>		            				
+				            					<td><button type="button" onclick="window.location.href='/admin/user/edit/${user.id}'" class="btn btn-success btn-xs">详情</button></td>		            				
 				          					</tr>																				
 										</c:forEach>
 									</tbody>

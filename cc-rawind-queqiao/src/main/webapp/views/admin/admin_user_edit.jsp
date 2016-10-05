@@ -124,7 +124,7 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-					节点 <small>Node</small>
+					用户 <small>User</small>
 				</h1>
 			</section>
 			<!-- Main content -->
@@ -135,31 +135,38 @@
 						<!-- general form elements -->
 						<div class="box box-primary">
 							<div class="box-header">
-								<h3 class="box-title">新增节点</h3>								
+								<h3 class="box-title">用户修改</h3>								
 							</div>
 
 							<form  name="editForm" id="editForm" method="post"
-								action="/admin/node/addPost" accept-charset="utf-8">
+								action="/admin/user/editpost" accept-charset="utf-8">
 								<div class="box-body">
 									<div class="form-group">
-										<select name="proxyType" id="proxyType">
-											<option value="1">HTTP</option>
-											<option value="2">SOCKT</option>
-											<option value="3">SOCKTV5</option>
-										</select>
+										<label>用户名：${user.name}</label>
 									</div>
-
 									<div class="form-group">
-										<input type="text" class="form-control"
-											placeholder="节点地址" id="proxyUrl" name="proxyUrl" required>
+										<label>Email：${user.email}</label>
 									</div>
-									
-									
-									
 									<div class="form-group">
-										<label>地址例子： SOCKS5 127.0.0.1:1080, PROXY 101.200.121.195:3118</label>
+										<label>注册时间：<fmt:formatDate value="${user.createTime}" pattern="yyyy-MM-dd HH:mm"/></label>
 									</div>
-									
+									<div class="form-group">
+										<label>过期时间：<fmt:formatDate value="${user.expiredTime}" pattern="yyyy-MM-dd HH:mm"/></label>
+									</div>
+									<div class="form-group">
+										<label>上次登陆时间：<fmt:formatDate value="${user.lastLoginTime}" pattern="yyyy-MM-dd HH:mm"/></label>
+									</div>
+									<div class="form-group">
+										<label>上次登陆IP：${user.lastLoginIp}</label>
+									</div>									
+									<div class="form-group">
+										<select name="proxyId" id="proxyId">
+											<c:forEach items="${proxyList}" var="proxy">											
+											<option value="${proxy.id}">${proxy.url}</option>
+											</c:forEach>
+										</select>																				
+									</div>					
+									<input type="hidden" name="userId" value="${user.id}" />
 								</div>
 								<!-- /.box-body -->
 								<div class="box-footer">
@@ -250,9 +257,7 @@
 
 	            $('#editForm').validate( {
 	                    rules:{
-	                    	proxyUrl: {
-	                            required: true
-	                        }
+	                    	
 	                    }
 	                }
 	            )
@@ -261,7 +266,7 @@
 	        // post-submit callback
 	        function showResponse(data) {
 	            if (data.code == "0") {
-	                window.location.href = "/admin/node/list";
+	                window.location.href = "/admin/user/list";
 	            } else {
 	                alert(data.msg);
 	            }
