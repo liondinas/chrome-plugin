@@ -74,8 +74,8 @@ public class LoginInterceptor extends ControllerInterceptorAdapter implements Or
 		}else if(uri.startsWith("/admin")){
 			uriStatus = 1;
 		}else if(uri.startsWith("/plugin")){
-			passport = inv.getParameter("userCookie");
-			logger.info("for plugin passport =" + passport);
+			//passport = inv.getParameter("userCookie");
+			//logger.info("for plugin passport =" + passport);
 		}
 		
 		
@@ -84,6 +84,7 @@ public class LoginInterceptor extends ControllerInterceptorAdapter implements Or
 		
 		
 		if (pvr == null || !pvr.isOK()) {
+			logger.info("for plugin pvr =" + pvr.getValidationCode());
 			if(inv.getMethod().isAnnotationPresent(JsonResponse.class)){
 				return AjaxOutput.needLogin();
 			}
