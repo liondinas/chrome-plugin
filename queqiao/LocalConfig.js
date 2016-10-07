@@ -139,7 +139,7 @@ LocalConfig.getDomainFromUrl = function getDomainFromUrl(url){
 
 LocalConfig.getUrlDomain = function getUrlDomain(url){
 　　　　var arrUrl = url.split("//");
-    if(arrUrl.length>0){
+    if(arrUrl.length>1){
         var start = arrUrl[1].indexOf("/");
         var relUrl = arrUrl[1].substring(0, start);
         relUrl = relUrl.replace(/www/, "");  

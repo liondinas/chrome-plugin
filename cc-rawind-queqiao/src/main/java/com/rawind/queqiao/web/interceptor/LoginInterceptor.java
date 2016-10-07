@@ -62,7 +62,10 @@ public class LoginInterceptor extends ControllerInterceptorAdapter implements Or
 		}
 		
 		String uri = inv.getRequestPath().getUri();
-		logger.info("current uri =" + uri);
+		
+		String passport = CookieUtils.getInstance().getCookieValue(inv.getRequest(), Constants.userCookie);
+		String userAgent = UserAgentUtils.getInstance().getUserAgent(inv.getRequest());
+		logger.info("current uri =" + uri + ",userAgent="+userAgent);
 		
 		
 		int uriStatus = 0;
@@ -70,12 +73,16 @@ public class LoginInterceptor extends ControllerInterceptorAdapter implements Or
 			uriStatus = 0;
 		}else if(uri.startsWith("/admin")){
 			uriStatus = 1;
+		}else if(uri.startsWith("/plugin")){
+			passport = inv.getParameter("userCookie");
+			logger.info("for plugin passport =" + passport);
 		}
 		
 		
-		String passport = CookieUtils.getInstance().getCookieValue(inv.getRequest(), Constants.userCookie);
-		String userAgent = UserAgentUtils.getInstance().getUserAgent(inv.getRequest());
+		
 		PassportVerifyResult pvr = passportService.verifyPassport(passport, userAgent);
+		
+		
 		if (pvr == null || !pvr.isOK()) {
 			if(inv.getMethod().isAnnotationPresent(JsonResponse.class)){
 				return AjaxOutput.needLogin();

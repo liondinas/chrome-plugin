@@ -49,7 +49,7 @@ function init() {
 
 	Settings.setValue('pacScriptData', LocalConfig.pacScript());
 
-	ProxyPlugin.setProxy("auto", "socks5://127.0.0.1:1080", "", ProxyPlugin.memoryPath);
+	//ProxyPlugin.setProxy("auto", "socks5://127.0.0.1:1080", "", ProxyPlugin.memoryPath);
 
 	ProxyPlugin.setProxyCallback = function () {
 		InitComplete = true;

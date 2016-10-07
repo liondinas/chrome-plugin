@@ -41,6 +41,7 @@ function delUrl() {
 
 
 function checkLogin(){
+
     //usage:
     QueqiaoUser.getCookiesSync("http://proxy.xiaochengzi.vip", "user", function(userCookie) {
         if(userCookie){
@@ -74,9 +75,55 @@ function checkLogin(){
 
 
 
+
+function refreshBtnClick() {
+    // body...
+    Logger.info("refreshBtnClick");
+    $.ajax({
+          type : "GET",
+          url : 'http://proxy.xiaochengzi.vip/plugin/getProxy',
+          data: {
+            userCookie : extension.QueqiaoUser.userCookie
+          },
+          dataType : "json",
+          async: true,
+          beforeSend : function(xhr) {  
+            //var cookie = credentials["COOKIE"];
+            /*var cookie = 'user='+ QueqiaoUser.userCookie;
+            Logger.info( "adding cookie: "+ cookie );          
+            xhr.setRequestHeader('Cookie', cookie);*/
+          },
+          success : function(retJson){
+            if (retJson['code'] != 0) {
+                Logger.info('getUerName code error='+JSON.stringify(retJson));  
+            }else{
+                var data = retJson['data'];
+                extension.QueqiaoUser.userName = data.userName;
+                extension.QueqiaoUser.proxyUrl = data.url;
+                extension.QueqiaoUser.status = 1;
+                extension.LocalConfig.proxyUrl = data.url;            
+                Logger.info('getUerName from net='+data.userName + ',proxyUrl from net='+data.url); 
+
+                extension.Settings.setValue('pacScriptData', extension.LocalConfig.pacScript());
+                //function (proxyMode, proxyString, proxyExceptions, proxyConfigUrl)
+                extension.ProxyPlugin.setProxy("auto", extension.LocalConfig.proxyUrl, "", ProxyPlugin.memoryPath);
+
+            }   
+            
+          },
+          error : function(xhr, ajaxOptions, thrownError) {
+            Logger.info('getUserName net error ='+thrownError);
+          }     
+    });
+}
+
+
+
 $(document).ready(function(){
     init();
 
     $(".delBtn").click(delUrl);
+
+    $("#refreshBtn").click(refreshBtnClick);
 
 });

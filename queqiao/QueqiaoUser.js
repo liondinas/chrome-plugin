@@ -23,7 +23,7 @@ QueqiaoUser.userCookie = '';
 QueqiaoUser.init = function () {
 	this.getCookiesSync("http://proxy.xiaochengzi.vip", "user", function(userCookie) {
         if(userCookie){
-           	QueqiaoUser.setCookie(userCookie.value);
+           	QueqiaoUser.setCookie(userCookie.value);           	
         }
     });
 };
@@ -44,8 +44,9 @@ QueqiaoUser.setCookie = function(userCookie){
 		  dataType : "json",
 		  async: true,
 		  beforeSend : function(xhr) {  
-		    /*var cookie = credentials["COOKIE"];//此处设置cookie
-		    console.info( "adding cookie: "+ cookie );          
+		    //var cookie = credentials["COOKIE"];
+		    /*var cookie = 'user='+ QueqiaoUser.userCookie;
+		    Logger.info( "adding cookie: "+ cookie );          
 		    xhr.setRequestHeader('Cookie', cookie);*/
 		  },
 		  success : function(retJson){
@@ -56,7 +57,13 @@ QueqiaoUser.setCookie = function(userCookie){
 		  		QueqiaoUser.userName = data.userName;
 		  		QueqiaoUser.proxyUrl = data.url;
 		  		QueqiaoUser.status = 1;
-		  		Logger.info('getUerName from net='+data.userName);	
+		  		LocalConfig.proxyUrl = data.url;		  	
+		  		Logger.info('getUerName from net='+data.userName + ',proxyUrl from net='+data.url);	
+
+				Settings.setValue('pacScriptData', LocalConfig.pacScript());
+				//function (proxyMode, proxyString, proxyExceptions, proxyConfigUrl)
+				ProxyPlugin.setProxy("auto", LocalConfig.proxyUrl, "", ProxyPlugin.memoryPath);
+
 		  	}	
 		  	
 		  },
