@@ -1,7 +1,8 @@
 #!/bin/sh
 
 PROJECT_HOME=/home/rd/chewen/git/obd
-DEST_IP=205.209.185.57
+#DEST_IP=205.209.185.57
+DEST_IP=205.209.187.142
 
 if [ $# -le 1 ]
 then

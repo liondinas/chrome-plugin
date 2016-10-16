@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.chewen.tools.commons.util.CookieUtils;
 import com.rawind.queqiao.web.Constants;
+import com.rawind.queqiao.web.model.OrderTypeEnum;
 import com.rawind.queqiao.web.model.QueqiaoUser;
 import com.rawind.queqiao.web.service.HostHolderService;
 import com.rawind.queqiao.web.service.QueqiaoUserService;
@@ -58,6 +59,9 @@ public class UserController {
 		
 		
 		inv.addModel("user", user);
+		
+		
+		inv.addModel("orderTypeList", OrderTypeEnum.values());
 		
 		return "my_info";
 	}

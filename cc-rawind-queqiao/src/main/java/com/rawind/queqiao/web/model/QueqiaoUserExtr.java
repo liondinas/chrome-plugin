@@ -1,6 +1,7 @@
 package com.rawind.queqiao.web.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import net.paoding.rose.jade.annotation.DAO;
 
@@ -13,9 +14,11 @@ public class QueqiaoUserExtr implements Serializable{
 	 */
 	private static final long serialVersionUID = 4170851400371170810L;
 
-	public static final int STATUS_NORMAL = 0;
+	public static final int STATUS_ALL = 0;
 	
-	public static final int STATUS_EXPIRED = 1;
+	public static final int STATUS_NORMAL = 1;
+	
+	public static final int STATUS_EXPIRED = 2;
 	
 	
 	private long id;
@@ -25,6 +28,8 @@ public class QueqiaoUserExtr implements Serializable{
 	private String userName;
 	
 	private String passwd;
+	
+	private Date expiredTime;
 	
 	private int status = STATUS_NORMAL;
 
@@ -66,6 +71,14 @@ public class QueqiaoUserExtr implements Serializable{
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	public Date getExpiredTime() {
+		return expiredTime;
+	}
+
+	public void setExpiredTime(Date expiredTime) {
+		this.expiredTime = expiredTime;
 	}
 	
 	

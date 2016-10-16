@@ -144,12 +144,26 @@
 								<p>邮箱: ${user.email} </p>
 								<p>过期时间: <fmt:formatDate value="${user.expiredTime}" pattern="yyyy-MM-dd HH:mm"/> </p>
 								<p>
-									套餐: <span class="label label-info"> A </span>
+									支付宝购买: <span class="label label-info"> A </span>
+									
+									<div class="dropdown">
+									    <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">选择套餐
+									        <span class="caret"></span>
+									    </button>
+									    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+									    	<c:forEach items="${orderTypeList}" var="orderType">
+									    	<li role="presentation">
+									            <a role="menuitem" tabindex="-1" href="/user/user_pay?type=${orderType.code}">${orderType.memo} - ${orderType.amountString}</a>
+									        </li>
+									    	</c:forEach>									    
+									    </ul>
+									</div>
+									
 								</p>
 								<p>
-									账户余额: 0.00元 
-									<a class="btn btn-info btn-sm" href="https://ss.xiaochengzi.vip/user/pay.html">微信充值</a>
-									<a class="btn btn-info btn-sm" href="https://ss.xiaochengzi.vip/user/pay.html">支付宝充值</a>
+									<!-- 账户余额: 0.00元  -->
+									<!-- <a class="btn btn-info btn-sm" href="https://ss.xiaochengzi.vip/user/pay.html">微信充值</a> -->
+									<a class="btn btn-info btn-sm" href="/user/user_pay">支付宝购买</a>
 								</p>
 							</div>
 							<!-- /.box -->
