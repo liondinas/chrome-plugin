@@ -42,9 +42,10 @@ chrome.webRequest.onBeforeRequest.addListener (
         };
         var url = details.url;
         //Logger.debug("requestURL= " + url);
-        /*if(url.indexOf("www.baidu.com")!=-1){
-         return {redirectUrl:"http://www.chewen.com"}
-         }*/
+        if(url.indexOf("doubleclick.net")!=-1){
+            Logger.log("doubleclick.net find for url="+url);
+            return {redirectUrl:"http://proxy.xiaochengzi.vip?click="+url}
+        }
 
 
         //TODO checkthe url is in array, then show diffrent icon
