@@ -41,35 +41,50 @@ function delUrl() {
 
 
 function checkLogin(){
-
-    //usage:
+        
     QueqiaoUser.getCookiesSync("http://proxy.xiaochengzi.vip", "user", function(userCookie) {
-        if(userCookie){
-            Logger.info('userCookie='+userCookie.value);
-        }else{
-            Logger.info('no userCookie');
-            var loginUrl = 'http://proxy.xiaochengzi.vip/user/login';
-            var optionUrl = chrome.extension.getURL('/options.html');
-            chrome.tabs.getAllInWindow(undefined, function(tabs) {
-                for (var i in tabs) {
-                    tab = tabs[i];
-                    Logger.log(tab.url);   
-                    if(tab.url == optionUrl){
-                        chrome.tabs.update(tab.id, { selected: true, url:loginUrl });
-                        //return;
-                    }    
 
-                    /*if (tab.url == loginUrl) {
-                        chrome.tabs.update(tab.id, { selected: true });
-                        return;
-                    }*/
-                }
-                /*chrome.tabs.getSelected(null, function(tab) {
-                    chrome.tabs.create({url: '/login.html',index: tab.index + 1});
-                });*/
+        var status = 0;
+        if(userCookie){
+            // bug fix for has wrong userCookie
+            Logger.info('userCookie='+userCookie.value);
+            $.ajax({
+                  type : "GET",
+                  url : 'http://proxy.xiaochengzi.vip/plugin/getProxy',
+                  data: {
+                    userCookie : userCookie
+                  },
+                  dataType : "json",
+                  async: true,
+                  beforeSend : function(xhr) {  
+                    //var cookie = credentials["COOKIE"];
+                    /*var cookie = 'user='+ QueqiaoUser.userCookie;
+                    Logger.info( "adding cookie: "+ cookie );          
+                    xhr.setRequestHeader('Cookie', cookie);*/
+                  },
+                  success : function(retJson){
+                    if (retJson['code'] != 0) {                       
+                        Logger.info('getUerName code error='+JSON.stringify(retJson));  
+                    }else{
+                         status = 1;
+                    }
+                  },
+                  error : function(xhr, ajaxOptions, thrownError) {
+                    Logger.info('getUserName net error ='+thrownError);
+                  }     
             });            
             
+        }else{
+            Logger.info('no userCookie');                            
         }
+
+        Logger.info('status='+status);        
+        if(status!=1){
+                
+        }
+
+
+
     });
 }
 
@@ -117,6 +132,30 @@ function refreshBtnClick() {
     });
 }
 
+
+
+function goLoginPage(){
+    var loginUrl = 'http://proxy.xiaochengzi.vip/user/login';
+            var optionUrl = chrome.extension.getURL('/options.html');
+            chrome.tabs.getAllInWindow(undefined, function(tabs) {
+                for (var i in tabs) {
+                    tab = tabs[i];
+                    Logger.log(tab.url);   
+                    if(tab.url == optionUrl){
+                        chrome.tabs.update(tab.id, { selected: true, url:loginUrl });
+                        //return;
+                    }    
+
+                    /*if (tab.url == loginUrl) {
+                        chrome.tabs.update(tab.id, { selected: true });
+                        return;
+                    }*/
+                }
+                /*chrome.tabs.getSelected(null, function(tab) {
+                    chrome.tabs.create({url: '/login.html',index: tab.index + 1});
+                });*/
+            });   
+}
 
 
 $(document).ready(function(){
