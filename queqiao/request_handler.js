@@ -45,7 +45,7 @@ chrome.webRequest.onBeforeRequest.addListener (
         if(url.indexOf("doubleclick.net")!=-1 ||
             url.indexOf("pos.baidu.com")!=-1){
             Logger.log("doubleclick.net find for url="+url);
-            return {redirectUrl:"http://proxy.xiaochengzi.vip?click="+url}
+            return {redirectUrl:"http://proxy.xiaochengzi.vip/ads?click="+url}
         }
 
 

@@ -79,8 +79,8 @@ function checkLogin(){
         }
 
         Logger.info('status='+status);        
-        if(status!=1){
-                
+        if(status==0){
+            //goLoginPage();                    
         }
 
 
