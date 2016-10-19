@@ -118,20 +118,26 @@
 								<h3 class="box-title">节点</h3>
 							</div>
 							<!-- /.box-header -->
-							<div class="box-body">
-								<div class="callout callout-info">
-									<h4>加密方式</h4>
-									<p>
-										无特殊说明加密方式均为
-										<code>rc4-md5</code>
-									</p>
-								</div>
-								<p>
-									默认节点:
-									<code>1.2.3.4</code>
-									默认节点
-								</p>
-							</div>
+							<table class="table table-striped">
+									<thead>
+										<tr>
+											<th>节点ID</th>
+											<th>节点地址</th>
+											<th>状态</th>
+										</tr>
+									</thead>
+
+									<tbody>
+										<c:forEach items="${orderList}" var="order">
+											<tr >				            					
+				            					<td>${order.id}</td>
+				            					<td>${order.memo}</td>		  
+				            					<td><c:choose><c:when test="${proxy.del}">过期</c:when><c:otherwise>正常</c:otherwise></c:choose></td>		
+				            					<td><button type="button" onclick="window.location.href='/admin/edit/${user.id}'" class="btn btn-success btn-xs">详情</button></td>		            				
+				          					</tr>																				
+										</c:forEach>
+									</tbody>
+								</table>
 							<!-- /.box-body -->
 						</div>
 						<!-- /.box -->

@@ -56,7 +56,7 @@ CREATE TABLE `queqiao_order` (
 	@SQL("select count(1) from " + TABLE + " where user_id =:userId")
 	public int countByUser(@SQLParam("userId")long userId);
 	
-	@SQL("select " + FIELDS_ALL + " from " + TABLE + " where user_id =:userId limit:offset,:limit")
+	@SQL("select " + FIELDS_ALL + " from " + TABLE + " where user_id =:userId limit :offset,:limit")
 	public List<QueqiaoOrder> listByUser(@SQLParam("userId")long userId, @SQLParam("offset")int offset, @SQLParam("limit")int limit);
 	
 	
