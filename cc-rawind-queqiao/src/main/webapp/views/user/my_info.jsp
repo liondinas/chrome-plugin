@@ -144,26 +144,18 @@
 								<p>邮箱: ${user.email} </p>
 								<p>过期时间: <fmt:formatDate value="${user.expiredTime}" pattern="yyyy-MM-dd HH:mm"/> </p>
 								<p>
-									支付宝购买: <span class="label label-info"> A </span>
-									
-									<div class="dropdown">
-									    <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">选择套餐
-									        <span class="caret"></span>
-									    </button>
-									    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-									    	<c:forEach items="${orderTypeList}" var="orderType">
-									    	<li role="presentation">
-									            <a role="menuitem" tabindex="-1" href="/user/user_pay?type=${orderType.code}">${orderType.memo} - ${orderType.amountString}</a>
-									        </li>
-									    	</c:forEach>									    
-									    </ul>
-									</div>
-									
+									支付宝购买: <!-- <span class="label label-info"> A </span> -->
+									<c:forEach items="${orderTypeList}" var="orderType">
+									<label class="radio">
+									  <input type="radio" name="orderType" value="${orderType.code}">
+									  ${orderType.memo} - ${orderType.amountString}
+									</label>									
+									</c:forEach>																		
 								</p>
 								<p>
 									<!-- 账户余额: 0.00元  -->
 									<!-- <a class="btn btn-info btn-sm" href="https://ss.xiaochengzi.vip/user/pay.html">微信充值</a> -->
-									<a class="btn btn-info btn-sm" href="/user/user_pay">支付宝购买</a>
+									<button type="submit" class="btn btn-info btn-sm" id="alipayBtn">支付宝购买</button>
 								</p>
 							</div>
 							<!-- /.box -->
@@ -229,7 +221,17 @@
 				$('.selectpicker').selectpicker({
 					'selectedText' : 'cat'
 				});
-
+				
+				
+				 $('#alipayBtn').bind('click', function() {
+					var type = $("input[name='orderType']:checked").val();
+					if(typeof(type) == "undefined") { 
+						 alert('请选择套餐类型');
+					}else{
+						window.location.href='/user/user_pay?type='+type;
+					}
+			     });
+			        
 				// $('.selectpicker').selectpicker('hide');
 			});
 		</script>
