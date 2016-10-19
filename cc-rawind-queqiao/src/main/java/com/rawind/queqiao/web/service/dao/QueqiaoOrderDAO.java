@@ -34,7 +34,7 @@ CREATE TABLE `queqiao_order` (
   `version` int(8) NOT NULL DEFAULT '0'  COMMENT '乐观锁', 
   `fee` int(8) NOT NULL DEFAULT '0'  COMMENT '手续费', 
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='用户代理表'
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='用户订单表'
 
 	 * 
 	 */
@@ -56,8 +56,8 @@ CREATE TABLE `queqiao_order` (
 	@SQL("select count(1) from " + TABLE + " where user_id =:userId")
 	public int countByUser(@SQLParam("userId")long userId);
 	
-	@SQL("select " + FIELDS_ALL + " from " + TABLE + " where user_id =:userId limit:limit,:offset")
-	public List<QueqiaoOrder> listByUser(@SQLParam("userId")long userId, @SQLParam("offset")int offset, @SQLParam("offset")int limit);
+	@SQL("select " + FIELDS_ALL + " from " + TABLE + " where user_id =:userId limit:offset,:limit")
+	public List<QueqiaoOrder> listByUser(@SQLParam("userId")long userId, @SQLParam("offset")int offset, @SQLParam("limit")int limit);
 	
 	
 	@SQL("update " + TABLE + "set pay_time=:payTime, status=:status, queqiao_trade_no=:queqiaoTradeNo, trade_no =:tradeNo  where id =:orderId and version=:version")

@@ -5,10 +5,11 @@
  *日期：2016-03-08
  *说明：
  *以下代码只是为了方便商户测试而提供的样例代码，商户可以根据自己网站的需要，按照技术文档编写,并非一定要使用该代码。
- **********************************************
+ ********************************************** target="_blank"
  */
 %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -195,9 +196,9 @@
         margin-top: 10px;
         width:500px;
         height:30px;
-        margin-left:80px;
+        margin-left:110px;
         line-height:30px;
-        font-size:12px;
+        font-size:24px;
         color:#999
     }
     .legend {
@@ -249,34 +250,34 @@
         </div>
     </div>
     <div class="content">
-        <form action="alipayapi.jsp" class="alipayform" method="POST" target="_blank">
+        <form action="http://www.yufengchen.com/alipay/alipayapi.php" class="alipayform" method="POST" >
             <div class="element" style="margin-top:60px;">
                 <div class="legend">支付宝即时到账交易接口快速通道 </div>
             </div>
             <div class="element">
                 <div class="etitle">商户订单号:</div>
-                <div class="einput"><input type="text" name="WIDout_trade_no" id="out_trade_no"></div>
+                <div class="mark">${orderQueqiao.queqiaoTradeNo}</div>               
                 <br>
-                <div class="mark">注意：商户订单号(out_trade_no).必填(建议是英文字母和数字,不能含有特殊字符)</div>
+               	<input type="hidden" name="WIDout_trade_no" value="${orderQueqiao.queqiaoTradeNo}">
             </div>
             
             <div class="element">
                 <div class="etitle">商品名称:</div>
-                <div class="einput"><input type="text" name="WIDsubject" value="test商品123"></div>
+                <div class="mark">${orderQueqiao.queqiaoTradeNo}</div>              
                 <br>
-                <div class="mark">注意：产品名称(subject)，必填(建议中文，英文，数字，不能含有特殊字符)</div>
+                <input type="hidden" name="WIDsubject" value="${orderType.memo}">
             </div>
             <div class="element">
                 <div class="etitle">付款金额:</div>
-                <div class="einput"><input type="text" name="WIDtotal_fee" value="0.01"></div>
+                <div class="mark">${orderQueqiao.amount/100}</div>                      
                 <br>
-                <div class="mark">注意：付款金额(total_fee)，必填(格式如：1.00,请精确到分)</div>
+                <input type="hidden" name="WIDtotal_fee" value="${orderQueqiao.amount/100}">
             </div>
 			<div class="element">
                 <div class="etitle">商品描述:</div>
-                <div class="einput"><input type="text" name="WIDbody" value="即时到账测试"></div>
+                <div class="mark">${orderQueqiao.memo}</div>      
                 <br>
-                <div class="mark">注意：商品描述(body)，选填(建议中文，英文，数字，不能含有特殊字符)</div>
+                <input type="hidden" name="WIDbody" value="${orderQueqiao.memo}">
             </div>
             <div class="element">
                 <input type="submit" class="alisubmit" value ="确认支付">

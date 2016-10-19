@@ -1,15 +1,20 @@
 package com.rawind.queqiao.web.controllers.user;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.chewen.tools.commons.util.CookieUtils;
 import com.rawind.queqiao.web.Constants;
 import com.rawind.queqiao.web.model.OrderTypeEnum;
+import com.rawind.queqiao.web.model.QueqiaoOrder;
 import com.rawind.queqiao.web.model.QueqiaoUser;
 import com.rawind.queqiao.web.service.HostHolderService;
+import com.rawind.queqiao.web.service.QueqiaoOrderService;
 import com.rawind.queqiao.web.service.QueqiaoUserService;
 
 import net.paoding.rose.web.Invocation;
+import net.paoding.rose.web.annotation.Param;
 import net.paoding.rose.web.annotation.Path;
 import net.paoding.rose.web.annotation.rest.Get;
 
@@ -26,6 +31,9 @@ public class UserController {
 	
 	@Autowired
 	private HostHolderService hostHolderService;
+	
+	@Autowired
+	private QueqiaoOrderService queqiaoOrderService;
 	
 	@Get("")
 	public String goUserIndex(Invocation inv){
@@ -102,5 +110,25 @@ public class UserController {
 		return "r:/user/login";
 	}
 	
+	
+	
+	@Get("order_list")
+	public String goOrderList(Invocation inv, @Param("pageNo") int pageNo){
+		
+		QueqiaoUser user = hostHolderService.getQueqiaoUser();
+		
+		
+		inv.addModel("user", user);
+		
+		
+		int totalCount = queqiaoOrderService.countByUser(user.getId());
+		
+		List<QueqiaoOrder> orderList = queqiaoOrderService.listByUser(user.getId(), 0, totalCount);
+		
+		
+		inv.addModel("orderList", orderList);
+		
+		return "order_list";
+	}
 	
 }

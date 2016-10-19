@@ -64,6 +64,7 @@ public class UserPayController {
 		order.setType(orderType.getCode());
 		order.setUserId(user.getId());
 		order.setUserName(user.getName());
+		order.setAmount(orderType.getAmount());
 		order.setVersion(0);
 		long orderId = queqiaoOrderService.insert(order);
 		

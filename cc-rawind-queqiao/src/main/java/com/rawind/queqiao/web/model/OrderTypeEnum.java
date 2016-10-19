@@ -12,7 +12,7 @@ public enum OrderTypeEnum {
 	NOLIMIT_12_MONTH(1012, 20, 365, "12个月(带宽:无限制)", 200*100);;
 	
 	
-	private OrderTypeEnum(int code, int width, int day, String memo, int amont){
+	private OrderTypeEnum(int code, int width, int day, String memo, int amount){
 		this.code = code;
 		this.width = width;
 		this.days = day;
