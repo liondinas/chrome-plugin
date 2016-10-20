@@ -50,8 +50,8 @@ public class LoginController {
 	
 	@Get("login")
 	public String goLogin(Invocation inv) {
-		int count = queqiaoUserExtrService.queryCountByStatus(0);
-		logger.info("queryCountByStatus="+count);
+		//int count = queqiaoUserExtrService.queryCountByStatus(0);
+		//logger.info("queryCountByStatus="+count);
 		return "login";
 	}
 	
