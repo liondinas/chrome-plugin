@@ -66,7 +66,11 @@ CREATE TABLE `queqiao_order` (
 			@SQLParam("queqiaoTradeNo")String queqiaoTradeNo, @SQLParam("tradeNo")String tradeNo);
 		
 	
-	
+	@SQL("select " + FIELDS_ALL + " from " + TABLE + " where id =:orderId")
 	public QueqiaoOrder getById(@SQLParam("orderId")long orderId);
+	
+	
+	@SQL("select " + FIELDS_ALL + " from " + TABLE + " where queqiao_trade_no =:tradeNo")
+	public QueqiaoOrder getByTradeNo(@SQLParam("tradeNo")String tradeNo);
 	
 }

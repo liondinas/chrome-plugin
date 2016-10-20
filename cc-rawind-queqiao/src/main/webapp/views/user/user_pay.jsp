@@ -250,7 +250,7 @@
         </div>
     </div>
     <div class="content">
-        <form action="http://www.yufengchen.com/alipay/alipayapi.php" class="alipayform" method="POST" >
+        <form action="http://www.yufengchen.com/alipay/alipayapi.php" class="alipayform" method="POST" target="_blank">
             <div class="element" style="margin-top:60px;">
                 <div class="legend">支付宝即时到账交易接口快速通道 </div>
             </div>
@@ -263,7 +263,7 @@
             
             <div class="element">
                 <div class="etitle">商品名称:</div>
-                <div class="mark">${orderQueqiao.queqiaoTradeNo}</div>              
+                <div class="mark">${orderQueqiao.memo}</div>              
                 <br>
                 <input type="hidden" name="WIDsubject" value="${orderType.memo}">
             </div>

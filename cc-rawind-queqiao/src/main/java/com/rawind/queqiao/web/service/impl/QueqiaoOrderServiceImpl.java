@@ -52,17 +52,17 @@ public class QueqiaoOrderServiceImpl implements QueqiaoOrderService {
 
 	@Override
 	public boolean finishOrder(String queqiaoTradeNo, String tradeNo, int amout) {
-		logger.info("begin to hand orderId="+queqiaoTradeNo);
-		long orderId = TradeNoGenerator.getOrderIdFromTradeNo(queqiaoTradeNo);
+		logger.info("begin to hand tradeNo="+queqiaoTradeNo);
+		long orderId = 0;
 		boolean retval = false;
 		try{
-			QueqiaoOrder order = queqiaoOrderDAO.getById(orderId);
+			QueqiaoOrder order = queqiaoOrderDAO.getByTradeNo(queqiaoTradeNo);
+			
 			if(order==null){
-				logger.info("orderId="+orderId + " is null ");
-			}else{				
-				if(order.getStatus() == QueqiaoOrder.STATUS_CREATED){
-					
-					
+				logger.info("tradeNo="+queqiaoTradeNo + " is null ");
+			}else{		
+				orderId = order.getId();
+				if(order.getStatus() == QueqiaoOrder.STATUS_CREATED){										
 					OrderTypeEnum type = OrderTypeEnum.getByCode(order.getType());
 					if(type ==null){
 						logger.info("orderId="+orderId + " type="+order.getType() + " type is null ");
@@ -74,24 +74,20 @@ public class QueqiaoOrderServiceImpl implements QueqiaoOrderService {
 							queqiaoUserExtrServiceImpl.updateExpiredTime(order.getUserId(), type.getDays());
 							retval = true;
 						}else{
-							logger.info("orderId="+orderId + " type="+order.getType() + " queqiaoOrderDAO updateStatus result= " + result);
-						}
-						
+							logger.info("tradeNo="+queqiaoTradeNo + " type="+order.getType() + " queqiaoOrderDAO updateStatus result= " + result);
+						}						
 					}													
-					
-					
+								
 				}else{
-					logger.info("orderId="+orderId + " has been handled ");
-				}
-				
-				
+					logger.info("tradeNo="+queqiaoTradeNo + " has been handled ");
+				}				
 			}
 			
 			
 		}catch(Exception e){
 			
 		}finally{
-			logger.info("hand orderId="+orderId + " result="+retval);
+			logger.info("hand tradeNo="+queqiaoTradeNo + " result="+retval);
 		}
 		
 		return retval;
@@ -106,11 +102,7 @@ public class QueqiaoOrderServiceImpl implements QueqiaoOrderService {
 
 	@Override
 	public QueqiaoOrder getByTradeNO(String tradeNo) {
-		long orderId = TradeNoGenerator.getOrderIdFromTradeNo(tradeNo);
-		if(orderId>0){
-			return queqiaoOrderDAO.getById(orderId);
-		}
-		return null;
+		return queqiaoOrderDAO.getByTradeNo(tradeNo);
 	}
 
 }

@@ -126,6 +126,9 @@ public class UserController {
 		List<QueqiaoOrder> orderList = queqiaoOrderService.listByUser(user.getId(), 0, totalCount);
 		
 		
+		
+		
+		
 		inv.addModel("orderList", orderList);
 		
 		return "order_list";

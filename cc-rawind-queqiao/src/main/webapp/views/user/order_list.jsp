@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib  prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -111,7 +112,7 @@
 			<section class="content">
 				<!-- START PROGRESS BARS -->
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-10">
 						<div class="box box-solid">
 							<div class="box-header">
 								<i class="fa fa-th-list"></i>
@@ -121,9 +122,13 @@
 							<table class="table table-striped">
 									<thead>
 										<tr>
-											<th>节点ID</th>
-											<th>节点地址</th>
-											<th>状态</th>
+											<th>订单ID</th>
+											<th>订单详情</th>
+											<th>订单金额</th>
+											<th>下单时间</th>
+											<th>下单人</th>											
+											<th>订单状态</th>
+											<th>支付</th>
 										</tr>
 									</thead>
 
@@ -131,9 +136,12 @@
 										<c:forEach items="${orderList}" var="order">
 											<tr >				            					
 				            					<td>${order.id}</td>
-				            					<td>${order.memo}</td>		  
-				            					<td><c:choose><c:when test="${proxy.del}">过期</c:when><c:otherwise>正常</c:otherwise></c:choose></td>		
-				            					<td><button type="button" onclick="window.location.href='/admin/edit/${user.id}'" class="btn btn-success btn-xs">详情</button></td>		            				
+				            					<td>${order.memo}</td>
+				            					<td><fmt:formatNumber value="${ order.amount / 100.00 }" pattern="#0.00"/></td>
+				            					<td><fmt:formatDate value="${order.createTime}" pattern="yyyy-MM-dd HH:mm"/></td>
+				            					<td>${order.userName}</td>				  
+				            					<td><c:choose><c:when test="${order.status == 1}">已支付</c:when><c:otherwise>未支付</c:otherwise></c:choose></td>
+				            					<td><button type="submit" class="btn btn-info btn-sm alipayBtn" id="alipayBtn" tradeNo="${order.queqiaoTradeNo}" subject="${order.memo}" fee="${order.amount/100}" orderBody="${order.memo}" >支付</button></td>						            							            			
 				          					</tr>																				
 										</c:forEach>
 									</tbody>
@@ -143,25 +151,7 @@
 						<!-- /.box -->
 					</div>
 					<!-- /.col (left) -->
-
-					<div class="col-md-6">
-						<div class="box box-solid">
-							<div class="box-header">
-								<i class="fa fa-code"></i>
-								<h3 class="box-title">测试节点</h3>
-							</div>
-							<!-- /.box-header -->
-							<div class="box-body">
-								<div class="callout callout-warning">
-									<h4>注意!</h4>
-									<p>测试节点可能随时撤销，有问题请反馈.</p>
-								</div>
-							</div>
-							<!-- /.box-body -->
-						</div>
-						<!-- /.box -->
-					</div>
-					<!-- /.col (right) -->
+					
 				</div>
 				<!-- /.row -->
 				<!-- END PROGRESS BARS -->
@@ -169,6 +159,14 @@
 			<!-- /.content -->
 		</aside>
 		<!-- /.right-side -->
+		
+		
+		<form action="http://www.yufengchen.com/alipay/alipayapi.php" id="alipayform" method="POST" target="_blank">
+				<input type="hidden" name="WIDout_trade_no" value="${orderQueqiao.queqiaoTradeNo}" id="WIDout_trade_no" />
+				<input type="hidden" name="WIDsubject" value="${orderType.memo}" id="WIDsubject" />
+				<input type="hidden" name="WIDtotal_fee" value="${orderQueqiao.amount/100}" id="WIDtotal_fee" />
+				<input type="hidden" name="WIDbody" value="${orderQueqiao.memo}" id="WIDbody" />
+		</form>
 		
 		<script src="${SITE_DOMAIN}/static/js/jquery-2.1.1.js"></script>
 		<script src="${SITE_DOMAIN}/static/js/bootstrap.min.js"
@@ -226,7 +224,16 @@
 		            'selectedText': 'cat'
 		        });
 
-		        // $('.selectpicker').selectpicker('hide');
+		        $('.alipayBtn').bind('click', function(e) {
+		        	var item = $(e.target);
+		        	$('#WIDout_trade_no').val(item.attr("tradeNo"));
+		        	$('#WIDsubject').val(item.attr("subject"));
+		        	$('#WIDtotal_fee').val(item.attr("fee"));
+		        	$('#WIDbody').val(item.attr("orderBody"));
+		        	console.log(item.attr("subject"));
+		        	$('#alipayform').submit();
+					
+			     });
 		    });
 		</script>
 		<div id="analytics-code" style="display: none">统计代码</div>

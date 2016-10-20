@@ -3,6 +3,10 @@ package com.rawind.queqiao.web.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.apache.commons.lang.StringUtils;
+
+import com.rawind.queqiao.web.util.TradeNoGenerator;
+
 public class QueqiaoOrder  implements Serializable{
 	
 	

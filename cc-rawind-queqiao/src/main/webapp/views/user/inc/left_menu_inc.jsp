@@ -12,7 +12,7 @@
 	</li>
 
 	<li>
-		<a href="/user/order_list"> <i class="fa fa-sitemap"></i><span>节点列表</span></a>
+		<a href="/user/order_list"> <i class="fa fa-sitemap"></i><span>订单列表</span></a>
 	</li>
 
 	<li class="active">

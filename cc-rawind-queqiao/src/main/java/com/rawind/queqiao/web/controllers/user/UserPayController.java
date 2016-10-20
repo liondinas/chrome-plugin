@@ -66,9 +66,9 @@ public class UserPayController {
 		order.setUserName(user.getName());
 		order.setAmount(orderType.getAmount());
 		order.setVersion(0);
+		order.setQueqiaoTradeNo(TradeNoGenerator.generate(orderType.getCode()));
 		long orderId = queqiaoOrderService.insert(order);
 		
-		order.setQueqiaoTradeNo(TradeNoGenerator.generateTradeNo(orderId));
 		
 		
 		inv.addModel("orderQueqiao", order);
