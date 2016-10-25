@@ -34,7 +34,8 @@ public class AlipayConfig {
 	public static String return_url = "http://proxy.xiaochengzi.vip/return_url.jsp";
 
 	// 签名方式
-	public static String sign_type = "RSA";
+	//public static String sign_type = "RSA";
+	public static String sign_type = "MD5";
 	
 	// 调试用，创建TXT日志文件夹路径，见AlipayCore.java类中的logResult(String sWord)打印方法。
 	public static String log_path = "/data/logs/";

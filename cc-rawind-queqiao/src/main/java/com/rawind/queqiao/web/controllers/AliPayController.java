@@ -136,6 +136,7 @@ public class AliPayController {
 	@Post("return")
 	@IgnoreLogin
 	public String returnUrl(Invocation inv) {
+		logger.info("return-------");
 		try{
 			//获取支付宝GET过来反馈信息
 			Map<String,String> params = new HashMap<String,String>();
@@ -179,10 +180,10 @@ public class AliPayController {
 					//判断该笔订单是否在商户网站中已经做过处理
 						//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
 						//如果有做过处理，不执行商户的业务程序
-					dealTrade(out_trade_no, trade_no);
-					logger.info("out_trade_no=" + out_trade_no + ", trade_no="+trade_no + ", trade_status=" + trade_status);
+					dealTrade(out_trade_no, trade_no);					
 				}
 				
+				logger.info("out_trade_no=" + out_trade_no + ", trade_no="+trade_no + ", trade_status=" + trade_status);
 				//该页面可做页面美工编辑
 				
 				return "@验证成功";

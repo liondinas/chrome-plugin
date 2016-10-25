@@ -209,7 +209,8 @@
 					if(typeof(type) == "undefined") { 
 						 alert('请选择套餐类型');
 					}else{
-						window.location.href='/user/user_pay?type='+type;
+						//window.location.href='/user/user_pay?type='+type;
+						window.open('/user/user_pay?type='+type);
 					}
 			     });
 			        
