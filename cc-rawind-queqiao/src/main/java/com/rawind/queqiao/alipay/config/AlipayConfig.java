@@ -26,6 +26,9 @@ public class AlipayConfig {
 	
 	// 支付宝的公钥,查看地址：https://b.alipay.com/order/pidAndKey.htm
 	public static String alipay_public_key  = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAseWryEWphQ34O31ZSi0YE+gHabXeEBxh3myD6yQxRzffsBxQ1cmsjX+TvgeHkh5YOmgHOjSFPBLVd+zQvOWy+jkILaz8acY5laBZ8l10Kg1Nhi95aNhfjI4XxB6tezIzmkPQ79bQ3R0n29h8vwIYkzlPF+nLI6HRWA5hFURl8THvufKyqli33jaKLiB+voNOuZ8h1csvtsWG2BOqTRKWvcBSYCdMFnsj/jXbYM6uS5sX4JblO/J1Mfeu6m4IsLzRFptwIw1fdHzeYv+5BddDxL3eejdog8mfgSeFHX7HVltWjsUF9eml5N1JNtkP/yww0vlt1fJER7IXKLE6+QQH8QIDAQAB";
+	
+	
+	public static String md5_key = "i7xj76w1w378elfpp9y16n3dl7jh8y9m";
 
 	// 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
 	public static String notify_url = "http://proxy.xiaochengzi.vip/alipay/notice";

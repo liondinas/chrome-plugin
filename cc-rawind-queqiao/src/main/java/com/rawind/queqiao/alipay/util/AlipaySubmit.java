@@ -47,7 +47,7 @@ public class AlipaySubmit {
         	mysign = RSA.sign(prestr, AlipayConfig.private_key, AlipayConfig.input_charset);
         }else if(AlipayConfig.sign_type.equals("MD5") ){
         	//TODO MD签名
-        	mysign = Md5Encrypt.md5(prestr);
+        	mysign = Md5Encrypt.md5(prestr+AlipayConfig.md5_key);
         }
         return mysign;
     }
