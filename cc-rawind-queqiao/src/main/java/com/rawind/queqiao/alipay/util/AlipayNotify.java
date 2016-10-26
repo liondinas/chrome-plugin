@@ -76,6 +76,11 @@ public class AlipayNotify {
         boolean isSign = false;
         if(AlipayConfig.sign_type.equals("RSA")){
         	isSign = RSA.verify(preSignStr, sign, AlipayConfig.alipay_public_key, AlipayConfig.input_charset);
+        }else if(AlipayConfig.sign_type.equals("MD5")){
+        	//TODO
+        	String prestr = AlipayCore.createLinkString(sParaNew); 
+        	String oldSign = Md5Encrypt.md5(prestr);
+        	isSign = oldSign.equals(sign);
         }
         return isSign;
     }
