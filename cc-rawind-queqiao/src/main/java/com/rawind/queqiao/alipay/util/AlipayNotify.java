@@ -84,13 +84,8 @@ public class AlipayNotify {
         	isSign = RSA.verify(preSignStr, sign, AlipayConfig.alipay_public_key, AlipayConfig.input_charset);
         }else if(AlipayConfig.sign_type.equals("MD5")){
         	//TODO
-        	String prestr = AlipayCore.createLinkString(sParaNew); 
-        	logger.info("prestr=" + prestr);
-        	String oldSign = Md5Encrypt.md5(prestr+AlipayConfig.md5_key);
-        	logger.info("oldSign=" + oldSign);
-        	logger.info("sign=" + sign);
-        	String otherSign = Md5Encrypt.md5(prestr);
-        	logger.info("otherSign=" + otherSign);
+        	String prestr = AlipayCore.createLinkString(sParaNew);         	
+        	String oldSign = Md5Encrypt.md5(prestr+AlipayConfig.md5_key);        	
         	isSign = oldSign.equals(sign);
         }
         return isSign;
@@ -127,13 +122,13 @@ public class AlipayNotify {
         String inputLine = "";
 
         try {
-        	logger.info("urlvalue=" + urlvalue);
+        	
             URL url = new URL(urlvalue);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection
                 .getInputStream()));
             inputLine = in.readLine().toString();
-            logger.info("inputLine=" + inputLine);
+            
         } catch (Exception e) {
             e.printStackTrace();
             inputLine = "";
@@ -142,11 +137,4 @@ public class AlipayNotify {
         return inputLine;
     }
     
-    
-    public static void main(String args[]){
-    	String aa = "body=cyf-001&buyer_email=13911139439%40163.com&buyer_id=2088102594390333&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InWeXTIaq1JniafeAvnUK8cdpW8bsrS0%252FRtG20ZceIJJ%252F4PYFnk&notify_time=2016-10-26+18%3A08%3A50&notify_type=trade_status_sync&out_trade_no=cyf-201610261731421&payment_type=1&seller_email=liandachuangshi%40163.com&seller_id=2088421778870972&subject=cyf-201610261731421&total_fee=0.01&trade_no=2016102621001004330225243964&trade_status=TRADE_SUCCESS&sign=7930737fa7e486bfd7a3db7c0618dbce&sign_type=MD5";
-    	String arry[] = aa.split("&");
-    	Map<String, String> params = new HashMap<String, String>();
-    	
-    }
 }

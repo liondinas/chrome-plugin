@@ -140,6 +140,8 @@ public class AliPayController {
 	public String returnUrl(Invocation inv) {
 		logger.info("return-------");
 		try{
+			
+			//queqiaoOrderService.finishOrder("ALI297891477477661804", "fff", 0);
 			//获取支付宝GET过来反馈信息
 			Map<String,String> params = new HashMap<String,String>();
 			Map requestParams = inv.getRequest().getParameterMap();
@@ -152,7 +154,7 @@ public class AliPayController {
 							: valueStr + values[i] + ",";
 				}
 				//乱码解决，这段代码在出现乱码时使用。如果mysign和sign不相等也可以使用这段代码转化
-				valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
+				//valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
 				params.put(name, valueStr);
 			}
 			

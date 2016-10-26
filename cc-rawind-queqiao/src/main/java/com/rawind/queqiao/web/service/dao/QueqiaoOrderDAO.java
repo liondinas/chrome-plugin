@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import com.rawind.queqiao.web.model.QueqiaoOrder;
-import com.rawind.queqiao.web.model.QueqiaoUserExtr;
 
 import net.paoding.rose.jade.annotation.DAO;
 import net.paoding.rose.jade.annotation.ReturnGeneratedKeys;
@@ -40,7 +39,7 @@ CREATE TABLE `queqiao_order` (
 	 */
 	
 	
-	public static final String TABLE = "queqiao_order";
+	public static final String TABLE = " queqiao_order ";
 	
 	
 	public static final String FIELDS_NO_ID = "user_id, user_name, amount, type, create_time, pay_time, status, memo, queqiao_trade_no, trade_no, version";
@@ -60,7 +59,7 @@ CREATE TABLE `queqiao_order` (
 	public List<QueqiaoOrder> listByUser(@SQLParam("userId")long userId, @SQLParam("offset")int offset, @SQLParam("limit")int limit);
 	
 	
-	@SQL("update " + TABLE + "set pay_time=:payTime, status=:status, queqiao_trade_no=:queqiaoTradeNo, trade_no =:tradeNo  where id =:orderId and version=:version")
+	@SQL("update " + TABLE + " set pay_time =:payTime, status=:status, queqiao_trade_no=:queqiaoTradeNo, trade_no =:tradeNo  where id =:orderId and version=:version")
 	public int updateByStatus(@SQLParam("orderId")long orderId, @SQLParam("payTime")Date payTime, 
 			@SQLParam("status")int status, @SQLParam("version")int version,
 			@SQLParam("queqiaoTradeNo")String queqiaoTradeNo, @SQLParam("tradeNo")String tradeNo);

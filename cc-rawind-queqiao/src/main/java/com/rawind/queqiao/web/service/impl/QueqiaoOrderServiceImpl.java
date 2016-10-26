@@ -85,7 +85,8 @@ public class QueqiaoOrderServiceImpl implements QueqiaoOrderService {
 			
 			
 		}catch(Exception e){
-			
+			e.printStackTrace();
+			logger.error("hand tradeNo="+queqiaoTradeNo, e.getCause());
 		}finally{
 			logger.info("hand tradeNo="+queqiaoTradeNo + " result="+retval);
 		}
