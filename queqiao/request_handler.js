@@ -43,9 +43,14 @@ chrome.webRequest.onBeforeRequest.addListener (
         var url = details.url;
         //Logger.debug("requestURL= " + url);
         if(url.indexOf("doubleclick.net")!=-1 ||
-            url.indexOf("pos.baidu.com")!=-1){
+            url.indexOf("pos.baidu.com")!=-1 ||
+            url.indexOf("a1.alicdn.com")!=-1||
+            url.indexOf("l.qq.com")!=-1){
             Logger.log("doubleclick.net find for url="+url);
-            return {redirectUrl:"http://proxy.xiaochengzi.vip/ads?click="+url}
+            if(url.indexOf("proxy.xiaochengzi")<=0){
+                return {redirectUrl:"http://proxy.xiaochengzi.vip/ads?click="+url}
+            }
+            
         }
 
 

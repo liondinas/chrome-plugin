@@ -49,6 +49,7 @@ public class LoginInterceptor extends ControllerInterceptorAdapter implements Or
 		return 90;
 	}
 	
+	
 	@Override
 	public Object before(Invocation inv) throws Exception {
 		if (logger.isDebugEnabled()) {
@@ -83,8 +84,7 @@ public class LoginInterceptor extends ControllerInterceptorAdapter implements Or
 		PassportVerifyResult pvr = passportService.verifyPassport(passport, userAgent);
 		
 		
-		if (pvr == null || !pvr.isOK()) {
-			logger.info("for plugin pvr =" + pvr.getValidationCode());
+		if (pvr == null || !pvr.isOK()) {			
 			if(inv.getMethod().isAnnotationPresent(JsonResponse.class)){
 				return AjaxOutput.needLogin();
 			}
