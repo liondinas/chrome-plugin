@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.chewen.tools.commons.util.CookieUtils;
+import com.chewen.tools.commons.util.CwDateTimeUtil;
 import com.rawind.queqiao.web.Constants;
 import com.rawind.queqiao.web.model.OrderTypeEnum;
 import com.rawind.queqiao.web.model.QueqiaoOrder;
@@ -79,6 +80,7 @@ public class UserController {
 		
 		
 		Date expiredDate = new Date();
+		expiredDate = CwDateTimeUtil.cleanHourAndMinutes(expiredDate);
 		if(userExtr!=null){
 			expiredDate = userExtr.getExpiredTime();
 		}
