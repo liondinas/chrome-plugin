@@ -37,6 +37,12 @@
 		<appender-ref ref="infoAppender" />
 		<appender-ref ref="errorAppender" />
 	</logger>
+	
+	
+	<logger name="net.paoding" additivity="false">
+		<level value="WARN" />
+		<appender-ref ref="errorAppender" />
+	</logger>
 
 	<!-- Root Logger -->
 	<!-- 必须项 -->

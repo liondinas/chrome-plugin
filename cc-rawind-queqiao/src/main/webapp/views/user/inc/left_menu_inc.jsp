@@ -4,6 +4,17 @@
 <%@ taglib  prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<!-- Sidebar user panel -->
+<div class="user-panel">
+	<div class="pull-left image">
+		<img src="${SITE_DOMAIN}/static/img/touxiang.jpeg"
+			class="img-circle" alt="User Image" />
+	</div>
+	<div class="pull-left info">
+		<p>欢迎, ${user.name}</p>
+		<a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+	</div>
+</div>
 
 <!-- sidebar menu: : style can be found in sidebar.less -->
 <ul class="sidebar-menu">

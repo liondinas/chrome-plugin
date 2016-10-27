@@ -75,7 +75,7 @@ public class UserController {
 		inv.addModel("user", user);
 		
 		
-		QueqiaoUserExtr userExtr = queqiaoUserExtrService.getById(user.getId());
+		QueqiaoUserExtr userExtr = queqiaoUserExtrService.getByUserId(user.getId());
 		
 		
 		Date expiredDate = new Date();

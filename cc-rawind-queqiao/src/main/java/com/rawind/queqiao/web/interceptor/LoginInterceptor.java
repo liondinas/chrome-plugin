@@ -65,7 +65,7 @@ public class LoginInterceptor extends ControllerInterceptorAdapter implements Or
 		
 		String passport = CookieUtils.getInstance().getCookieValue(inv.getRequest(), Constants.userCookie);
 		String userAgent = UserAgentUtils.getInstance().getUserAgent(inv.getRequest());
-		logger.info("current uri =" + uri + ",userAgent="+userAgent);
+		//logger.info("current uri =" + uri + ",userAgent="+userAgent);
 		
 		
 		int uriStatus = 0;

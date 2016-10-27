@@ -36,66 +36,14 @@
 <body class="skin-blue">
 	<!-- header logo: style can be found in header.less -->
 	<header class="header">
-		<a href="${SITE_DOMAIN}/user" class="logo"> <!-- Add the class icon to your logo image or logo icon to add the margining -->
-			Xiaochengzi SS
-		</a>
-		<!-- Header Navbar: style can be found in header.less -->
-		<nav class="navbar navbar-static-top" role="navigation">
-			<!-- Sidebar toggle button-->
-			<a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas"
-				role="button"> <span class="sr-only">Toggle navigation</span> <span
-				class="icon-bar"></span> <span class="icon-bar"></span> <span
-				class="icon-bar"></span>
-			</a>
-			<div class="navbar-right">
-				<ul class="nav navbar-nav">
-					<!-- User Account: style can be found in dropdown.less -->
-					<li class="dropdown user user-menu"><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown"> <i
-							class="glyphicon glyphicon-user"></i> <span>${user.name} <i
-								class="caret"></i></span>
-					</a>
-						<ul class="dropdown-menu">
-							<!-- User image -->
-							<li class="user-header bg-light-blue"><img
-								src="${SITE_DOMAIN}/static/img/touxiang.jpeg" class="img-circle"
-								alt="User Image" />
-								<p>liondinas</p></li>
-
-							<!-- Menu Footer-->
-							<li class="user-footer">
-								<div class="pull-left">
-									<a href="${SITE_DOMAIN}/user/my_info"
-										class="btn btn-default btn-flat">我的信息</a>
-								</div>
-								<div class="pull-right">
-									<a href="${SITE_DOMAIN}/user/logout"
-										class="btn btn-default btn-flat">退出</a>
-								</div>
-							</li>
-						</ul></li>
-				</ul>
-			</div>
-		</nav>
+		<jsp:include  page="/views/user/inc/left_header_inc.jsp"/>
 	</header>
 	<div class="wrapper row-offcanvas row-offcanvas-left">
 		<!-- Left side column. contains the logo and sidebar -->
 		<aside class="left-side sidebar-offcanvas">
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
-				<!-- Sidebar user panel -->
-				<div class="user-panel">
-					<div class="pull-left image">
-						<img src="${SITE_DOMAIN}/static/img/touxiang.jpeg"
-							class="img-circle" alt="User Image" />
-					</div>
-					<div class="pull-left info">
-						<p>欢迎, ${user.name}</p>
-						<a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
-					</div>
-				</div>
 
-				<!-- sidebar menu: : style can be found in sidebar.less -->
 				<jsp:include  page="/views/user/inc/left_menu_inc.jsp"/>
 				
 			</section>
@@ -123,9 +71,9 @@
 							<div class="box-body">
 								<p>用户名: ${user.name} </p>
 								<p>邮箱: ${user.email} </p>
-								<p>过期时间: <code><fmt:formatDate value="${userExtr.expiredTime}" pattern="yyyy-MM-dd HH:mm"/></code> </p>
+								<p>过期时间: <code><fmt:formatDate value="${expiredDate}" pattern="yyyy-MM-dd HH:mm"/></code> </p>
 								<p>
-									支付宝购买: <!-- <span class="label label-info"> A </span> -->
+									<span class="label label-info"> 套餐列表:  </span><!-- <span class="label label-info"> A </span> -->
 									<c:forEach items="${orderTypeList}" var="orderType">
 									<label class="radio">
 									  <input type="radio" name="orderType" value="${orderType.code}">
