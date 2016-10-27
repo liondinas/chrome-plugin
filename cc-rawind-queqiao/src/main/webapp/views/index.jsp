@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="<?php echo site_url('favicon.ico'); ?>">
 
-    <title></title>
+    <title>小橙子</title>
 
     <!-- Bootstrap core CSS -->
     <link href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" rel="stylesheet">
@@ -28,10 +28,10 @@
     <div class="header">
 	    <ul class="nav nav-pills pull-right" role="tablist">
 	        <li role="presentation"><a href="${pageContext.request.contextPath}">主页</a></li>
-	        <li role="presentation"><a href="${pageContext.request.contextPath}/user/register">注册</a></li>
-	        <li role="presentation"><a href="${pageContext.request.contextPath}/siteIndex/view_code">邀请码</a></li>
-	        <li role="presentation"><a href="${pageContext.request.contextPath}/user/login">登录</a></li>
-	        <li role="presentation"><a href="${pageContext.request.contextPath}/user">用户中心</a></li>	        
+	        <li role="presentation"><a href="${pageContext.request.contextPath}/user/register" target="_blank">注册</a></li>
+	        <li role="presentation"><a href="${pageContext.request.contextPath}/siteIndex/view_code" target="_blank">邀请码</a></li>
+	        <li role="presentation"><a href="${pageContext.request.contextPath}/user/login" target="_blank">登录</a></li>
+	        <li role="presentation"><a href="${pageContext.request.contextPath}/user" target="_blank">用户中心</a></li>	        
 	    </ul>
 	    <h3 class="text-muted">${SITE_NAME}</h3>
 	</div>
@@ -50,6 +50,8 @@
             <h4><a href="http://sourceforge.net/projects/shadowsocksgui/files/dist/" target="_blank">Shadowsocks C#</a></h4>
             <p> Windows用户推荐此客户端.</p>
 
+ 			<h4><a href="http://www.yufengchen.com/queqiao_V1.01.crx" target="_blank">Chrome浏览器插件</a></h4>
+            <p> 无须客户端，只需要安装浏览器插件即可.</p>
 
         </div>
 
@@ -59,12 +61,10 @@
 
             <h4><a href="https://github.com/ohdarling/GoAgentX/releases" target="_blank">GoAgentX</a></h4>
             <p> Mac用户推荐此客户端.</p>
-
-
         </div>
     </div>
     <div class="footer">
-	    <p>&copy; ${SITE_NAME}  Power by <a href="https://github.com/wzxjohn/moeSS" target="_blank">moeSS</a>&nbsp;<a href="${pageContext.request.contextPath}/user/guestbook">讨论</a></p>
+	    <p>&copy; ${SITE_NAME}  Power by <a href="https://www.yufengchen.com" target="_blank">yufengchen.com</a>&nbsp;<a href="${pageContext.request.contextPath}/user/guestbook">讨论</a></p>
 	</div>
 	<div id="analytics-code" style="display: none">统计代码</div>
 
