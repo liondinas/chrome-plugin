@@ -49,7 +49,7 @@ public class QueqiaoUserExtrServiceImpl implements QueqiaoUserExtrService {
 		if(userExtr == null){
 			QueqiaoUser user = queqiaoUserDAO.getById(userId);
 			if(user==null){
-				logger.warn("no user find for userId="+userId);
+				logger.warn("no user find for userId="+userId);				
 				return;
 			}
 			
@@ -64,7 +64,7 @@ public class QueqiaoUserExtrServiceImpl implements QueqiaoUserExtrService {
 			userExtr.setUserName(user.getEmail());
 			userExtr.setStatus(QueqiaoUserExtr.STATUS_NORMAL);
 			
-			
+			queqiaoUserExtrDAO.insert(userExtr);
 			
 		}else{
 			Date old = userExtr.getExpiredTime();

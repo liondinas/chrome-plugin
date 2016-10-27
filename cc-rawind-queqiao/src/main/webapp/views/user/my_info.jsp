@@ -123,7 +123,7 @@
 							<div class="box-body">
 								<p>用户名: ${user.name} </p>
 								<p>邮箱: ${user.email} </p>
-								<p>过期时间: <fmt:formatDate value="${user.expiredTime}" pattern="yyyy-MM-dd HH:mm"/> </p>
+								<p>过期时间: <code><fmt:formatDate value="${userExtr.expiredTime}" pattern="yyyy-MM-dd HH:mm"/></code> </p>
 								<p>
 									支付宝购买: <!-- <span class="label label-info"> A </span> -->
 									<c:forEach items="${orderTypeList}" var="orderType">

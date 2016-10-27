@@ -1,5 +1,6 @@
 package com.rawind.queqiao.web.controllers.user;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,10 @@ import com.rawind.queqiao.web.Constants;
 import com.rawind.queqiao.web.model.OrderTypeEnum;
 import com.rawind.queqiao.web.model.QueqiaoOrder;
 import com.rawind.queqiao.web.model.QueqiaoUser;
+import com.rawind.queqiao.web.model.QueqiaoUserExtr;
 import com.rawind.queqiao.web.service.HostHolderService;
 import com.rawind.queqiao.web.service.QueqiaoOrderService;
+import com.rawind.queqiao.web.service.QueqiaoUserExtrService;
 import com.rawind.queqiao.web.service.QueqiaoUserService;
 
 import net.paoding.rose.web.Invocation;
@@ -34,6 +37,9 @@ public class UserController {
 	
 	@Autowired
 	private QueqiaoOrderService queqiaoOrderService;
+	
+	@Autowired
+	private QueqiaoUserExtrService queqiaoUserExtrService;
 	
 	@Get("")
 	public String goUserIndex(Invocation inv){
@@ -67,6 +73,16 @@ public class UserController {
 		
 		
 		inv.addModel("user", user);
+		
+		
+		QueqiaoUserExtr userExtr = queqiaoUserExtrService.getById(user.getId());
+		
+		
+		Date expiredDate = new Date();
+		if(userExtr!=null){
+			expiredDate = userExtr.getExpiredTime();
+		}
+		inv.addModel("expiredDate", expiredDate);
 		
 		
 		inv.addModel("orderTypeList", OrderTypeEnum.values());
