@@ -42,9 +42,9 @@
         <p><a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/user/register" role="button">立即注册</a></p>
         
         <h2>使用说明</h2>
-        <p class="lead"> 1, 下载最新版本的插件, <a href="http://www.yufengchen.com/list.php">去下载</a>。</p>
+        <p class="lead"> 1, 下载最新版本的插件, <a href="http://www.yufengchen.com/list.php" target="_blank">去下载</a>。</p>
         
-        <p class="lead"> 1, 安装Chrome浏览器插件, <a href="http://www.yufengchen.com/list.php">去下载</a>。</p>
+      
     </div>
 
     <div class="row marketing">
