@@ -59,7 +59,7 @@ CREATE TABLE `queqiao_user_extr` (
 	public QueqiaoUserExtr getByUserId(@SQLParam("userId")long userId);
 	
 	
-	@SQL(" update " + TABLE + "set expired_time=:expiredTime  where user_id = :userId")
+	@SQL(" update " + TABLE + " set expired_time=:expiredTime  where user_id = :userId")
 	public void updateExpiredTime(@SQLParam("userId")long userId, @SQLParam("expiredTime")Date expiredTime);
 	
 	

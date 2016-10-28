@@ -16,13 +16,14 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
         details.requestHeaders.splice(i, 1);
         break;
       }
-    }*/
+    }
     var headers = details.requestHeaders;  
     headers.push({
       name: 'Proxy-Authorization',
       value: 'Basic dGVzdHVzZXI6dGVzdA=='
     }); 
     return {requestHeaders: headers};
+    */
   },
   {urls: ["<all_urls>"]},
   ["blocking", "requestHeaders"]

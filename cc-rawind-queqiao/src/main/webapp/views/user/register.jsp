@@ -57,7 +57,7 @@
 
             jQuery.validator.addMethod("onlyAlphaNumber", function(value, element) {
                 return /^[a-zA-Z0-9]+$/.test(value);
-            }, "Alpha and Number Only!");
+            }, "只能是字母或者数字!");
 
             $('#registerForm').validate( {
                     rules:{

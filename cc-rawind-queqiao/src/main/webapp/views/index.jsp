@@ -29,7 +29,7 @@
 	    <ul class="nav nav-pills pull-right" role="tablist">
 	        <li role="presentation"><a href="${pageContext.request.contextPath}">主页</a></li>
 	        <li role="presentation"><a href="${pageContext.request.contextPath}/user/register" target="_blank">注册</a></li>
-	        <li role="presentation"><a href="http://www.yufengchen.com/" target="_blank">下载中心</a></li>
+	        <li role="presentation"><a href="http://www.yufengchen.com/list.php" target="_blank">下载中心</a></li>
 	        <li role="presentation"><a href="${pageContext.request.contextPath}/user/login" target="_blank">登录</a></li>
 	        <li role="presentation"><a href="${pageContext.request.contextPath}/user" target="_blank">用户中心</a></li>	        
 	    </ul>
@@ -40,15 +40,20 @@
         <h2>${SITE_NAME}</h2>
         <p class="lead"> 每个月5G流量，香港节点。</p>
         <p><a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/user/register" role="button">立即注册</a></p>
+        
+        <h2>使用说明</h2>
+        <p class="lead"> 1, 下载最新版本的插件, <a href="http://www.yufengchen.com/list.php">去下载</a>。</p>
+        
+        <p class="lead"> 1, 安装Chrome浏览器插件, <a href="http://www.yufengchen.com/list.php">去下载</a>。</p>
     </div>
 
     <div class="row marketing">
         <div class="col-lg-6">
-            <a href="https://play.google.com/store/apps/details?id=com.github.shadowsocks" target="_blank"><h4>Android</h4></a>
+            <!-- <a href="https://play.google.com/store/apps/details?id=com.github.shadowsocks" target="_blank"><h4>Android</h4></a>
             <p>Android客户端</p>
 
             <h4><a href="http://sourceforge.net/projects/shadowsocksgui/files/dist/" target="_blank">Shadowsocks C#</a></h4>
-            <p> Windows用户推荐此客户端.</p>
+            <p> Windows用户推荐此客户端.</p> -->
 
  			<h4><a href="http://www.yufengchen.com/queqiao_V1.01.crx" target="_blank">Chrome浏览器插件</a></h4>
             <p> 无须客户端，只需要安装浏览器插件即可.</p>
@@ -56,11 +61,11 @@
         </div>
 
         <div class="col-lg-6">
-            <a href="https://itunes.apple.com/us/app/shadowsocks/id665729974?mt=8" target="_blank"><h4>iOS</h4></a>
+            <!-- <a href="https://itunes.apple.com/us/app/shadowsocks/id665729974?mt=8" target="_blank"><h4>iOS</h4></a>
             <p>iOS客户端</p>
 
             <h4><a href="https://github.com/ohdarling/GoAgentX/releases" target="_blank">GoAgentX</a></h4>
-            <p> Mac用户推荐此客户端.</p>
+            <p> Mac用户推荐此客户端.</p> -->
         </div>
     </div>
     <div class="footer">
