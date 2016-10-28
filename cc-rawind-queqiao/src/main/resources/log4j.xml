@@ -40,7 +40,7 @@
 	
 	
 	<logger name="net.paoding" additivity="false">
-		<level value="WARN" />
+		<level value="INFO" />
 		<appender-ref ref="errorAppender" />
 	</logger>
 

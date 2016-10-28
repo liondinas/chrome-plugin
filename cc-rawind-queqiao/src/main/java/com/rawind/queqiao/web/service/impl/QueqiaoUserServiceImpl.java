@@ -1,24 +1,34 @@
 package com.rawind.queqiao.web.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.chewen.tools.commons.util.BCrypt;
+import com.chewen.tools.commons.util.CwDateTimeUtil;
 import com.rawind.queqiao.web.model.LoginResult;
 import com.rawind.queqiao.web.model.QueqiaoUser;
+import com.rawind.queqiao.web.model.QueqiaoUserExtr;
 import com.rawind.queqiao.web.service.QueqiaoUserService;
 import com.rawind.queqiao.web.service.dao.QueqiaoUserDAO;
+import com.rawind.queqiao.web.service.dao.QueqiaoUserExtrDAO;
 
 
 @Component
 public class QueqiaoUserServiceImpl implements QueqiaoUserService {
 	
+	private static final Log logger = LogFactory.getLog(QueqiaoUserServiceImpl.class);
 	
 	@Autowired
 	private QueqiaoUserDAO queqiaoUserDAO;
+	
+	@Autowired
+	private QueqiaoUserExtrDAO queqiaoUserExtrDAO;
 	
 	public LoginResult login(String email, String passWord) {
 		LoginResult result = new LoginResult();
@@ -48,7 +58,31 @@ public class QueqiaoUserServiceImpl implements QueqiaoUserService {
 	}
 
 	public long save(QueqiaoUser entity) {
-		return queqiaoUserDAO.addUser(entity);
+		long userId= queqiaoUserDAO.addUser(entity);
+		
+		try{			
+			QueqiaoUserExtr userExtr = queqiaoUserExtrDAO.getByUserId(userId);
+			if(userExtr == null){
+				userExtr = new QueqiaoUserExtr();
+				Date expiredTime = CwDateTimeUtil.cleanMinutes(new Date());
+				expiredTime = CwDateTimeUtil.lastHourAndMinutes(expiredTime);
+				userExtr.setExpiredTime(expiredTime);
+				userExtr.setPasswd("123456a");
+				userExtr.setUserId(userId);
+				userExtr.setUserName(entity.getName());
+				userExtr.setStatus(QueqiaoUserExtr.STATUS_NORMAL);			
+				queqiaoUserExtrDAO.insert(userExtr);
+			}else{
+				logger.warn("userExtr for uesrId=" + userId + " has been created");
+			}
+			
+			
+		}catch(Exception e){
+			logger.error("hand userExtr error for UserId=" + userId, e.getCause());
+		}
+		
+		return userId;				
+		
 	}
 
 	public void update(QueqiaoUser entity) {

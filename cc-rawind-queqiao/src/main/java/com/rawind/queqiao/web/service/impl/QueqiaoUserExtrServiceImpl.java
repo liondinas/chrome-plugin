@@ -97,4 +97,9 @@ public class QueqiaoUserExtrServiceImpl implements QueqiaoUserExtrService {
 		return queqiaoUserExtrDAO.queryListByStatus(status, offset, limit);
 	}
 
+	@Override
+	public void updateUserInfo(long userId, String userName, String userPwd) {
+		queqiaoUserExtrDAO.updateUserInfo(userId, userName, userPwd);		
+	}
+
 }

@@ -22,6 +22,9 @@ public interface QueqiaoUserExtrService {
 	void updateExpiredTime(long userId, int addDay);
 	
 	
+	void updateUserInfo(long userId, String userName, String userPwd);
+	
+	
 	/**
 	 *  status 0-不区分， 1-正常， 2-过期
 	 * @param status

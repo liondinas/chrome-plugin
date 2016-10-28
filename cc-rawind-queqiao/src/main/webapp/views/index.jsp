@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="<?php echo site_url('favicon.ico'); ?>">
 
-    <title>小橙子</title>
+    <title>小橙子-翻过万里长城</title>
 
     <!-- Bootstrap core CSS -->
     <link href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" rel="stylesheet">
@@ -29,7 +29,7 @@
 	    <ul class="nav nav-pills pull-right" role="tablist">
 	        <li role="presentation"><a href="${pageContext.request.contextPath}">主页</a></li>
 	        <li role="presentation"><a href="${pageContext.request.contextPath}/user/register" target="_blank">注册</a></li>
-	        <li role="presentation"><a href="${pageContext.request.contextPath}/siteIndex/view_code" target="_blank">邀请码</a></li>
+	        <li role="presentation"><a href="http://www.yufengchen.com/" target="_blank">下载中心</a></li>
 	        <li role="presentation"><a href="${pageContext.request.contextPath}/user/login" target="_blank">登录</a></li>
 	        <li role="presentation"><a href="${pageContext.request.contextPath}/user" target="_blank">用户中心</a></li>	        
 	    </ul>

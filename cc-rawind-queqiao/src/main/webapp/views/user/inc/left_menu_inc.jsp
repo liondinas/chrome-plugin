@@ -34,8 +34,11 @@
 		<a href="/user/profile_update"> <i class="fa  fa-pencil"></i> <span>修改资料</span></a>
 	</li>
 
+<!-- 	<li>
+		<a href="/user/invite_list"> <i class="fa fa-users"></i><span>联系客服</span></a>
+	</li> -->
 	<li>
-		<a href="/user/invite_list"> <i class="fa fa-users"></i><span>查看邀请</span></a>
+		<a href="/user/user_contact"> <i class="fa fa-users"></i><span>客服中心</span></a>
 	</li>
 </ul>
 			

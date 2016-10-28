@@ -94,8 +94,6 @@ chrome.webRequest.onErrorOccurred.addListener (
         }else if(error.indexOf("ERR_NAME_RESOLUTION_FAILED")>=0){
             Logger.info("NAME_RESOLUTION_FAILED addUrl=" + url);
             LocalConfig.addUrl(url);
-        }else if(url.indexOf("popup")>=0){
-            Logger.debug("popup error" + error);
         }else{
             Logger.info("url=" + url + " is error, errorInfo=" + error);
         }

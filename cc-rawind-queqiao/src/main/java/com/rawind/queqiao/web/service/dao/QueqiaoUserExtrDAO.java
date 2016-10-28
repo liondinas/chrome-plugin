@@ -64,6 +64,9 @@ CREATE TABLE `queqiao_user_extr` (
 	
 	
 	
+	@SQL(" update " + TABLE + " set user_name=:userName,  passwd=:userPwd where user_id = :userId")
+	public void updateUserInfo(@SQLParam("userId")long userId, @SQLParam("userName")String userName, @SQLParam("userPwd")String userPwd);
+	
 	
 	@SQL("select count(1) from " + TABLE + " where 1=1 "		
 			+ "#if(:status ==1) { and expired_time >= now()} "

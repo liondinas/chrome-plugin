@@ -51,7 +51,7 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-					密码管理 <small>PWD Manager</small>
+					客服中心 <small>Client Service</small>
 				</h1>
 			</section>
 			<!-- Main content -->
@@ -62,82 +62,33 @@
 						<!-- general form elements -->
 						<div class="box box-primary">
 							<div class="box-header">
-								<h3 class="box-title">资料修改</h3>
+								<h3 class="box-title">QQ客服 : 31901313</h3>
 							</div>
 							<!-- /.box-header -->
-							<!-- form start -->
-							<form
-								action="/user/update_pwd"
-								role="form" name="editForm" id="editForm" method="post"
-								accept-charset="utf-8">
-								<input type="hidden" name="userId" value="${user.id}" />
-								<div class="box-body">
-									<div class="form-group">
-										<input type="password" class="form-control"
-											placeholder="当前密码(必填)" id="nowpassword" name="nowpassword"
-											required>
-									</div>
 
-									<div class="form-group">
-										<input type="password" class="form-control"
-											placeholder="新密码(不修改请留空)" id="password" name="password">
-									</div>
-
-									<div class="form-group">
-										<input type="password" placeholder="确认密码" class="form-control"
-											id="repassword" name="repassword">
-									</div>
-
-									<div class="form-group">
-										<input type="text" placeholder="邮箱(不修改请留空)"
-											class="form-control" id="email" name="email">
-									</div>
-								</div>
-								<!-- /.box-body -->
-								<div class="box-footer">
-									<button type="submit" name="action" value="add"
-										class="btn btn-primary">修改</button>
-								</div>
-							</form>
+							<div class="table-responsive">
+								<img  style="CURSOR: pointer; margin-left:20px;margin-bottom:20px;margin-top:40px;" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&sid=31901313&o=小橙子&q=7', '_blank', 'height=502, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');"  border="0" SRC=http://wpa.qq.com/pa?p=1:31901313:1 alt="点击这里给我发消息">
+								
+								<br/>
+							</div>
 						</div>
-						<!-- /.box -->
-					</div>
-
-					<div class="col-md-6">
-						<div class="box box-solid">
+						
+						<!-- general form elements -->
+						<div class="box box-primary">
 							<div class="box-header">
-								<i class="fa fa-align-left"></i>
-								<h3 class="box-title">翻墙帐号修改</h3>
+								<h3 class="box-title">微信客服: </h3>
 							</div>
 							<!-- /.box-header -->
-							<div class="box-body">
-								<form role="form" id="ssPass" name="ssPass" method="post"
-									action="/user/update_userextr">
-									
-									<input type="hidden" name="userId" value="${user.id}" />
-									<div class="form-group">
-										<input type="text" class="form-control"
-											placeholder="帐号" id="userName" name="userName"
-											required value="${userExtr.userName}">
-									</div>
-																		
-									<div class="form-group">
-										<input type="password" placeholder="输入新密码" class="form-control"
-											id="userPwd" name="userPwd" required>
-									</div>
 
-									<div class="box-footer">
-										<button type="submit" name="action" value="edit"
-											class="btn btn-primary">修改</button>
-									</div>
-								</form>
+							<div class="table-responsive">
+								<img  style="CURSOR: pointer; margin-left:20px;margin-bottom:20px;margin-top:40px;width:200px;width:200px;"  src="/img/liondinas.jpg" />
 							</div>
-							<!-- /.box-body -->
 						</div>
-						<!-- /.box -->
+						
 					</div>
-					<!-- /.col (right) -->
+					<!-- /.box -->
 				</div>
+				<!-- /.row -->
 			</section>
 			<!-- /.content -->
 		</aside>
@@ -191,10 +142,6 @@
 		<!-- Select js -->
 		<script src="${SITE_DOMAIN}/static/js/bootstrap-select.js"></script>
 		<script src="${SITE_DOMAIN}/static/js/bootstrap-switch.js"></script>
-		
-		    
-    	<script src="${SITE_DOMAIN}/static/js/jquery.validate.min.js"></script>
-    	<script src="${SITE_DOMAIN}/static/js/jquery.form.min.js"></script>
 
 		<script type="text/javascript">
 			$(window).on('load', function() {
@@ -205,58 +152,8 @@
 
 				// $('.selectpicker').selectpicker('hide');
 			});
-			$(document).ready(function() {
-				var options = {
-					target : '#updateResult', // target element(s) to be updated with server response
-					success : showResponse, // post-submit callback
-					dataType : 'json' // 'xml', 'script', or 'json' (expected server response type)
-				};
-
-				$('#editForm').submit(function() {
-					if ($(this).valid()) {
-						$(this).ajaxSubmit(options);
-						return false;
-					}
-				});
-
-				$('#editForm').validate({
-					rules : {
-						nowpassword : {
-							required : true,
-							minlength : 6
-						},
-						password : {
-							required : false,
-							minlength : 8
-						},
-						repassword : {
-							required : false,
-							minlength : 8,
-							equalTo : '#password'
-						},
-						email : {
-							required : false,
-							email : true
-						}
-					}
-				});
-
-				$('#ssPass').submit(function() {
-					$(this).ajaxSubmit(options);
-					return false;
-				});
-			});
-
-			// post-submit callback
-			function showResponse(data) {
-				if (data.code == "0") {
-					alert('Update Success!');
-					window.location.reload();
-				} else {
-					alert(data.msg);
-				}
-			}
 		</script>
 		<div id="analytics-code" style="display: none">统计代码</div>
 </body>
 </html>
+
