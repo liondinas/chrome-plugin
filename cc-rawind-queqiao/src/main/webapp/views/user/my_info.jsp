@@ -43,7 +43,7 @@
 		<aside class="left-side sidebar-offcanvas">
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
-
+				<c:set var="menu" scope="session" value="3"/>
 				<jsp:include  page="/views/user/inc/left_menu_inc.jsp"/>
 				
 			</section>
@@ -72,20 +72,6 @@
 								<p>用户名: ${user.name} </p>
 								<p>邮箱: ${user.email} </p>
 								<p>过期时间: <code><fmt:formatDate value="${expiredDate}" pattern="yyyy-MM-dd HH:mm"/></code> </p>
-								<p>
-									<span class="label label-info"> 套餐列表:  </span><!-- <span class="label label-info"> A </span> -->
-									<c:forEach items="${orderTypeList}" var="orderType">
-									<label class="radio">
-									  <input type="radio" name="orderType" value="${orderType.code}">
-									  ${orderType.memo} - ${orderType.amountString}
-									</label>									
-									</c:forEach>																		
-								</p>
-								<p>
-									<!-- 账户余额: 0.00元  -->
-									<!-- <a class="btn btn-info btn-sm" href="https://ss.xiaochengzi.vip/user/pay.html">微信充值</a> -->
-									<button type="submit" class="btn btn-info btn-sm" id="alipayBtn">支付宝购买</button>
-								</p>
 							</div>
 							<!-- /.box -->
 						</div>

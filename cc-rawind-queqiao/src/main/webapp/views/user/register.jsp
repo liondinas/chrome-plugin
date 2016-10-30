@@ -154,13 +154,13 @@
 				<button type="submit" class="btn bg-olive btn-block">注册</button>
 
 				<a href="/user/login"
-					class="text-center">已经注册？请登录</a>
+					class="text-center">已经注册？请登录</a>								
 			</div>
 		</form>
 
 		<div class="margin text-center">
-			<span>下面的按钮暂时是不可用的</span> <br />
-			<button class="btn bg-light-blue btn-circle">
+			<span><a href="/" class="text-center">Home - 返回首页</a></span>
+			<!-- <button class="btn bg-light-blue btn-circle">
 				<i class="fa fa-facebook"></i>
 			</button>
 			<button class="btn bg-aqua btn-circle">
@@ -168,7 +168,7 @@
 			</button>
 			<button class="btn bg-red btn-circle">
 				<i class="fa fa-google-plus"></i>
-			</button>
+			</button> -->
 
 		</div>
 	</div>

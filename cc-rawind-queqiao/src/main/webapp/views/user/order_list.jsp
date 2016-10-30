@@ -42,7 +42,8 @@
 		<!-- Left side column. contains the logo and sidebar -->
 		<aside class="left-side sidebar-offcanvas">
 			<!-- sidebar: style can be found in sidebar.less -->
-			<section class="sidebar">			
+			<section class="sidebar">	
+				<c:set var="menu" scope="session" value="2"/>		
 				<jsp:include  page="/views/user/inc/left_menu_inc.jsp"/>
 			</section>
 			<!-- /.sidebar -->
@@ -52,7 +53,7 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-					订单列表 <small>Node List</small>
+					订单列表 <small>Order List</small>
 				</h1>
 			</section>
 			<!-- Main content -->
@@ -88,7 +89,7 @@
 				            					<td><fmt:formatDate value="${order.createTime}" pattern="yyyy-MM-dd HH:mm"/></td>
 				            					<td>${order.userName}</td>				  
 				            					<td><c:choose><c:when test="${order.status == 1}">已支付</c:when><c:otherwise>未支付</c:otherwise></c:choose></td>
-				            					<td><button type="submit" class="btn btn-info btn-sm alipayBtn" id="alipayBtn" tradeNo="${order.queqiaoTradeNo}" subject="${order.memo}" fee="${order.amount/100}" orderBody="${order.memo}" >支付</button></td>						            							            			
+				            					<td><c:choose><c:when test="${order.status == 1}"></c:when><c:otherwise><button type="submit" class="btn btn-info btn-sm alipayBtn" id="alipayBtn" tradeNo="${order.queqiaoTradeNo}" subject="${order.memo}" fee="${order.amount/100}" orderBody="${order.memo}" >支付</button></c:otherwise></c:choose></td>						            							            			
 				          					</tr>																				
 										</c:forEach>
 									</tbody>

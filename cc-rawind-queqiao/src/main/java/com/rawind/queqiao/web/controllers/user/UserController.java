@@ -19,6 +19,7 @@ import com.rawind.queqiao.web.service.HostHolderService;
 import com.rawind.queqiao.web.service.QueqiaoOrderService;
 import com.rawind.queqiao.web.service.QueqiaoUserExtrService;
 import com.rawind.queqiao.web.service.QueqiaoUserService;
+import com.rawind.queqiao.web.util.ProxyUrlEncrypt;
 
 import net.paoding.rose.web.Invocation;
 import net.paoding.rose.web.annotation.Param;
@@ -54,9 +55,52 @@ public class UserController {
 		
 		inv.addModel("user", user);
 		
+		
+		inv.addModel("broadcast", "测试中，测试期间随时删号，不保证可用。<br />所有节点均不支持外发邮件。");
+		
+		QueqiaoUserExtr userExtr = queqiaoUserExtrService.getByUserId(user.getId());
+		
+		
+		Date expiredDate = new Date();		
+		if(userExtr!=null){
+			expiredDate = userExtr.getExpiredTime();
+			expiredDate = CwDateTimeUtil.cleanHourAndMinutes(expiredDate);
+		}
+		inv.addModel("expiredDate", expiredDate);
+		
+		
+		
+		Date cur = new Date();
+		int step = CwDateTimeUtil.daysOfTwo(cur, expiredDate);
+		if(step <=0){
+			step = 0;
+		}
+		inv.addModel("cur", cur);
+		
+		inv.addModel("step", step);
+		inv.addModel("orderTypeList", OrderTypeEnum.values());
+		
+		String proxy = user.getProxyStr();
+		inv.addModel("proxy", ProxyUrlEncrypt.encode(proxy));
+		
 		return "user_index";
 	}
 	
+	
+	
+	@Get("order_create")
+	public String goOrderCreate(Invocation inv){
+		
+		QueqiaoUser user = hostHolderService.getQueqiaoUser();
+		
+		
+		inv.addModel("user", user);
+		
+		
+		inv.addModel("orderTypeList", OrderTypeEnum.values());
+		
+		return "order_create";
+	}
 	
 	
 	@Get("node_list")

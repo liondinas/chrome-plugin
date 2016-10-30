@@ -42,6 +42,7 @@
 		<aside class="left-side sidebar-offcanvas">
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
+				<c:set var="menu" scope="session" value="4"/>		
 				<jsp:include  page="/views/user/inc/left_menu_inc.jsp"/>
 			</section>
 			<!-- /.sidebar -->

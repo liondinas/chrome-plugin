@@ -104,8 +104,24 @@
     </div>
     <div class="footer">
         <button type="submit" class="btn bg-olive btn-block"  name="login" >登录</button>
+        <a href="/"
+					class="text-center">Home-返回首页</a>		
     </div>
     </form>
+    
+    	<div class="margin text-center">
+			<span>不到长城非好汉</span> <br />
+			<button class="btn bg-light-blue btn-circle" onclick="javascript:window.open('https://www.facebook.com');">
+				<i class="fa fa-facebook"></i>
+			</button>
+			<button class="btn bg-aqua btn-circle" onclick="javascript:window.open('https://www.twitter.com');">
+				<i class="fa fa-twitter"></i>
+			</button>
+			<button class="btn bg-red btn-circle" onclick="javascript:window.open('https://www.google.com');">
+				<i class="fa fa-google-plus"></i>
+			</button>
+
+		</div>
 </div>
 </body>
 </html>

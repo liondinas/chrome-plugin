@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>${SITE_NAME}-用户中心</title>
+<title>${SITE_NAME}- 用户中心</title>
 <meta charset="UTF-8">
 <meta
 	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
@@ -42,7 +42,7 @@
 		<aside class="left-side sidebar-offcanvas">
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
-				<c:set var="menu" scope="session" value="5"/>	
+				<c:set var="menu" scope="session" value="1"/>
 				<jsp:include  page="/views/user/inc/left_menu_inc.jsp"/>
 			</section>
 			<!-- /.sidebar -->
@@ -52,49 +52,176 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-					客服中心 <small>Client Service</small>
+					用户中心 <small>User Panel</small>
 				</h1>
 			</section>
 			<!-- Main content -->
 			<section class="content">
+				<!-- START PROGRESS BARS -->
 				<div class="row">
-					<!-- left column -->
 					<div class="col-md-6">
-						<!-- general form elements -->
-						<div class="box box-primary">
+						<div class="box box-solid">
 							<div class="box-header">
-								<h3 class="box-title">QQ客服 : 31901313</h3>
+								<h3 class="box-title">公告&FAQ</h3>
 							</div>
 							<!-- /.box-header -->
-
-							<div class="table-responsive">
-								<img  style="CURSOR: pointer; margin-left:20px;margin-bottom:20px;margin-top:40px;" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&sid=31901313&o=小橙子&q=7', '_blank', 'height=502, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');"  border="0" SRC=http://wpa.qq.com/pa?p=1:31901313:1 alt="点击这里给我发消息">
-								
-								<br/>
+							<div class="box-body">
+								<div class="callout callout-warning">
+									<h4>注意!</h4>
+									<p>
+										测试中，测试期间随时删号，不保证可用。<br />所有节点均不支持外发邮件。
+									</p>
+								</div>
 							</div>
+							<!-- /.box-body -->
 						</div>
-						
-						<!-- general form elements -->
-						<div class="box box-primary">
-							<div class="box-header">
-								<h3 class="box-title">微信客服: </h3>
-							</div>
-							<!-- /.box-header -->
-
-							<div class="table-responsive">
-								<img  style="CURSOR: pointer; margin-left:20px;margin-bottom:20px;margin-top:40px;width:200px;width:200px;"  src="/img/liondinas.jpg" />
-							</div>
-						</div>
-						
+						<!-- /.box -->
 					</div>
-					<!-- /.box -->
+					<!-- /.col (right) -->
+					<div class="col-md-6">
+						<div class="box box-solid">
+							<div class="box-header">
+								<h3 class="box-title">注意</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+								<div class="callout callout-danger">
+									<h4>未激活</h4>
+									<p>您的账号还没有激活，暂时不能使用！请查收邮件。</p>
+									<p>
+										<a class="btn btn-success" id="check_in_button"
+											onclick="do_resend_mail()">重发激活邮件</a>
+									</p>
+								</div>
+							</div>
+							<!-- /.box-body -->
+						</div>
+						<!-- /.box -->
+					</div>
+					<!-- /.col (right) -->
+					<div class="col-md-6">
+						<div class="box box-solid">
+							<div class="box-header">
+								<h3 class="box-title">流量使用情况</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+								<p>已用流量: 0 bytes</p>
+								<div class="progress progress-striped">
+									<div class="progress-bar progress-bar-primary"
+										role="progressbar" aria-valuenow="40" aria-valuemin="0"
+										aria-valuemax="100" style="width: 0%">
+										<span class="sr-only">Transfer</span>
+									</div>
+								</div>
+								<p>可用流量: 5.05 GB</p>
+								<p>剩余流量: 5.05 GB</p>
+							</div>
+							<!-- /.box-body -->
+						</div>
+						<!-- /.box -->
+					</div>
+					<!-- /.col (left) -->
+
+					<div class="col-md-6">
+						<div class="box box-solid">
+							<div class="box-header">
+								<h3 class="box-title">签到获取流量</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+								<p>24小时内可以签到一次，剩余流量小于2G可以一次获得2G流量。</p>
+								<p>
+									<a class="btn btn-success" id="check_in_button" href="#"
+										onclick="do_check_in()">签到</a>
+								</p>
+								<p>
+									上次签到时间
+									<code>2016-08-25 18:11:20</code>
+								</p>
+								<p id="check_in_result"></p>
+							</div>
+							<!-- /.box-body -->
+						</div>
+						<!-- /.box -->
+					</div>
+					<!-- /.col (right) -->
+
+
+					<div class="col-md-6">
+						<div class="box box-solid">
+							<div class="box-header">
+								<h3 class="box-title">连接信息</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+								<p>
+									端口:
+									<code>50006</code>
+								</p>
+								<p>密码: 320943</p>
+								<p>
+									套餐: <span class="label label-info"> A </span>
+								</p>
+								<p>
+									最后使用时间:
+									<code>1970-01-01 08:00:00</code>
+								</p>
+							</div>
+							<!-- /.box-body -->
+						</div>
+						<!-- /.box -->
+					</div>
+					<!-- /.col (right) -->
 				</div>
 				<!-- /.row -->
+				<!-- END PROGRESS BARS -->
 			</section>
 			<!-- /.content -->
 		</aside>
 		<!-- /.right-side -->
-
+		<script type="text/javascript">
+			function do_check_in() {
+				var xmlhttp;
+				if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+					xmlhttp = new XMLHttpRequest();
+				} else {// code for IE6, IE5
+					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				xmlhttp.onreadystatechange = function() {
+					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+						var str1 = "<code>";
+						var str2 = "</code>";
+						document.getElementById("check_in_result").innerHTML = str1
+								.concat(xmlhttp.responseText, str2);
+						alert(xmlhttp.responseText);
+						document.getElementById("check_in_button").href = "";
+						document.getElementById("check_in_button").innerHTML = "不能签到";
+						setTimeout(function() {
+							window.location.reload();
+						}, 3000);
+					}
+				}
+				xmlhttp.open("GET", "${SITE_DOMAIN}/user/check_in.html", true);
+				xmlhttp.send();
+			}
+			function do_resend_mail() {
+				var xmlhttp;
+				if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+					xmlhttp = new XMLHttpRequest();
+				} else {// code for IE6, IE5
+					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				xmlhttp.onreadystatechange = function() {
+					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+						alert(xmlhttp.responseText);
+					}
+				}
+				xmlhttp.open("GET", "${SITE_DOMAIN}/user/resend_mail.html",
+						true);
+				xmlhttp.send();
+			}
+		</script>
 		<script src="${SITE_DOMAIN}/static/js/jquery-2.1.1.js"></script>
 		<script src="${SITE_DOMAIN}/static/js/bootstrap.min.js"
 			type="text/javascript"></script>
@@ -157,4 +284,3 @@
 		<div id="analytics-code" style="display: none">统计代码</div>
 </body>
 </html>
-

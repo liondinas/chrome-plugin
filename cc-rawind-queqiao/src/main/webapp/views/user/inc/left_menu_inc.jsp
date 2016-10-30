@@ -18,26 +18,26 @@
 
 <!-- sidebar menu: : style can be found in sidebar.less -->
 <ul class="sidebar-menu">
-	<li>
-		<a href="/user"> <i class="fa fa-dashboard"></i> <span>用户中心</span></a>
+	<li <c:if test="${menu == 1}"> class="active" </c:if> >
+		<a href="/user" > <i class="fa fa-dashboard"></i> <span>用户中心</span></a>
 	</li>
 
-	<li>
+	<li <c:if test="${menu == 2}"> class="active" </c:if> >
 		<a href="/user/order_list"> <i class="fa fa-sitemap"></i><span>订单列表</span></a>
 	</li>
 
-	<li class="active">
+	<li <c:if test="${menu == 3}"> class="active" </c:if> >
 		<a href="/user/my_info"> <i class="fa fa-user"></i> <span>我的信息</span></a>
 	</li>
 
-	<li>
-		<a href="/user/profile_update"> <i class="fa  fa-pencil"></i> <span>修改资料</span></a>
+	<li <c:if test="${menu == 4}"> class="active" </c:if> >
+		<a href="/user/profile_update"> <i class="fa  fa-pencil"></i> <span>密码管理</span></a>
 	</li>
 
 <!-- 	<li>
 		<a href="/user/invite_list"> <i class="fa fa-users"></i><span>联系客服</span></a>
 	</li> -->
-	<li>
+	<li <c:if test="${menu == 5}"> class="active" </c:if> >
 		<a href="/user/user_contact"> <i class="fa fa-users"></i><span>客服中心</span></a>
 	</li>
 </ul>

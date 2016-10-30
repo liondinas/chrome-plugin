@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib  prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <title>${SITE_NAME}- 用户中心</title>
 <meta charset="UTF-8">
-<meta
-	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
+<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
 	name='viewport'>
 <link href="${SITE_DOMAIN}/static/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css" />
@@ -42,6 +43,7 @@
 		<aside class="left-side sidebar-offcanvas">
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
+				<c:set var="menu" scope="session" value="1"/>
 				<jsp:include  page="/views/user/inc/left_menu_inc.jsp"/>
 			</section>
 			<!-- /.sidebar -->
@@ -68,7 +70,7 @@
 								<div class="callout callout-warning">
 									<h4>注意!</h4>
 									<p>
-										测试中，测试期间随时删号，不保证可用。<br />所有节点均不支持外发邮件。
+										${broadcast}
 									</p>
 								</div>
 							</div>
@@ -85,58 +87,36 @@
 							<!-- /.box-header -->
 							<div class="box-body">
 								<div class="callout callout-danger">
-									<h4>未激活</h4>
-									<p>您的账号还没有激活，暂时不能使用！请查收邮件。</p>
+									<h4>账号还有 ${step} 天到期</h4>
+									<p>您的账号的到期时间为:<code> <fmt:formatDate value="${expiredDate}" pattern="yyyy-MM-dd HH:mm"/> </code>。为了不影响您的正常使用，请及时续期！ </p>
 									<p>
 										<a class="btn btn-success" id="check_in_button"
-											onclick="do_resend_mail()">重发激活邮件</a>
+											onclick="window.location.href='/user/order_create';">续期</a>
 									</p>
 								</div>
 							</div>
 							<!-- /.box-body -->
 						</div>
 						<!-- /.box -->
-					</div>
-					<!-- /.col (right) -->
-					<div class="col-md-6">
-						<div class="box box-solid">
-							<div class="box-header">
-								<h3 class="box-title">流量使用情况</h3>
-							</div>
-							<!-- /.box-header -->
-							<div class="box-body">
-								<p>已用流量: 0 bytes</p>
-								<div class="progress progress-striped">
-									<div class="progress-bar progress-bar-primary"
-										role="progressbar" aria-valuenow="40" aria-valuemin="0"
-										aria-valuemax="100" style="width: 0%">
-										<span class="sr-only">Transfer</span>
-									</div>
-								</div>
-								<p>可用流量: 5.05 GB</p>
-								<p>剩余流量: 5.05 GB</p>
-							</div>
-							<!-- /.box-body -->
-						</div>
-						<!-- /.box -->
-					</div>
-					<!-- /.col (left) -->
+					</div>					
 
 					<div class="col-md-6">
 						<div class="box box-solid">
 							<div class="box-header">
-								<h3 class="box-title">签到获取流量</h3>
+								<h3 class="box-title">分享好友获取流量</h3>
 							</div>
 							<!-- /.box-header -->
 							<div class="box-body">
-								<p>24小时内可以签到一次，剩余流量小于2G可以一次获得2G流量。</p>
+								<p>分享好友，成功注册并使用的免费获取一个月的使用。</p>
 								<p>
-									<a class="btn btn-success" id="check_in_button" href="#"
-										onclick="do_check_in()">签到</a>
+									<!-- <a class="btn btn-success" id="check_in_button" href="#"
+										onclick="do_check_in()">好友</a> -->
+									<a href="javascript:void((function(s,d,e,r,l,p,t,z,c) {var%20f='http://v.t.sina.com.cn/share/share.php?appkey=962772401',u=z||d.location,p=['&url=',e(u),'& title=',e(t||d.title),'&source=',e(r),'&sourceUrl=',e(l),'& content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a() {if(!window.open([f,p].join(''),'mb', ['toolbar=0,status=0,resizable=1,width=600,height=500,left=',(s.width- 600)/2,',top=',(s.height-600)/2].join('')))u.href=[f,p].join('');}; if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();}) (screen,document,encodeURIComponent,'','','http://proxy.xiaochengzi.vip/orange512.png','小橙子-跨越万里长城。浏览器插件模式，无需安装客户端，高速浏览国外网站，不影响本地网站的访问。','http://proxy.xiaochengzi.vip?inviteCode=${user.id}','utf-8'));" 
+										alt="分享到新浪微博" title="分享到新浪微博" class="btn btn-info" id="check_in_button">分享新浪微博</a>    
 								</p>
 								<p>
-									上次签到时间
-									<code>2016-08-25 18:11:20</code>
+									上次登陆时间
+									<code><fmt:formatDate value="${user.lastLoginTime}" pattern="yyyy-MM-dd HH:mm"/> </code>
 								</p>
 								<p id="check_in_result"></p>
 							</div>
@@ -150,7 +130,7 @@
 					<div class="col-md-6">
 						<div class="box box-solid">
 							<div class="box-header">
-								<h3 class="box-title">连接信息</h3>
+								<h3 class="box-title">代理信息</h3>
 							</div>
 							<!-- /.box-header -->
 							<div class="box-body">
@@ -158,13 +138,13 @@
 									端口:
 									<code>50006</code>
 								</p>
-								<p>密码: 320943</p>
+								<p>地址: ${proxy}</p>
 								<p>
 									套餐: <span class="label label-info"> A </span>
 								</p>
 								<p>
 									最后使用时间:
-									<code>1970-01-01 08:00:00</code>
+									<code><fmt:formatDate value="${cur}" pattern="yyyy-MM-dd HH:mm"/></code>
 								</p>
 							</div>
 							<!-- /.box-body -->

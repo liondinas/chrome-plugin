@@ -7,9 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="<?php echo site_url('favicon.ico'); ?>">
-
-    <title>小橙子-翻过万里长城</title>
+	<link rel="shortcut icon"href="favicon.ico"> 
+    <title>小橙子-跨越万里长城</title>
 
     <!-- Bootstrap core CSS -->
     <link href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" rel="stylesheet">
@@ -38,13 +37,8 @@
 
     <div class="jumbotron">
         <h2>${SITE_NAME}</h2>
-        <p class="lead"> 每个月5G流量，香港节点。</p>
+        <p class="lead"> 每个月不限流量，香港美国高速节点</p>
         <p><a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/user/register" role="button">立即注册</a></p>
-        
-        <h2>使用说明</h2>
-        <p class="lead"> 1, 下载最新版本的插件, <a href="http://www.yufengchen.com/list.php" target="_blank">去下载</a>。</p>
-        
-      
     </div>
 
     <div class="row marketing">
@@ -56,11 +50,15 @@
             <p> Windows用户推荐此客户端.</p> -->
 
  			<h4><a href="http://www.yufengchen.com/queqiao_V1.01.crx" target="_blank">Chrome浏览器插件</a></h4>
-            <p> 无须客户端，只需要安装浏览器插件即可.</p>
+            <p>无须安装客户端，简单易用，只需浏览器插件即可</p>
 
         </div>
 
-        <div class="col-lg-6">
+        <div class="col-lg-6">        
+        	<a href="https://itunes.apple.com/us/app/shadowsocks/id665729974?mt=8" target="_blank"><h4>安装使用说明</h4></a>
+            <p>高速访问国外网站，不影响本地网站的访问速度</p>
+            
+            
             <!-- <a href="https://itunes.apple.com/us/app/shadowsocks/id665729974?mt=8" target="_blank"><h4>iOS</h4></a>
             <p>iOS客户端</p>
 

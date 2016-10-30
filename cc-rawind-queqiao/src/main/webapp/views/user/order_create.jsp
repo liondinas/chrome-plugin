@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib  prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,8 +43,9 @@
 		<aside class="left-side sidebar-offcanvas">
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
-				<c:set var="menu" scope="session" value="5"/>	
+				<c:set var="menu" scope="session" value="2"/>
 				<jsp:include  page="/views/user/inc/left_menu_inc.jsp"/>
+				
 			</section>
 			<!-- /.sidebar -->
 		</aside>
@@ -52,7 +54,7 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-					客服中心 <small>Client Service</small>
+					订单列表 <small>Order List</small>
 				</h1>
 			</section>
 			<!-- Main content -->
@@ -63,38 +65,33 @@
 						<!-- general form elements -->
 						<div class="box box-primary">
 							<div class="box-header">
-								<h3 class="box-title">QQ客服 : 31901313</h3>
+								<h3 class="box-title">创建订单</h3>
 							</div>
 							<!-- /.box-header -->
-
-							<div class="table-responsive">
-								<img  style="CURSOR: pointer; margin-left:20px;margin-bottom:20px;margin-top:40px;" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&sid=31901313&o=小橙子&q=7', '_blank', 'height=502, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');"  border="0" SRC=http://wpa.qq.com/pa?p=1:31901313:1 alt="点击这里给我发消息">
-								
-								<br/>
+							<div class="box-body">								
+								<p>
+									<span class="label label-info"> 套餐列表:  </span><!-- <span class="label label-info"> A </span> -->
+									<c:forEach items="${orderTypeList}" var="orderType">
+									<label class="radio">
+									  <input type="radio" name="orderType" value="${orderType.code}">
+									  ${orderType.memo} - ${orderType.amountString}
+									</label>									
+									</c:forEach>																		
+								</p>
+								<p>
+									<!-- 账户余额: 0.00元  -->
+									<!-- <a class="btn btn-info btn-sm" href="https://ss.xiaochengzi.vip/user/pay.html">微信充值</a> -->
+									<button type="submit" class="btn btn-info btn-sm" id="alipayBtn">创建订单</button>
+								</p>
 							</div>
+							<!-- /.box -->
 						</div>
-						
-						<!-- general form elements -->
-						<div class="box box-primary">
-							<div class="box-header">
-								<h3 class="box-title">微信客服: </h3>
-							</div>
-							<!-- /.box-header -->
-
-							<div class="table-responsive">
-								<img  style="CURSOR: pointer; margin-left:20px;margin-bottom:20px;margin-top:40px;width:200px;width:200px;"  src="/img/liondinas.jpg" />
-							</div>
-						</div>
-						
 					</div>
-					<!-- /.box -->
-				</div>
-				<!-- /.row -->
 			</section>
 			<!-- /.content -->
 		</aside>
 		<!-- /.right-side -->
-
+		
 		<script src="${SITE_DOMAIN}/static/js/jquery-2.1.1.js"></script>
 		<script src="${SITE_DOMAIN}/static/js/bootstrap.min.js"
 			type="text/javascript"></script>
@@ -150,11 +147,21 @@
 				$('.selectpicker').selectpicker({
 					'selectedText' : 'cat'
 				});
-
+				
+				
+				 $('#alipayBtn').bind('click', function() {
+					var type = $("input[name='orderType']:checked").val();
+					if(typeof(type) == "undefined") { 
+						 alert('请选择套餐类型');
+					}else{
+						//window.location.href='/user/user_pay?type='+type;
+						window.open('/user/user_pay?type='+type);
+					}
+			     });
+			        
 				// $('.selectpicker').selectpicker('hide');
 			});
 		</script>
 		<div id="analytics-code" style="display: none">统计代码</div>
 </body>
 </html>
-
