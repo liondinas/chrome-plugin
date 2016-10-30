@@ -43,6 +43,13 @@ public class AdminLoginController {
 	@Autowired
 	private QueqiaoUserExtrService queqiaoUserExtrService;
 	
+	
+	@Get("")
+	public String goIndex(Invocation inv) {
+		logger.info("admin login ");
+		return "r:/admin/login";
+	}
+	
 	@Get("login")
 	public String goLogin(Invocation inv) {
 		logger.info("admin login ");

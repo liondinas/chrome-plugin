@@ -43,7 +43,7 @@
 		<aside class="left-side sidebar-offcanvas">
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
-				<c:set var="menu" scope="session" value="1"/>
+				<c:set var="menu" scope="session" value="5"/>
 				<jsp:include  page="/views/admin/inc/left_menu_inc.jsp"/>
 			</section>
 			<!-- /.sidebar -->
@@ -53,7 +53,7 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-					用户 <small>User</small>
+					订单列表 <small>Order List</small>
 				</h1>
 			</section>
 			<!-- Main content -->
@@ -64,33 +64,33 @@
 						<!-- general form elements -->
 						<div class="box box-primary">
 							<div class="box-header">
-								<h3 class="box-title">用户列表</h3>
+								<h3 class="box-title">订单列表</h3>
+								<h3 class="box-title"><button type="button" onclick="window.location.href='/admin/node/add'" class="btn btn-info btn-xs">增加</button></h3>
 							</div>
 
 							<div class="table-responsive">
 								<table class="table table-striped">
 									<thead>
 										<tr>
-											<th>昵称</th>
-											<th>邮箱</th>
-											<th>代理地址</th>
-											<th>注册日期</th>
-											<th>过期时间</th>
+											<th>订单ID</th>
+											<th>用户名称</th>
+											<th>订单金额</th>
+											<th>下单时间</th>
 											<th>状态</th>
 											<th></th>
 										</tr>
 									</thead>
 
 									<tbody>
-										<c:forEach items="${userList}" var="user">
+										<c:forEach items="${orderList}" var="order">
 											<tr >				            					
-				            					<td>${user.name}</td>
-				            					<td>${user.email}</td>
-				            					<td>${user.proxyStr}</td>				  
-				            					<td><fmt:formatDate value="${user.createTime}" pattern="yyyy-MM-dd"/></td>
-				            					<td><fmt:formatDate value="${user.expiredTime}" pattern="yyyy-MM-dd HH:mm"/></td>
-				            					<td><c:choose><c:when test="${!empty user.expired}">过期</c:when><c:otherwise>正常</c:otherwise></c:choose></td>		
-				            					<td><button type="button" onclick="window.location.href='/admin/user/edit/${user.id}'" class="btn btn-success btn-xs">详情</button></td>		            				
+				            					<td>${order.id}</td>
+				            					<td>${order.userName}</td>
+				            					<td>${order.memo}</td>
+				            					<td><fmt:formatNumber value="${ order.amount / 100.00 }" pattern="#0.00"/></td>
+				            					<td><fmt:formatDate value="${order.createTime}" pattern="yyyy-MM-dd HH:mm"/></td>		  
+				            					<td><c:choose><c:when test="${order.status == 1}">已支付</c:when><c:otherwise>未支付</c:otherwise></c:choose></td>		
+				            					<td><button type="button" onclick="window.location.href='/admin/order/detail?orderId=${order.id}'" <c:choose><c:when test="${order.status == 1}"> class="btn btn-success btn-xs" </c:when><c:otherwise> class="btn btn-warning btn-xs" </c:otherwise></c:choose> >详情</button></td>		            				
 				          					</tr>																				
 										</c:forEach>
 									</tbody>

@@ -130,4 +130,18 @@ public class UserMgrController {
 		return "admin_user_myinfo";
 	}
 	
+	
+	
+	@Get("profile_update")
+	public String updateProfile(Invocation inv) {
+		
+		
+		inv.addModel("user", hostHolderService.getQueqiaoAdmin());
+		
+		
+		
+		return "admin_user_myinfo";
+	}
+	
+	
 }

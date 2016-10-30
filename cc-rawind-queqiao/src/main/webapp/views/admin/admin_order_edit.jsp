@@ -43,7 +43,7 @@
 		<aside class="left-side sidebar-offcanvas">
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
-				<c:set var="menu" scope="session" value="1"/>
+				<c:set var="menu" scope="session" value="5"/>
 				<jsp:include  page="/views/admin/inc/left_menu_inc.jsp"/>
 			</section>
 			<!-- /.sidebar -->
@@ -53,7 +53,7 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-					用户 <small>User</small>
+					订单列表 <small>Order List</small>
 				</h1>
 			</section>
 			<!-- Main content -->
@@ -64,38 +64,57 @@
 						<!-- general form elements -->
 						<div class="box box-primary">
 							<div class="box-header">
-								<h3 class="box-title">用户列表</h3>
+								<h3 class="box-title">订单详情</h3>								
 							</div>
 
-							<div class="table-responsive">
-								<table class="table table-striped">
-									<thead>
-										<tr>
-											<th>昵称</th>
-											<th>邮箱</th>
-											<th>代理地址</th>
-											<th>注册日期</th>
-											<th>过期时间</th>
-											<th>状态</th>
-											<th></th>
-										</tr>
-									</thead>
-
-									<tbody>
-										<c:forEach items="${userList}" var="user">
-											<tr >				            					
-				            					<td>${user.name}</td>
-				            					<td>${user.email}</td>
-				            					<td>${user.proxyStr}</td>				  
-				            					<td><fmt:formatDate value="${user.createTime}" pattern="yyyy-MM-dd"/></td>
-				            					<td><fmt:formatDate value="${user.expiredTime}" pattern="yyyy-MM-dd HH:mm"/></td>
-				            					<td><c:choose><c:when test="${!empty user.expired}">过期</c:when><c:otherwise>正常</c:otherwise></c:choose></td>		
-				            					<td><button type="button" onclick="window.location.href='/admin/user/edit/${user.id}'" class="btn btn-success btn-xs">详情</button></td>		            				
-				          					</tr>																				
-										</c:forEach>
-									</tbody>
-								</table>
-							</div>
+							<form  name="editForm" id="editForm" method="post"
+								action="/admin/order/updateprice" accept-charset="utf-8">
+								<div class="box-body">
+									<div class="form-group">
+										<label>用户名：${order.userName}</label>
+									</div>
+									<div class="form-group">
+										<label>订单状态：<c:choose><c:when test="${order.status == 1}">已支付</c:when><c:otherwise>未支付</c:otherwise></c:choose></label>
+									</div>
+									<div class="form-group">
+										<label>下单时间：<fmt:formatDate value="${order.createTime}" pattern="yyyy-MM-dd HH:mm"/></label>
+									</div>
+									<div class="form-group">
+										<label>订单备注：${order.memo}</label>
+									</div>
+									
+									<c:choose>
+										<c:when test="${order.status == 1}">
+										<div class="form-group">
+											<label>订单价格： ${order.amount/100} 元</label>
+										</div>	
+										<div class="form-group">
+											<label>支付时间： <fmt:formatDate value="${order.payTime}" pattern="yyyy-MM-dd HH:mm"/></label>
+										</div>		
+										</c:when>
+										<c:otherwise>
+										<div class="form-group">
+											<label>订单价格：
+												<input type="number" name="amount" id="amount" value="${order.amount}" />  分
+											</label>
+										</div>	
+										</c:otherwise>
+									</c:choose>																							
+									<input type="hidden" name="orderId" value="${order.id}" />
+								</div>
+								<!-- /.box-body -->
+								<div class="box-footer">
+									<c:choose>
+										<c:when test="${order.status == 1}">	
+										</c:when>
+										<c:otherwise>
+										<button type="submit" name="action" value="add"
+										class="btn btn-primary">提交</button>
+										</c:otherwise>
+									</c:choose>		
+									
+								</div>
+							</form>
 						</div>
 					</div>
 					<!-- /.box -->
@@ -147,23 +166,53 @@
 		<!-- iCheck -->
 		<script src="${SITE_DOMAIN}/static/js/plugins/iCheck/icheck.min.js"
 			type="text/javascript"></script>
-		<!-- AdminLTE App -->
-		<script src="${SITE_DOMAIN}/static/js/AdminLTE/app.js"
-			type="text/javascript"></script>
 
-		<!-- Select js -->
-		<script src="${SITE_DOMAIN}/static/js/bootstrap-select.js"></script>
-		<script src="${SITE_DOMAIN}/static/js/bootstrap-switch.js"></script>
 
-		<script type="text/javascript">
-			$(window).on('load', function() {
+ 	<!-- jQuery 2.0.2 -->
+    <script src="${SITE_DOMAIN}/static/js/jquery-2.0.3.min.js"></script>
+    <script src="${SITE_DOMAIN}/static/js/jquery.validate.min.js"></script>
+    <script src="${SITE_DOMAIN}/static/js/jquery.form.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="${SITE_DOMAIN}/static/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="${SITE_DOMAIN}/static/js/md5.js" type="text/javascript"></script>
+		<script type="text/javascript">						
+			$(document).ready(function() {
+	        	console.log('admin login');
+	            var options = {
+	                target:        '#editForm',   // target element(s) to be updated with server response
+	                success:       showResponse,  // post-submit callback
+	                dataType:  'json'        // 'xml', 'script', or 'json' (expected server response type)
+	            };
 
-				$('.selectpicker').selectpicker({
-					'selectedText' : 'cat'
-				});
+	            $('#editForm').submit(function() {
+	            	
+	                if ($(this).valid()) {	                   	                   
+	                    $(this).ajaxSubmit(options);
+	                    return false;
+	                }
+	            });
 
-				// $('.selectpicker').selectpicker('hide');
-			});
+	            jQuery.validator.addMethod("onlyAlphaNumber", function(value, element) {
+	                return /^[a-zA-Z0-9]+$/.test(value);
+	            }, "Alpha and Number Only!");
+
+	            $('#editForm').validate( {
+	                    rules:{
+	                    	
+	                    }
+	                }
+	            )
+	        });
+
+	        // post-submit callback
+	        function showResponse(data) {
+	            if (data.code == "0") {
+	                window.location.href = "/admin/order/list";
+	            } else {
+	                alert(data.msg);
+	            }
+	        }
+			
 		</script>
 		<div id="analytics-code" style="display: none">统计代码</div>
 </body>

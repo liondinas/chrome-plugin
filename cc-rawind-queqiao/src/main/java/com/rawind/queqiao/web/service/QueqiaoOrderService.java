@@ -25,4 +25,12 @@ public interface QueqiaoOrderService {
 	
 	QueqiaoOrder getByTradeNO(String tradeNo);
 	
+	
+	int countAll();
+	List<QueqiaoOrder> listAll(int offset, int limit);
+	
+	
+	int updateOrderPrice(long orderId, int amount, int version);
+	
+	
 }

@@ -72,4 +72,14 @@ CREATE TABLE `queqiao_order` (
 	@SQL("select " + FIELDS_ALL + " from " + TABLE + " where queqiao_trade_no =:tradeNo")
 	public QueqiaoOrder getByTradeNo(@SQLParam("tradeNo")String tradeNo);
 	
+	
+	@SQL("select count(1) from " + TABLE )
+	public int countAll();
+	
+	
+	@SQL("select " + FIELDS_ALL + " from " + TABLE + " limit :offset,:limit")
+	public List<QueqiaoOrder> listAll(@SQLParam("offset")int offset, @SQLParam("limit")int limit);
+	
+	@SQL("update " + TABLE + " set amount =:amount where id =:orderId and version=:version and status="+QueqiaoOrder.STATUS_CREATED)
+	public int updateOrderPrice(@SQLParam("orderId")long orderId, @SQLParam("amount")int amount, @SQLParam("version")int version);
 }

@@ -106,4 +106,19 @@ public class QueqiaoOrderServiceImpl implements QueqiaoOrderService {
 		return queqiaoOrderDAO.getByTradeNo(tradeNo);
 	}
 
+	@Override
+	public int countAll() {
+		return queqiaoOrderDAO.countAll();
+	}
+
+	@Override
+	public List<QueqiaoOrder> listAll(int offset, int limit) {
+		return queqiaoOrderDAO.listAll(offset, limit);
+	}
+
+	@Override
+	public int updateOrderPrice(long orderId, int amount, int version) {
+		return queqiaoOrderDAO.updateOrderPrice(orderId, amount, version);
+	}
+
 }

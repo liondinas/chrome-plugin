@@ -4,8 +4,8 @@
 <%@ taglib  prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<a href="${SITE_DOMAIN}/user" class="logo"> <!-- Add the class icon to your logo image or logo icon to add the margining -->
-			小橙子-用户管理平台
+<a href="${SITE_DOMAIN}/admin/user/list" class="logo"> <!-- Add the class icon to your logo image or logo icon to add the margining -->
+			小橙子-后台管理平台
 </a>
 <!-- Header Navbar: style can be found in header.less -->
 <nav class="navbar navbar-static-top" role="navigation">
@@ -33,11 +33,11 @@
 					<!-- Menu Footer-->
 					<li class="user-footer">
 						<div class="pull-left">
-							<a href="${SITE_DOMAIN}/user/my_info"
+							<a href="${SITE_DOMAIN}/admin/user/my_info"
 								class="btn btn-default btn-flat">我的信息</a>
 						</div>
 						<div class="pull-right">
-							<a href="${SITE_DOMAIN}/user/logout"
+							<a href="${SITE_DOMAIN}/admin/logout"
 								class="btn btn-default btn-flat">退出</a>
 						</div>
 					</li>
