@@ -71,15 +71,31 @@ public class NodeMgrController {
 		inv.addModel("user", hostHolderService.getQueqiaoAdmin());
 		
 					
-		
+		inv.addModel("proxyId", 0);
 		return "admin_node_add";
 	}
 	
 	
+	@Get("edit")
+	public String showEditNode(Invocation inv, @Param("proxyId") long proxyId) {
+		
+		
+		
+		inv.addModel("user", hostHolderService.getQueqiaoAdmin());
+		QueqiaoProxy proxy = queqiaoProxyService.getById(proxyId);
+		if(proxy==null){
+			return "@节点信息错误";
+		}
+					
+		inv.addModel("proxy", proxy);
+		inv.addModel("proxyId", proxyId);
+		return "admin_node_add";
+	}
 	
 	
 	@Post("addPost")
-	public String postAddNode(Invocation inv, @Param("proxyType") int proxyType, @Param("proxyUrl") String proxyUrl) {
+	public String postAddNode(Invocation inv, @Param("proxyType") int proxyType, @Param("proxyUrl") String proxyUrl,
+			@Param("proxyId") long proxyId) {
 		
 		
 		if(proxyType == 0){
@@ -90,12 +106,25 @@ public class NodeMgrController {
 			return AjaxOutput.failure("请填写节点类型");
 		}
 		
-		QueqiaoProxy proxy = new QueqiaoProxy();
-		proxy.setStatus(QueqiaoProxy.STATUS_NORMAL);
-		proxy.setUrl(proxyUrl);
-		proxy.setType(proxyType);
+		if(proxyId>0){
+			QueqiaoProxy proxy = queqiaoProxyService.getById(proxyId);
+			if(proxy==null){
+				return AjaxOutput.failure("节点信息错误");
+			}
+			
+			proxy.setType(proxyType);
+			proxy.setUrl(proxyUrl);
+			queqiaoProxyService.update(proxy);
+			
+		}else{
+			QueqiaoProxy proxy = new QueqiaoProxy();
+			proxy.setStatus(QueqiaoProxy.STATUS_NORMAL);
+			proxy.setUrl(proxyUrl);
+			proxy.setType(proxyType);
 
-		queqiaoProxyService.addProxy(proxy);
+			queqiaoProxyService.addProxy(proxy);
+		}
+		
 		
 		return AjaxOutput.success("ok");
 	}

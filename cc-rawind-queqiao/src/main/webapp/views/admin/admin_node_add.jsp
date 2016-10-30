@@ -72,18 +72,18 @@
 								<div class="box-body">
 									<div class="form-group">
 										<select name="proxyType" id="proxyType">
-											<option value="1">HTTP</option>
-											<option value="2">SOCKT</option>
-											<option value="3">SOCKTV5</option>
+											<option value="1" <c:if test="${proxy.type == 1}">selected</c:if> >HTTP</option>
+											<option value="2" <c:if test="${proxy.type == 2}">selected</c:if> >SOCKT</option>
+											<option value="3" <c:if test="${proxy.type == 3}">selected</c:if> >SOCKTV5</option>
 										</select>
 									</div>
 
 									<div class="form-group">
 										<input type="text" class="form-control"
-											placeholder="节点地址" id="proxyUrl" name="proxyUrl" required>
+											placeholder="节点地址" id="proxyUrl" name="proxyUrl" value="${proxy.url}" required>
 									</div>
 									
-									
+									<input type="hidden" name="proxyId" value="${proxyId}" />
 									
 									<div class="form-group">
 										<label>地址例子： SOCKS5 127.0.0.1:1080, PROXY 101.200.121.195:3118</label>
@@ -92,8 +92,11 @@
 								</div>
 								<!-- /.box-body -->
 								<div class="box-footer">
+									<button type="button" name="action" value="add"
+										class="btn btn-info" onclick="javascript:window.location.href='/admin/node/list';">返回</button>	
 									<button type="submit" name="action" value="add"
 										class="btn btn-primary">提交</button>
+									
 								</div>
 							</form>
 						</div>

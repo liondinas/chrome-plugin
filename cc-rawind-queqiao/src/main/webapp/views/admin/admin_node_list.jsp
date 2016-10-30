@@ -84,7 +84,7 @@
 				            					<td>${proxy.id}</td>
 				            					<td>${proxy.url}</td>		  
 				            					<td><c:choose><c:when test="${proxy.del}">过期</c:when><c:otherwise>正常</c:otherwise></c:choose></td>		
-				            					<td><button type="button" onclick="window.location.href='/admin/edit/${user.id}'" class="btn btn-success btn-xs">详情</button></td>		            				
+				            					<td><button type="button" onclick="window.location.href='/admin/node/edit?proxyId=${proxy.id}'" class="btn btn-success btn-xs">详情</button></td>		            				
 				          					</tr>																				
 										</c:forEach>
 									</tbody>

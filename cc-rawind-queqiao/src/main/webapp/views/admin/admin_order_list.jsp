@@ -65,7 +65,7 @@
 						<div class="box box-primary">
 							<div class="box-header">
 								<h3 class="box-title">订单列表</h3>
-								<h3 class="box-title"><button type="button" onclick="window.location.href='/admin/node/add'" class="btn btn-info btn-xs">增加</button></h3>
+								<!-- <h3 class="box-title"><button type="button" onclick="window.location.href='/admin/node/add'" class="btn btn-info btn-xs">增加</button></h3> -->
 							</div>
 
 							<div class="table-responsive">
