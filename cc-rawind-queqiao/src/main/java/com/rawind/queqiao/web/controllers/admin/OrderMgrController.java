@@ -16,6 +16,7 @@ import com.rawind.queqiao.web.service.QueqiaoOrderService;
 import com.rawind.queqiao.web.service.QueqiaoProxyService;
 import com.rawind.queqiao.web.service.QueqiaoUserExtrService;
 import com.rawind.queqiao.web.service.QueqiaoUserService;
+import com.rawind.queqiao.web.util.PageInfo;
 
 import net.paoding.rose.web.Invocation;
 import net.paoding.rose.web.annotation.Param;
@@ -54,25 +55,32 @@ public class OrderMgrController {
 	public String showOrderList(Invocation inv, @Param("pageNo") int pageNo, 
 			@Param("userId") long userId, 
 			@Param("orderId") long orderId) {
-	
+		
 		if(userId>0){
 			int count = queqiaoOrderService.countByUser(userId);
-			List<QueqiaoOrder>	orderList = queqiaoOrderService.listByUser(userId, 0, count);
-			inv.addModel("orderList", orderList);
+			PageInfo<QueqiaoOrder> pageInfo = new PageInfo<QueqiaoOrder>(count, pageNo, 20);
+			List<QueqiaoOrder>	orderList = queqiaoOrderService.listByUser(userId, pageInfo.getOffset(), pageInfo.getLimit());
+			pageInfo.setDataList(orderList);
+			inv.addModel("pageInfo", pageInfo);
 			
 		}else if(orderId>0){
+			int count = 0;
 			List<QueqiaoOrder>	orderList = new ArrayList<>();
 			QueqiaoOrder qr = queqiaoOrderService.getById(orderId);
 			if(qr!=null){
 				orderList.add(qr);
+				count = 1;
 			}
-			inv.addModel("orderList", orderList);
+			PageInfo<QueqiaoOrder> pageInfo = new PageInfo<QueqiaoOrder>(count, pageNo, 20);
+			pageInfo.setDataList(orderList);			
+			inv.addModel("pageInfo", pageInfo);
 			
 		}else{
 			int count = queqiaoOrderService.countAll();
-			List<QueqiaoOrder>	orderList = queqiaoOrderService.listAll(0, count);
-			
-			inv.addModel("orderList", orderList);
+			PageInfo<QueqiaoOrder> pageInfo = new PageInfo<QueqiaoOrder>(count, pageNo, 20);
+			List<QueqiaoOrder>	orderList = queqiaoOrderService.listAll(pageInfo.getOffset(), pageInfo.getLimit());
+			pageInfo.setDataList(orderList);
+			inv.addModel("pageInfo", pageInfo);
 		}
 		
 		
