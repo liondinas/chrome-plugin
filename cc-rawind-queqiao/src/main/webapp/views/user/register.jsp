@@ -144,7 +144,7 @@
 						<span class="input-group-addon"><i
 							class="fa fa-money fa-fw"></i></span> <input type="text"
 							class="form-control" id="code" name="code" placeholder="邀请码"
-							value="${from}" required>
+							value="${inviteCode}" required>
 					</div>
 				</div>
 				<?php } ?>

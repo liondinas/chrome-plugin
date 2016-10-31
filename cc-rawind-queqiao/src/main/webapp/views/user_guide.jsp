@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 	<link rel="shortcut icon"href="favicon.ico"> 
-    <title>小橙子-跨越万里长城</title>
+    <title>小橙子-用户使用说明</title>
 
     <!-- Bootstrap core CSS -->
     <link href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" rel="stylesheet">
@@ -35,37 +35,23 @@
 	    <h3 class="text-muted">${SITE_NAME}</h3>
 	</div>
 
-    <div class="jumbotron">
-        <h2>${SITE_NAME}</h2>
-        <p class="lead"> 每个月不限流量，香港美国高速节点</p>
-        <p><a class="btn btn-lg btn-success" href="${pageContext.request.contextPath}/user/register" role="button">立即注册</a></p>
+    <div class="jumbotron" style="text-align: left;">
+        <h4>注册小橙子</h4>
+        <p style="font-size:15px;"><em>用户名为翻墙用到的用户名，最少6位，只能使用字母和数组；邮箱地址为登录后台使用，忘记密码会发送找回密码链接到该油箱；邀请码默认是不用填写的，如果有邀请码，请输入。</em></p>
+        <p><img alt="" src="/img/guide/xcz_101.png" style="width:550px;"></img></p>
+        <p style="font-size:15px;"><em>点击“用户中心”进入用户中心管理平台，在用户中心首页点击续期，然后选择符合自己需求的套餐并完成支付。</em></p>
+        <p><img alt="" src="/img/guide/xcz_102.png" style="width:550px;"></img></p>
+        <p><img alt="" src="/img/guide/xcz_103.png" style="width:550px;"></img></p>        
+        <p style="font-size:15px;"><em>在“用户中心”可以进入订单列表，查看自己未支付的订单。</em></p>
+        <p><img alt="" src="/img/guide/xcz_104.png" style="width:550px;"></img></p>        
     </div>
-
-    <div class="row marketing">
-        <div class="col-lg-6">
-            <!-- <a href="https://play.google.com/store/apps/details?id=com.github.shadowsocks" target="_blank"><h4>Android</h4></a>
-            <p>Android客户端</p>
-
-            <h4><a href="http://sourceforge.net/projects/shadowsocksgui/files/dist/" target="_blank">Shadowsocks C#</a></h4>
-            <p> Windows用户推荐此客户端.</p> -->
-
- 			<h4><a href="http://www.yufengchen.com/queqiao_V1.01.crx" target="_blank">Chrome浏览器插件</a></h4>
-            <p>无须安装客户端，简单易用，只需浏览器插件即可</p>
-
-        </div>
-
-        <div class="col-lg-6">        
-        	<a href="${pageContext.request.contextPath}/user_guide" target="_blank"><h4>安装使用说明</h4></a>
-            <p>高速访问国外网站，不影响本地网站的访问速度</p>
-            
-            
-            <!-- <a href="https://itunes.apple.com/us/app/shadowsocks/id665729974?mt=8" target="_blank"><h4>iOS</h4></a>
-            <p>iOS客户端</p>
-
-            <h4><a href="https://github.com/ohdarling/GoAgentX/releases" target="_blank">GoAgentX</a></h4>
-            <p> Mac用户推荐此客户端.</p> -->
-        </div>
+	
+	<div class="jumbotron">
+       <h4>登录管理后台</h4>
+       <em>用户名为翻墙用到的用户名，最少6位，只能使用字母和数组；油箱地址为登录后台使用，忘记密码会发送找回密码链接到该油箱；邀请码默认是不用填写的，如果有邀请码，请输入。</em>
     </div>
+	
+    
     <div class="footer">
 	    <p>&copy; ${SITE_NAME}  Power by <a href="https://www.yufengchen.com" target="_blank">yufengchen.com</a>&nbsp;<a href="${pageContext.request.contextPath}/user/guestbook">讨论</a></p>
 	</div>

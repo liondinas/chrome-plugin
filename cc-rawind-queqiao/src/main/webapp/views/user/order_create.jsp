@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>${SITE_NAME}-用户中心</title>
+<title>${SITE_NAME} - 用户中心 - 创建订单</title>
 <meta charset="UTF-8">
 <meta
 	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'

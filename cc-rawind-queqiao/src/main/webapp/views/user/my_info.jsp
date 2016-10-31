@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>${SITE_NAME}-用户中心</title>
+<title>${SITE_NAME} - 用户中心 - 个人信息</title>
 <meta charset="UTF-8">
 <meta
 	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
@@ -71,7 +71,8 @@
 							<div class="box-body">
 								<p>用户名: ${user.name} </p>
 								<p>邮箱: ${user.email} </p>
-								<p>过期时间: <code><fmt:formatDate value="${expiredDate}" pattern="yyyy-MM-dd HH:mm"/></code> </p>
+								<p>过期时间: <code><fmt:formatDate value="${expiredDate}" pattern="yyyy-MM-dd HH:mm"/></code> <a class="btn btn-success" id="check_in_button"
+											onclick="window.location.href='/user/order_create';">续期</a></p>
 							</div>
 							<!-- /.box -->
 						</div>

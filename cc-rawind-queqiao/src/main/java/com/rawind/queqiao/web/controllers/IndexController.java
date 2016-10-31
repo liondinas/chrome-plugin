@@ -32,7 +32,17 @@ public class IndexController {
 		
 		logger.info("adUrl=" + click);
 		
-		return AjaxOutput.success("proxy.xiaochengzi.vip");
+		return AjaxOutput.success("<a href='http://proxy.xiaochengzi.vip?inviteCode=80001213' target='_blank'>小橙子</a>");
+	}
+	
+	
+	
+	@Get("user_guide")
+	public String showUserGuide(Invocation inv, @Param("click") String click) {		
+		
+		logger.info("adUrl=" + click);
+		
+		return "user_guide";
 	}
 	
 	

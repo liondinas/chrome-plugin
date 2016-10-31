@@ -112,6 +112,16 @@ public class LoginInterceptor extends ControllerInterceptorAdapter implements Or
 			}
 			
 		}
+		
+		
+		if(uri.startsWith("/user")){
+			inv.addModel("_user", hostHolderService.getQueqiaoUser());
+		}else if(uri.startsWith("/admin")){
+			inv.addModel("_admin", hostHolderService.getQueqiaoAdmin());
+		}else if(uri.startsWith("/plugin")){
+			//passport = inv.getParameter("userCookie");
+			//logger.info("for plugin passport =" + passport);
+		}
 			
 		return true;
 	}

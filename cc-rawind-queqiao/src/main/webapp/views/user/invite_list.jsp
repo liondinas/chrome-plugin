@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>${SITE_NAME}-用户中心</title>
+<title>${SITE_NAME} - 用户中心 - 邀请列表</title>
 <meta charset="UTF-8">
 <meta
 	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'

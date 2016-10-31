@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <a href="${SITE_DOMAIN}/admin/user/list" class="logo"> <!-- Add the class icon to your logo image or logo icon to add the margining -->
-			小橙子-后台管理平台
+			小橙子-管理后台
 </a>
 <!-- Header Navbar: style can be found in header.less -->
 <nav class="navbar navbar-static-top" role="navigation">
@@ -20,7 +20,7 @@
 			<!-- User Account: style can be found in dropdown.less -->
 			<li class="dropdown user user-menu"><a href="#"
 				class="dropdown-toggle" data-toggle="dropdown"> <i
-					class="glyphicon glyphicon-user"></i> <span>${user.name} <i
+					class="glyphicon glyphicon-user"></i> <span>${_admin.name} <i
 						class="caret"></i></span>
 			</a>
 				<ul class="dropdown-menu">
@@ -28,7 +28,7 @@
 					<li class="user-header bg-light-blue"><img
 						src="${SITE_DOMAIN}/static/img/touxiang.jpeg" class="img-circle"
 						alt="User Image" />
-						<p>liondinas</p></li>
+						<p>${_admin.name}</p></li>
 
 					<!-- Menu Footer-->
 					<li class="user-footer">

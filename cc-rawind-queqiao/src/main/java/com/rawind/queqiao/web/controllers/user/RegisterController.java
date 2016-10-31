@@ -37,7 +37,7 @@ public class RegisterController {
 	private QueqiaoUserService queqiaoUserService;
 	
 	@Get("register")
-	public String goRegister(Invocation inv, @Param("from") String from) {		
+	public String goRegister(Invocation inv, @Param("from") String from, @Param("inviteCode") String inviteCode) {		
 		
 		// cookie token
 		int maxAge = -1;		
@@ -48,6 +48,12 @@ public class RegisterController {
 				
 		
 		inv.addModel("from", from);
+		
+		if(StringUtils.isBlank(inviteCode)){
+			inviteCode = "8816000001";
+		}
+		
+		inv.addModel("inviteCode", inviteCode);
 		
 		return "register";
 	}

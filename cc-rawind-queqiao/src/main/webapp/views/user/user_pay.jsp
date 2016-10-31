@@ -14,7 +14,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>支付宝即时到账交易接口</title>
+    <title>${SITE_NAME} - 用户中心 - 创建订单</title>
 </head>
 
 <style>
@@ -252,7 +252,7 @@
     <div class="content">
         <form action="http://www.yufengchen.com/alipay/alipayapi.php" class="alipayform" method="POST" target="_blank">
             <div class="element" style="margin-top:60px;">
-                <div class="legend">支付宝即时到账交易接口快速通道 </div>
+                <div class="legend">请误重新刷新页面，否则会造成订单重复</div>
             </div>
             <div class="element">
                 <div class="etitle">商户订单号:</div>
@@ -286,16 +286,16 @@
     </div>
     <div class="footer">
         <p class="footer-sub">
-            <a href="http://ab.alipay.com/i/index.htm" target="_blank">关于支付宝</a><span>|</span>
-            <a href="https://e.alipay.com/index.htm" target="_blank">商家中心</a><span>|</span>
-            <a href="https://job.alibaba.com/zhaopin/index.htm" target="_blank">诚征英才</a><span>|</span>
-            <a href="http://ab.alipay.com/i/lianxi.htm" target="_blank">联系我们</a><span>|</span>
-            <a href="#" id="international" target="_blank">International&nbsp;Business</a><span>|</span>
-            <a href="http://ab.alipay.com/i/jieshao.htm#en" target="_blank">About Alipay</a>
+            <a href="http://proxy.xiaochengzi.vip" target="_blank">关于小橙子</a><span>|</span>
+            <a href="https://proxy.xiaochengzi.vip/user" target="_blank">用户中心</a><span>|</span>
+            <a href="https://proxy.xiaochengzi.vip/user" target="_blank">诚征英才</a><span>|</span>
+            <a href="http://proxy.xiaochengzi.vip/user" target="_blank">联系我们</a><span>|</span>
+            <a href="http://proxy.xiaochengzi.vip/user" id="international" target="_blank">International&nbsp;Business</a><span>|</span>
+            <a href="http://proxy.xiaochengzi.vip#en" target="_blank">About Little Orange</a>
             <br>
-             <span>支付宝版权所有</span>
-            <span class="footer-date">2004-2016</span>
-            <span><a href="http://fun.alipay.com/certificate/jyxkz.htm" target="_blank">ICP证：沪B2-20150087</a></span>
+             <span>小橙子版权所有</span>
+            <span class="footer-date">2014-2026</span>
+            <!-- <span><a href="http://fun.alipay.com/certificate/jyxkz.htm" target="_blank">ICP证：沪B2-20150087</a></span> -->
         </p>
 
            
