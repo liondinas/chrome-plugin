@@ -58,7 +58,7 @@
 			<section class="content">
 				<!-- START PROGRESS BARS -->
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-12">
 						<div class="box box-solid">
 							<div class="box-header">
 								<i class="fa fa-th-list"></i>
