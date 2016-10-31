@@ -11,7 +11,7 @@
     <script src="settings.js" type="text/javascript"></script>
     <script src="proxy_plugin.js" type="text/javascript"></script>
     <script src="modernizr-2.6.2-respond-1.1.0.min.js"></script>
-    <title>Queqiao</title>
+    <title>小橙子</title>
 
 </head>
 
@@ -26,27 +26,31 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <a href="#" class="brand">Queqiao Panel</a>
+                <a href="options.html" class="brand">小橙子</a>
                 <div class="nav-collapse collapse">
                     <ul class="nav pull-right">
                         <li class="dropdown">
-                            <a data-toggle="dropdown" class="dropdown-toggle" role="button" href="#"> <i class="icon-user"></i> Vincent Gabriel <i class="caret"></i>
-
+                            <a data-toggle="dropdown" class="dropdown-toggle" role="button" href="#" id="userName"> 
+                            <i class="icon-user"></i>请登录<i class="caret"></i>
                             </a>
                             <ul class="dropdown-menu">
+                                 <li>
+                                    <a href="options.html" id="refreshBtn">刷新</a>
+                                </li>
+                                <li class="divider"></li>                            
                                 <li>
-                                    <a href="#" tabindex="-1">Profile</a>
+                                    <a href="http://proxy.xiaochengzi.vip/user/my_info" target="_blank" tabindex="-1">个人信息</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="login.html" tabindex="-1">Logout</a>
+                                    <a href="http://proxy.xiaochengzi.vip/user/order_create" target="_blank" tabindex="-1">续费</a>
                                 </li>
                             </ul>
                         </li>
                     </ul>
                     <ul class="nav">
                         <li class="active">
-                            <a href="#">Dashboard</a>
+                            <a href="options.html">管理面板</a>
                         </li>
 
                     </ul>
@@ -63,19 +67,21 @@
         <div class="row-fluid">
             <div class="span3" id="sidebar">
                 <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
+                    <li>
+                        <a href="options.html"><i class="icon-chevron-right"></i>翻墙域名</a>
+                    </li>
                     <li class="active">
-                        <a href="options.html"><i class="icon-chevron-right"></i> 拦截域名</a>
-                    </li>
-
+                        <a href="addomain.html"><i class="icon-chevron-right"></i>广告拦截域名</a>
+                    </li>                    
                     <li>
-                        <a href="interface.html"><i class="icon-chevron-right"></i> 订单管理</a>
-                    </li>
-                    <li>
-                        <a href="index.html"><i class="icon-chevron-right"></i> 个人中心</a>
+                        <a href="http://proxy.xiaochengzi.vip/user/order_list" target="_blank"><i class="icon-chevron-right"></i> 订单管理</a>
                     </li>
                     <li>
-                        <a href="#"><span class="badge badge-success pull-right">731</span> 消息</a>
+                        <a href="http://proxy.xiaochengzi.vip/user/my_info" target="_blank"><i class="icon-chevron-right"></i> 个人中心</a>
                     </li>
+                    <!-- <li>
+                        <a href="#"><span class="badge badge-success pull-right">731</span>消息</a>
+                    </li> -->
                 </ul>
             </div>
 
@@ -87,23 +93,23 @@
                         <!-- block -->
                         <div class="block">
                             <div class="navbar navbar-inner block-header">
-                                <div class="muted pull-left">Add New Bloking Domain</div>
+                                <div class="muted pull-left">新增翻墙域名</div>
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
                                      <form class="form-horizontal">
                                       <fieldset>
-                                        <legend>Bloking Domain</legend>
+                                        <legend>翻墙域名</legend>
                                         <div class="control-group">
-                                          <label for="focusedInput" class="control-label">Focused input</label>
+                                          <label for="focusedInput" class="control-label">域名地址：</label>
                                           <div class="controls">
-                                            <input type="text" value="" id="focusedInput" class="input-xlarge focused">
+                                            <input type="text" value="" id="focusedInput" class="input-xlarge focused" placeholder="http://www.wsj.com">
                                           </div>
                                         </div>                     
                                       
                                         <div class="form-actions">
-                                          <button class="btn btn-primary" type="submit" id="addSubmitBtn">Submit</button>
-                                          <button class="btn" type="reset" id="addReturnBtn">Return</button>
+                                          <button class="btn btn-primary" type="submit" id="addSubmitBtn">确定</button>
+                                          <button class="btn" type="reset" id="addReturnBtn">返回</button>
                                         </div>
                                       </fieldset>
                                     </form>

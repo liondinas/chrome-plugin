@@ -18,10 +18,7 @@ function init(){
         var trHTML = '<tr><td>'+i+'</td><td>'+url+'</td><td><button type="submit" class="btn btn-danger delBtn" key="'+i+'">删除</button></td></tr>';
         $("#urlTable").append(trHTML);
     }
-
-    var currUser = extension.QueqiaoUser;
-    Logger.info("QueqiaoUser.userName="+ currUser.userName);
-    $("#userName").html('<i class="icon-user"></i>'+currUser.userName+'<i class="caret"></i>');
+    
 }
 
 
@@ -65,29 +62,45 @@ function checkLogin(){
                   success : function(retJson){
                     if (retJson['code'] != 0) {                       
                         Logger.info('getUerName code error='+JSON.stringify(retJson));  
+                        showLoginStep(status);
                     }else{
-                         status = 1;
+                      Logger.info('getUerName success, returnJson='+JSON.stringify(retJson));  
+                      var data = retJson['data'];
+                      extension.QueqiaoUser.userName = data.userName;
+                      extension.QueqiaoUser.proxyUrl = data.url;
+                      extension.QueqiaoUser.status = 1;                    
+                      status = 1;
+                      extension.QueqiaoUser.setCookie(userCookie);
+                      showLoginStep(status);
                     }
                   },
                   error : function(xhr, ajaxOptions, thrownError) {
                     Logger.info('getUserName net error ='+thrownError);
-                  }     
+                    showLoginStep(status);
+                  }
+
             });            
             
         }else{
-            Logger.info('no userCookie');                            
+            Logger.info('no userCookie');    
+            showLoginStep(status);                                  
         }
-
-        Logger.info('status='+status);        
-        if(status==0){
-            //goLoginPage();                    
-        }
-
-
 
     });
 }
 
+
+function showLoginStep(status){
+
+        if(parseInt(status) == 1){
+                  var currUser = extension.QueqiaoUser;
+            Logger.info("QueqiaoUser.userName="+ currUser.userName);
+            $("#userName").html('<i class="icon-user"></i>'+currUser.userName+'<i class="caret"></i>');
+        }else{
+            Logger.info("QueqiaoUser.userName is null");
+            $("#userName").html('<i class="icon-user"></i>请登录<i class="caret"></i>');
+        }  
+}
 
 
 

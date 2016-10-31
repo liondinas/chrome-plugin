@@ -29,6 +29,13 @@ LocalConfig.init = function () {
         this.addUrl(".google.com.hk");
         this.addUrl(".chrome.com");
         this.addUrl(".facebook.com");
+        this.addUrl(".twitter.com");
+        this.addUrl(".twimg.com");
+        this.addUrl(".youtube.com");
+        this.addUrl(".ytimg.com");
+        this.addUrl(".ggpht.com");
+        this.addUrl(".wsj.com");
+        this.addUrl(".wsj.net");
         Logger.info("init first"+ this.data.length);
     }
 

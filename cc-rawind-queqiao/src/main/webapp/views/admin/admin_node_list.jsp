@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
-<head>
+<head>   
 <title>${SITE_NAME}-用户中心</title>
 <meta charset="UTF-8">
 <meta
@@ -60,7 +60,7 @@
 			<section class="content">
 				<div class="row">
 					<!-- left column -->
-					<div class="col-md-6">
+					<div class="col-md-8">
 						<!-- general form elements -->
 						<div class="box box-primary">
 							<div class="box-header">

@@ -60,7 +60,7 @@
 			<section class="content">
 				<div class="row">
 					<!-- left column -->
-					<div class="col-md-6">
+					<div class="col-md-12">
 						<!-- general form elements -->
 						<div class="box box-primary">
 							<div class="box-header">
@@ -74,6 +74,7 @@
 										<tr>
 											<th>订单ID</th>
 											<th>用户名称</th>
+											<th>订单商品</th>
 											<th>订单金额</th>
 											<th>下单时间</th>
 											<th>状态</th>
