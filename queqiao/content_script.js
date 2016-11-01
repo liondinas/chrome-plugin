@@ -22,7 +22,7 @@ if(postInfo.length!=1){
 }else{
 	var msg = {
 		type: "BAIDU",
-		title : $("#kw").text(),	
+		title : $("#oq").text(),	
 		url: document.URL
 	};
 	chrome.runtime.sendMessage(msg, function(response) {
