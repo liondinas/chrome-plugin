@@ -23,14 +23,10 @@ function addSubmitBtn() {
 
     var bg = chrome.extension.getBackgroundPage();
     var data = bg.articleData;
+    var url = $("#focusedInput").val();
+    bg.AddNewAdUrl(url);
 
-    bg.AddNewAdUrl($("#focusedInput").attr("value"));
-
-    Logger.info("url=" + $("#focusedInput").attr("value"));
-    
-    extension.refreshProxy();
-
-    alert('Success');
+    window.location.href='./addomain.html';
 
 }
 

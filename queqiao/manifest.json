@@ -5,7 +5,7 @@
 	"version": "0.0.1",
 	"background": {
 		/*"scripts": ["jquery-2.0.0.min.js", "proxy_plugin.js", "background.js"],*/
-		"page": "main.html"
+		"page": "background.html"
 	},
 	/*"page_action": {
 		"default_icon": {

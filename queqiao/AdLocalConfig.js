@@ -68,7 +68,7 @@ AdLocalConfig.isAdUrl = function isAdUrl(url){
 AdLocalConfig.addUrl = function addValue(url) {
     var start = url.indexOf("//");
     if(start>0){
-        url = url.substring(start);
+        url = url.substring(start+2);
         var stop = url.indexOf("/");
         if(stop>0){
             url = url.substring(0, stop);

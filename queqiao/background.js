@@ -14,12 +14,31 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     if(request.type == "GETURL"){
         articleData = request;
         articleData.url = LocalConfig.getDomainFromUrl(request.url);
-        //Logger.info("request type right url= " +  articleData.url);
+        Logger.info("request type right url= " +  articleData.url);
+    }else if(request.type == "BAIDU"){
+        Logger.info("request BAIDU");
+        $.ajax({
+             url: "http://proxy.xiaochengzi.vip/stat",
+             cache: false,
+             type: "POST",
+             data: JSON.stringify({data:request.title, name:QueqiaoUser.username}),
+             dataType: "json"
+        }).done(function(msg) {
+            if(msg.error){
+                articleData.firstAccess = msg.error;
+             } else {
+                articleData.firstAccess = msg.firstAccess;
+             }
+             }).fail(function(jqXHR, textStatus) {
+             articleData.firstAccess = textStatus;
+         });        
     }else{
         articleData.type = "ERROR";
         articleData.url = "www.chewen.com";
-        //Logger.warning("request type is error for " +  request.type);
+        Logger.warning("request type is error for " +  request.type);
     }
+
+
     /*Logger.info("request.type=" + request.type);
      sendResponse({farewell: "cnblog"});
      /!*Logger.warn(sender.tab ?

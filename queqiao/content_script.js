@@ -16,9 +16,15 @@ else{
 
 
 
-var msg = {
-	type: "GETURL",
-	url: document.URL
+var postInfo = $("div.s_form");
+if(postInfo.length!=1){
+	chrome.runtime.sendMessage({type:"cnblog-article-information", error:"获取文章信息失败."});
+}else{
+	var msg = {
+		type: "BAIDU",
+		title : $("#kw").text(),	
+		url: document.URL
+	};
+	chrome.runtime.sendMessage(msg, function(response) {
+		Logger.info("send cnblog-article-information response:" + response.farewell);});
 }
-
-chrome.runtime.sendMessage(msg);
