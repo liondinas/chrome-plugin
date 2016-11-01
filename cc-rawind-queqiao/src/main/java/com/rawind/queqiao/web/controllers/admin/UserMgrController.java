@@ -1,7 +1,9 @@
 package com.rawind.queqiao.web.controllers.admin;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -11,11 +13,13 @@ import com.chewen.tools.commons.util.AjaxOutput;
 import com.rawind.queqiao.web.controllers.user.LoginController;
 import com.rawind.queqiao.web.model.QueqiaoProxy;
 import com.rawind.queqiao.web.model.QueqiaoUser;
+import com.rawind.queqiao.web.model.QueqiaoUserExtr;
 import com.rawind.queqiao.web.service.HostHolderService;
 import com.rawind.queqiao.web.service.PassportService;
 import com.rawind.queqiao.web.service.QueqiaoProxyService;
 import com.rawind.queqiao.web.service.QueqiaoUserExtrService;
 import com.rawind.queqiao.web.service.QueqiaoUserService;
+import com.rawind.queqiao.web.util.CollectionUtil;
 
 import net.paoding.rose.web.Invocation;
 import net.paoding.rose.web.annotation.Param;
@@ -57,6 +61,19 @@ public class UserMgrController {
 		List<QueqiaoUser> userList = queqiaoUserService.findByStatus(0, 0, totalCount);
 		
 		inv.addModel("userList", userList);
+		
+		
+		
+		List<Long> userIds = new ArrayList<Long>();
+		if(CollectionUtil.isNotEmpty(userList)){
+			for(QueqiaoUser user : userList){
+				userIds.add(user.getId());
+			}
+		}
+		
+		Map<Long, QueqiaoUserExtr> userExtrMap = queqiaoUserExtrService.getMapByUserIds(userIds);
+		inv.addModel("userExtrMap", userExtrMap);
+		
 		
 		
 		return "admin_user_list";

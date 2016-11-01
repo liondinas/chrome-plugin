@@ -1,6 +1,7 @@
 package com.rawind.queqiao.web.service.dao;
 
 import java.util.Date;
+import java.util.List;
 
 import com.rawind.queqiao.web.model.QueqiaoUserExtr;
 
@@ -57,6 +58,9 @@ CREATE TABLE `queqiao_user_extr` (
 	
 	@SQL("select " + FIELDS_ALL + " from " + TABLE + " where user_id = :userId")
 	public QueqiaoUserExtr getByUserId(@SQLParam("userId")long userId);
+	
+	@SQL("select " + FIELDS_ALL + " from " + TABLE + " where user_id in (:userIds)")
+	public List<QueqiaoUserExtr> getByUserIds(@SQLParam("userIds")List<Long> userIds);
 	
 	
 	@SQL(" update " + TABLE + " set expired_time=:expiredTime  where user_id = :userId")

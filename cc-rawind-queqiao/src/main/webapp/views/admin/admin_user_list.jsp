@@ -83,13 +83,14 @@
 
 									<tbody>
 										<c:forEach items="${userList}" var="user">
-											<tr >				            					
+											<tr>
+												<c:set var="userExtr" value="${userExtrMap[user.id]}" />				            					
 				            					<td>${user.name}</td>
 				            					<td>${user.email}</td>
 				            					<td>${user.proxyStr}</td>				  
 				            					<td><fmt:formatDate value="${user.createTime}" pattern="yyyy-MM-dd"/></td>
-				            					<td><fmt:formatDate value="${user.expiredTime}" pattern="yyyy-MM-dd HH:mm"/></td>
-				            					<td><c:choose><c:when test="${!empty user.expired}">过期</c:when><c:otherwise>正常</c:otherwise></c:choose></td>		
+				            					<td><fmt:formatDate value="${userExtr.expiredTime}" pattern="yyyy-MM-dd HH:mm"/></td>
+				            					<td><c:choose><c:when test="${userExtr.status== 1}">正常</c:when><c:otherwise>过期</c:otherwise></c:choose></td>		
 				            					<td><button type="button" onclick="window.location.href='/admin/user/edit/${user.id}'" class="btn btn-success btn-xs">详情</button></td>		            				
 				          					</tr>																				
 										</c:forEach>

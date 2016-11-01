@@ -1,6 +1,10 @@
 package com.rawind.queqiao.web.service.impl;
 
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -13,6 +17,7 @@ import com.rawind.queqiao.web.model.QueqiaoUserExtr;
 import com.rawind.queqiao.web.service.QueqiaoUserExtrService;
 import com.rawind.queqiao.web.service.dao.QueqiaoUserDAO;
 import com.rawind.queqiao.web.service.dao.QueqiaoUserExtrDAO;
+import com.rawind.queqiao.web.util.CollectionUtil;
 
 
 
@@ -100,6 +105,52 @@ public class QueqiaoUserExtrServiceImpl implements QueqiaoUserExtrService {
 	@Override
 	public void updateUserInfo(long userId, String userName, String userPwd) {
 		queqiaoUserExtrDAO.updateUserInfo(userId, userName, userPwd);		
+	}
+
+	@Override
+	public List<QueqiaoUserExtr> getByUserIds(List<Long> userIds) {
+		if(CollectionUtil.isEmpty(userIds)){
+			return Collections.emptyList();
+		}
+		
+		Date cur = new Date();
+		cur = CwDateTimeUtil.cleanMinutes(cur);
+		
+		
+		List<QueqiaoUserExtr> retval = queqiaoUserExtrDAO.getByUserIds(userIds);
+		
+		if(CollectionUtil.isNotEmpty(retval)){
+			for(QueqiaoUserExtr userExtr : retval){
+				if(userExtr.getExpiredTime()!=null){
+					if(userExtr.getExpiredTime().compareTo(cur)<0){
+						userExtr.setStatus(QueqiaoUserExtr.STATUS_EXPIRED);
+					}else{
+						userExtr.setStatus(QueqiaoUserExtr.STATUS_NORMAL);
+					}
+					
+				}else{
+					userExtr.setStatus(QueqiaoUserExtr.STATUS_EXPIRED);
+				}
+			}
+		}
+		
+		
+		
+		return retval;
+	}
+
+	@Override
+	public Map<Long, QueqiaoUserExtr> getMapByUserIds(List<Long> userIds) {
+		List<QueqiaoUserExtr> userList = getByUserIds(userIds);
+		Map<Long, QueqiaoUserExtr> retval = new HashMap<Long, QueqiaoUserExtr>();
+		if(CollectionUtil.isNotEmpty(userList)){
+			for(QueqiaoUserExtr ue : userList){
+				retval.put(ue.getUserId(), ue);
+			}
+		}
+		
+		
+		return retval;
 	}
 
 }

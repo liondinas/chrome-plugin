@@ -1,8 +1,7 @@
 package com.rawind.queqiao.web.service;
 
-
-
-import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import com.rawind.queqiao.web.model.QueqiaoUserExtr;
 
@@ -17,6 +16,12 @@ public interface QueqiaoUserExtrService {
 	
 	
 	QueqiaoUserExtr getByUserId(long userId);
+	
+	
+	List<QueqiaoUserExtr> getByUserIds(List<Long> userIds);
+	
+	
+	Map<Long, QueqiaoUserExtr> getMapByUserIds(List<Long> userIds);
 	
 		
 	void updateExpiredTime(long userId, int addDay);
