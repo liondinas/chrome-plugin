@@ -84,7 +84,7 @@ public class OrderMgrController {
 			inv.addModel("pageInfo", pageInfo);
 		}
 		
-		inv.addModel("url", "list");
+		inv.addModel("url", "?userId="+userId+"&orderId="+orderId);
 		return "admin_order_list";
 	}
 	

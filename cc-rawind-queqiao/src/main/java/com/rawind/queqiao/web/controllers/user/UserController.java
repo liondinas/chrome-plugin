@@ -19,9 +19,11 @@ import com.rawind.queqiao.web.service.HostHolderService;
 import com.rawind.queqiao.web.service.QueqiaoOrderService;
 import com.rawind.queqiao.web.service.QueqiaoUserExtrService;
 import com.rawind.queqiao.web.service.QueqiaoUserService;
+import com.rawind.queqiao.web.util.PageInfo;
 import com.rawind.queqiao.web.util.ProxyUrlEncrypt;
 
 import net.paoding.rose.web.Invocation;
+import net.paoding.rose.web.annotation.DefValue;
 import net.paoding.rose.web.annotation.Param;
 import net.paoding.rose.web.annotation.Path;
 import net.paoding.rose.web.annotation.rest.Get;
@@ -196,23 +198,30 @@ public class UserController {
 	
 	
 	@Get("order_list")
-	public String goOrderList(Invocation inv, @Param("pageNo") int pageNo){
+	public String goOrderList(Invocation inv, @Param("pageNo") int pageNo, 
+			@Param("limit") @DefValue("20") int limit){
 		
 		QueqiaoUser user = hostHolderService.getQueqiaoUser();
 		
 		
 		inv.addModel("user", user);
 		
-		
 		int totalCount = queqiaoOrderService.countByUser(user.getId());
+		PageInfo<QueqiaoOrder> pageInfo = new PageInfo<QueqiaoOrder>(totalCount, pageNo, limit);
+
+		List<QueqiaoOrder> dataList = queqiaoOrderService.listByUser(user.getId(), pageInfo.getOffset(), pageInfo.getLimit());
+		pageInfo.setDataList(dataList);
 		
-		List<QueqiaoOrder> orderList = queqiaoOrderService.listByUser(user.getId(), 0, totalCount);
 		
 		
 		
 		
 		
-		inv.addModel("orderList", orderList);
+		inv.addModel("orderList", dataList);
+		
+		inv.addModel("pageInfo", pageInfo);
+		
+		inv.addModel("url", "?1=1");
 		
 		return "order_list";
 	}

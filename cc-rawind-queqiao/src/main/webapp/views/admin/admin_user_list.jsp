@@ -91,7 +91,7 @@
 				            					<td><fmt:formatDate value="${user.createTime}" pattern="yyyy-MM-dd"/></td>
 				            					<td><fmt:formatDate value="${userExtr.expiredTime}" pattern="yyyy-MM-dd HH:mm"/></td>
 				            					<td><c:choose><c:when test="${userExtr.status== 1}">正常</c:when><c:otherwise>过期</c:otherwise></c:choose></td>		
-				            					<td><button type="button" onclick="window.location.href='/admin/user/edit/${user.id}'" class="btn btn-success btn-xs">详情</button></td>		            				
+				            					<td><button type="button" onclick="window.location.href='/admin/user/edit/${user.id}'" <c:choose><c:when test="${userExtr.status== 1}">class="btn btn-success btn-xs"</c:when><c:otherwise>class="btn btn-warning btn-xs"</c:otherwise></c:choose> >详情</button></td>		            				
 				          					</tr>																				
 										</c:forEach>
 									</tbody>

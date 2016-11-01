@@ -21,7 +21,7 @@ LocalConfig.init = function () {
         $.each(objJSON,function(name,value) {
             LocalConfig.addUrl(value);
         });
-        Logger.info("init LocalConfig with nothing"+ this.data.length);
+        Logger.info("init LocalConfig with mem, lenth="+ this.data.length);
     }
 
     if(this.data.length<=0){
@@ -50,6 +50,11 @@ LocalConfig.addUrl = function addValue(url) {
     if(url.indexOf(":")>=0){
         //url = this.getDomain(url);
         url = this.getUrlDomain(url);
+    }
+
+
+    if(url.indexOf('xiaochengzi.vip')>0){
+        return ;
     }
    
     url = url.replace(/www/, "");

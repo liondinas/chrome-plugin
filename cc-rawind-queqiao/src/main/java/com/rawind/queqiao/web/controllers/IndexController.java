@@ -32,7 +32,9 @@ public class IndexController {
 		
 		logger.info("adUrl=" + click);
 		
-		return AjaxOutput.success("<a href='http://proxy.xiaochengzi.vip?inviteCode=80001213' target='_blank'>小橙子</a>");
+		//return AjaxOutput.success("<a href='http://proxy.xiaochengzi.vip?inviteCode=80001213' target='_blank'>小橙子</a>");
+		
+		return "@<a href='http://proxy.xiaochengzi.vip?inviteCode=80001213' target='_blank'>小橙子</a>";
 	}
 	
 	

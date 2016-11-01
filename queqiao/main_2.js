@@ -19,6 +19,21 @@ var AddNewUrl = (function(url){
 })();
 
 
+
+var AddNewAdUrl = (function(url){
+	var i = 0;
+	return function(url){
+		if(i == 0){
+			ProxyPlugin.init();
+			Logger.info("init i=" + i);
+		}
+		AdLocalConfig.addUrl(url);
+		return ++i;
+	}
+})();
+
+
+
 /**
  * refresh proxy
  */
@@ -44,6 +59,8 @@ function init() {
 
 
 	LocalConfig.init();
+
+	AdLocalConfig.init();
 
     QueqiaoUser.init();
 

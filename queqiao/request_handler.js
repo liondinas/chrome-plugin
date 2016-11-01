@@ -42,17 +42,28 @@ chrome.webRequest.onBeforeRequest.addListener (
             path: "images/on.png"
         };
         var url = details.url;
-        //Logger.debug("requestURL= " + url);
+        
+        var isAd = AdLocalConfig.isAdUrl(url);
+        if(isAd){
+            Logger.warning("adUrl="+url);
+            return {redirectUrl:"http://proxy.xiaochengzi.vip/ads?click="+url}
+        }
+        /*Logger.debug("isAdUrl= " + isAd + 'url='+url);
+        if(isAd){
+            Logger.log("adUrl="+url);
+        }
         if(url.indexOf("doubleclick.net")!=-1 ||
             url.indexOf("pos.baidu.com")!=-1 ||
             url.indexOf("a1.alicdn.com")!=-1||
             url.indexOf("l.qq.com")!=-1){
             Logger.log("doubleclick.net find for url="+url);
+            Logger.log("isAd="+isAd);
             if(url.indexOf("proxy.xiaochengzi")<=0){
                 return {redirectUrl:"http://proxy.xiaochengzi.vip/ads?click="+url}
             }
             
-        }
+        }*/
+
 
 
         //TODO checkthe url is in array, then show diffrent icon
