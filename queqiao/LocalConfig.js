@@ -36,6 +36,7 @@ LocalConfig.init = function () {
         this.addUrl(".ggpht.com");
         this.addUrl(".wsj.com");
         this.addUrl(".wsj.net");
+        this.addUrl(".googlevideo.com");
         Logger.info("init first"+ this.data.length);
     }
 
