@@ -31,6 +31,10 @@
 		"default_title": "__MSG_title__",
 		"default_popup": "popup.html"
 	},
+	"icons":{
+        "16":"images/on16.png",
+        "48":"images/on16.png"
+    },
 	"content_scripts":[{
 		"matches":["*://*/*"],
 		"js":["jquery-2.0.0.min.js", "content_script.js"]
