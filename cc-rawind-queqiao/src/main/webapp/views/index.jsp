@@ -67,7 +67,7 @@
         </div>
     </div>
     <div class="footer">
-	    <p>&copy; ${SITE_NAME}  Power by <a href="https://www.yufengchen.com" target="_blank">yufengchen.com</a>&nbsp;<a href="${pageContext.request.contextPath}/user/guestbook">讨论</a></p>
+	    <p>&copy; ${SITE_NAME}  Power by <a href="http://www.yufengchen.com" target="_blank">yufengchen.com</a>&nbsp;<a href="${pageContext.request.contextPath}/user/guestbook">讨论</a></p>
 	</div>
 	<div id="analytics-code" style="display: none">统计代码</div>
 
