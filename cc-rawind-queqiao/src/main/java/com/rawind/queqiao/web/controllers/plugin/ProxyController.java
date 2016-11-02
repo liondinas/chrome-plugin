@@ -1,14 +1,19 @@
 package com.rawind.queqiao.web.controllers.plugin;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.chewen.tools.commons.util.AjaxOutput;
 import com.rawind.queqiao.web.annotation.JsonResponse;
+import com.rawind.queqiao.web.controllers.user.LoginController;
 import com.rawind.queqiao.web.model.QueqiaoProxy;
 import com.rawind.queqiao.web.model.QueqiaoUser;
+import com.rawind.queqiao.web.model.QueqiaoUserExtr;
 import com.rawind.queqiao.web.service.HostHolderService;
 import com.rawind.queqiao.web.service.QueqiaoProxyService;
+import com.rawind.queqiao.web.service.QueqiaoUserExtrService;
 import com.rawind.queqiao.web.service.QueqiaoUserService;
 import com.rawind.queqiao.web.util.QqBase64;
 
@@ -23,8 +28,14 @@ import net.sf.json.JSONObject;
 public class ProxyController {
 
 	
+	private static final Log logger = LogFactory.getLog(ProxyController.class);
+	
+	
 	@Autowired
 	private QueqiaoUserService queqiaoUserService;
+	
+	@Autowired
+	private QueqiaoUserExtrService queqiaoUserExtrService;
 	
 	@Autowired
 	private QueqiaoProxyService queqiaoProxyService;
@@ -54,10 +65,16 @@ public class ProxyController {
 				}			
 			}
 			
-			
+			String pwd = "";
+			QueqiaoUserExtr userExtr =  queqiaoUserExtrService.getByUserId(user.getId());
+			if(userExtr == null){
+				logger.warn("can not find userExtr for userId=" + user.getId());
+			}else{
+				//if(userExtr.getExpiredTime())
+			}
 			//"Proxy-Authorization"= "Basic Base64.encode(user:password)" 
-			String headerKey = "Proxy-Authorization"; 
-			String headerValue = "Basic " + QqBase64.encodeStr(user.getName()+":"+user.getPassWord()); 
+			//String headerKey = "Proxy-Authorization"; 
+			String headerValue = "Basic " + QqBase64.encodeStr(user.getName()+":"+pwd); 
 			//conn.setRequestProperty(headerKey, headerValue); 
 			
 			// proxy url="SOCKS5 127.0.0.1:1080";
@@ -65,6 +82,7 @@ public class ProxyController {
 			data.put("type", "0");
 			data.put("url", proxy);
 			data.put("userName", user.getName());
+			data.put("headerValue", headerValue);
 			return AjaxOutput.success("data", data);
 			
 		}
