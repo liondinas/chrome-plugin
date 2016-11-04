@@ -18,6 +18,8 @@ QueqiaoUser.proxyUrl = '';
 
 QueqiaoUser.userCookie = '';
 
+QueqiaoUser.headerValue = '';
+
 
 
 QueqiaoUser.init = function () {
@@ -57,6 +59,7 @@ QueqiaoUser.setCookie = function(userCookie){
 		  		QueqiaoUser.userName = data.userName;
 		  		QueqiaoUser.proxyUrl = data.url;
 		  		QueqiaoUser.status = 1;
+		  		QueqiaoUser.headerValue = data.headerValue;
 		  		LocalConfig.proxyUrl = data.url;		  	
 		  		Logger.info('getUerName from net='+data.userName + ',proxyUrl from net='+data.url);	
 

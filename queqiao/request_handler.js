@@ -11,19 +11,24 @@
 
 chrome.webRequest.onBeforeSendHeaders.addListener(
   function(details) {
-   /* for (var i = 0; i < details.requestHeaders.length; ++i) {
-      if (details.requestHeaders[i].name === 'User-Agent') {
-        details.requestHeaders.splice(i, 1);
-        break;
-      }
+    if(QueqiaoUser.headerValue.length>1){
+        Logger.info("QueqiaoUser.headerValue=" + QueqiaoUser.headerValue);    
+        for (var i = 0; i < details.requestHeaders.length; ++i) {
+              if (details.requestHeaders[i].name === 'User-Agent') {
+                details.requestHeaders.splice(i, 1);
+                break;
+              }
+        }
+        var headers = details.requestHeaders;  
+        headers.push({
+          name: 'Proxy-Authorization',
+          value: QueqiaoUser.headerValue.length
+        }); 
+        return {requestHeaders: headers};                    
+    }else{
+        Logger.info("QueqiaoUser.headerValue is null");
     }
-    var headers = details.requestHeaders;  
-    headers.push({
-      name: 'Proxy-Authorization',
-      value: 'Basic dGVzdHVzZXI6dGVzdA=='
-    }); 
-    return {requestHeaders: headers};
-    */
+   
   },
   {urls: ["<all_urls>"]},
   ["blocking", "requestHeaders"]
