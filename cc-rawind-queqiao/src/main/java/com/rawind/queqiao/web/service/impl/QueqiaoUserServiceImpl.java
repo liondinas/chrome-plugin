@@ -65,7 +65,7 @@ public class QueqiaoUserServiceImpl implements QueqiaoUserService {
 			if(userExtr == null){
 				userExtr = new QueqiaoUserExtr();
 				Date expiredTime = CwDateTimeUtil.cleanMinutes(new Date());
-				expiredTime = CwDateTimeUtil.lastHourAndMinutes(expiredTime);
+				expiredTime = CwDateTimeUtil.cleanHourAndMinutes(expiredTime);
 				userExtr.setExpiredTime(expiredTime);
 				userExtr.setPasswd("123456a");
 				userExtr.setUserId(userId);

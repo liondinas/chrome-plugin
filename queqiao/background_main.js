@@ -72,7 +72,7 @@ function init() {
 		Logger.log("Init ProxyPlugin complete ", Logger.Types.info);
 	};
 
-	LocalConfig.setIcon('off');
+	
 }
 
 

@@ -65,16 +65,27 @@ public class ProxyController {
 				}			
 			}
 			
+			boolean isExpired = false;
 			String pwd = "";
+			String userName = "";
 			QueqiaoUserExtr userExtr =  queqiaoUserExtrService.getByUserId(user.getId());
 			if(userExtr == null){
 				logger.warn("can not find userExtr for userId=" + user.getId());
 			}else{
-				//if(userExtr.getExpiredTime())
+				userName = userExtr.getUserName();
+				pwd = userExtr.getPasswd();
+				
+				if(userExtr.checkStatusByExpiredTime() == QueqiaoUserExtr.STATUS_EXPIRED){
+					pwd = "";
+					isExpired = true;
+					logger.info("userName=" + user.getName() + ", isExpired="+isExpired);
+				}
+				
 			}
 			//"Proxy-Authorization"= "Basic Base64.encode(user:password)" 
 			//String headerKey = "Proxy-Authorization"; 
-			String headerValue = "Basic " + QqBase64.encodeStr(user.getName()+":"+pwd); 
+			//Proxy-Authorization:Basic bGlvbmRpbmFzOnBhc3N3b3Jk
+			String headerValue = "Basic " + QqBase64.encodeStr(userName+":"+pwd); 
 			//conn.setRequestProperty(headerKey, headerValue); 
 			
 			// proxy url="SOCKS5 127.0.0.1:1080";
@@ -83,6 +94,10 @@ public class ProxyController {
 			data.put("url", proxy);
 			data.put("userName", user.getName());
 			data.put("headerValue", headerValue);
+			data.put("isExpired", isExpired?"1":"0");
+			logger.info("userName=" + user.getName() + ", headerValue="+headerValue);
+			
+			
 			return AjaxOutput.success("data", data);
 			
 		}

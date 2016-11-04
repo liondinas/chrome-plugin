@@ -56,12 +56,21 @@ QueqiaoUser.setCookie = function(userCookie){
 		  		Logger.info('getUerName code error='+JSON.stringify(retJson));	
 		  	}else{
 		  		var data = retJson['data'];
-		  		QueqiaoUser.userName = data.userName;
-		  		QueqiaoUser.proxyUrl = data.url;
-		  		QueqiaoUser.status = 1;
+		  		QueqiaoUser.userName = data.userName;		  				  		
 		  		QueqiaoUser.headerValue = data.headerValue;
-		  		LocalConfig.proxyUrl = data.url;		  	
-		  		Logger.info('getUerName from net='+data.userName + ',proxyUrl from net='+data.url);	
+		  		LocalConfig.proxyUrl = data.url;	
+
+		  		if(data.isExpired == '0'){
+		  			QueqiaoUser.status = 1;
+		  			QueqiaoUser.proxyUrl = data.url;
+					Logger.info('getUerName from net='+data.userName + ',proxyUrl from net='+data.url);	
+		  		}else{
+		  			QueqiaoUser.status = 2;
+		  			QueqiaoUser.proxyUrl = ' DIRECT ';
+		  			Logger.info('getUerName from net='+data.userName + ',expired proxyUrl from net='+data.url);	
+		  		}
+
+		  		
 
 				Settings.setValue('pacScriptData', LocalConfig.pacScript());
 				//function (proxyMode, proxyString, proxyExceptions, proxyConfigUrl)

@@ -3,6 +3,8 @@ package com.rawind.queqiao.web.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.chewen.tools.commons.util.CwDateTimeUtil;
+
 import net.paoding.rose.jade.annotation.DAO;
 
 
@@ -82,6 +84,18 @@ public class QueqiaoUserExtr implements Serializable{
 	}
 	
 	
+	public int checkStatusByExpiredTime(){
+		if(expiredTime == null){
+			return STATUS_EXPIRED;
+		}
+		
+		Date cur = CwDateTimeUtil.cleanMinutes(new Date());
+		if(expiredTime.compareTo(cur)<0){
+			return STATUS_EXPIRED;
+		}
+		return STATUS_NORMAL;
+		
+	}
 	
 	
 	

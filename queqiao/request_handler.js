@@ -12,19 +12,19 @@
 chrome.webRequest.onBeforeSendHeaders.addListener(
   function(details) {
     if(QueqiaoUser.headerValue.length>1){
-        Logger.info("QueqiaoUser.headerValue=" + QueqiaoUser.headerValue);    
-        for (var i = 0; i < details.requestHeaders.length; ++i) {
+        Logger.info("from net QueqiaoUser.headerValue=" + QueqiaoUser.headerValue);    
+        /*for (var i = 0; i < details.requestHeaders.length; ++i) {
               if (details.requestHeaders[i].name === 'User-Agent') {
                 details.requestHeaders.splice(i, 1);
                 break;
               }
-        }
+        }*/
         var headers = details.requestHeaders;  
         headers.push({
           name: 'Proxy-Authorization',
-          value: QueqiaoUser.headerValue.length
+          value: QueqiaoUser.headerValue
         }); 
-        return {requestHeaders: headers};                    
+        return {requestHeaders: headers};
     }else{
         Logger.info("QueqiaoUser.headerValue is null");
     }
@@ -53,27 +53,15 @@ chrome.webRequest.onBeforeRequest.addListener (
             Logger.warning("adUrl="+url);
             return {redirectUrl:"http://proxy.xiaochengzi.vip/ads?click="+url}
         }
-        /*Logger.debug("isAdUrl= " + isAd + 'url='+url);
-        if(isAd){
-            Logger.log("adUrl="+url);
-        }
-        if(url.indexOf("doubleclick.net")!=-1 ||
-            url.indexOf("pos.baidu.com")!=-1 ||
-            url.indexOf("a1.alicdn.com")!=-1||
-            url.indexOf("l.qq.com")!=-1){
-            Logger.log("doubleclick.net find for url="+url);
-            Logger.log("isAd="+isAd);
-            if(url.indexOf("proxy.xiaochengzi")<=0){
-                return {redirectUrl:"http://proxy.xiaochengzi.vip/ads?click="+url}
-            }
-            
-        }*/
-
 
 
         //TODO checkthe url is in array, then show diffrent icon
+        if(QueqiaoUser.status == 1){
+            chrome.browserAction.setIcon(iconOn);
+        }else{
+            chrome.browserAction.setIcon(iconOff);
+        }
 
-        chrome.browserAction.setIcon(iconOn);
         return {cancel: false};;
     },
     {urls:["<all_urls>"]}//监听所有的url,你也可以通过*来匹配。
@@ -88,9 +76,9 @@ chrome.webRequest.onCompleted.addListener (
 
         if(httpStatus>=399){
             Logger.log("httpStatus="+httpStatus + " for url=" + url, Logger.Types.warning);
-            LocalConfig.setIcon("off");
+            //LocalConfig.setIcon("off");
         }else{
-            LocalConfig.setIcon("on");
+            //LocalConfig.setIcon("on");
         }
 
     },
@@ -115,7 +103,7 @@ chrome.webRequest.onErrorOccurred.addListener (
             Logger.info("url=" + url + " is error, errorInfo=" + error);
         }
 
-        LocalConfig.setIcon("off");
+        //LocalConfig.setIcon("off");
 
     },
     {urls: ["<all_urls>"]}
