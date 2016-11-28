@@ -72,6 +72,8 @@
        <p><img alt="" src="http://www.yufengchen.com/img/xcz/xcz_use_04.jpg"></img></p>
        <p><em>右键点击“小橙子”图标，显示的是添加翻墙的域名。只有添加过的域名才能通过翻墙网络，才能够正常访问。如果一些页面的域名已经添加过， 但还是出现页面错乱的话，请不要着急，多刷新几次就好了。</em></p>
        <p><img alt="" src="http://www.yufengchen.com/img/xcz/xcz_use_10.png"></img></p>
+       <p><em> 如果出现输入用户名和密码的话，请输入注册时的用户名，密码默认是123456a， 建议登录管理平台密码管理里面修改默认密码。如果不太清除这些应该填写什么的话，可以在管理平台密码管理中进行设置。</em></p>
+       <p><img alt="" src="http://www.yufengchen.com/img/xcz/xcz_use_09.png"></img></p>
        <p><em>左键点击“小橙子”图标，选择"选项"进入管理模式。在管理模式中可以管理需要翻墙的域名地址， 还可以过滤掉一些不需要的广告域名。插件初始话的时候已经初始了一些常见的翻墙域名。</em></p>
        <p><img alt="" src="http://www.yufengchen.com/img/xcz/xcz_use_06.jpg"></img></p>
        <p><img alt="" src="http://www.yufengchen.com/img/xcz/xcz_use_07.jpg"></img></p>
