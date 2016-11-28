@@ -7,11 +7,11 @@
     <link rel="icon" href="${SITE_DOMAIN}/favicon.ico">
 	<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- bootstrap 3.0.2 -->
-    <link href="${SITE_DOMAIN}/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="${STATIC_DOMAIN}/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- font Awesome -->
-    <link href="${SITE_DOMAIN}/static/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="${STATIC_DOMAIN}/static/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
-    <link href="${SITE_DOMAIN}/static/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+    <link href="${STATIC_DOMAIN}/static/css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,12 +21,12 @@
     <![endif]-->
 
     <!-- jQuery 2.0.2 -->
-    <script src="${SITE_DOMAIN}/static/js/jquery-2.0.3.min.js"></script>
-    <script src="${SITE_DOMAIN}/static/js/jquery.validate.min.js"></script>
-    <script src="${SITE_DOMAIN}/static/js/jquery.form.min.js"></script>
+    <script src="${STATIC_DOMAIN}/static/js/jquery-2.0.3.min.js"></script>
+    <script src="${STATIC_DOMAIN}/static/js/jquery.validate.min.js"></script>
+    <script src="${STATIC_DOMAIN}/static/js/jquery.form.min.js"></script>
     <!-- Bootstrap -->
-    <script src="${SITE_DOMAIN}/static/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="${SITE_DOMAIN}/static/js/md5.js" type="text/javascript"></script>
+    <script src="${STATIC_DOMAIN}/static/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="${STATIC_DOMAIN}/static/js/md5.js" type="text/javascript"></script>
     <script type="text/javascript">
     $(document).ready(function() {
         	console.log('admin login');

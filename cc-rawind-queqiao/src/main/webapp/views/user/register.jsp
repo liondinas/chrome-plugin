@@ -11,26 +11,26 @@
 
 <!-- bootstrap 3.0.2 -->
 <link
-	href="${SITE_DOMAIN}/static/css/bootstrap.min.css"
+	href="${STATIC_DOMAIN}/static/css/bootstrap.min.css"
 	rel="stylesheet">
 <!-- font Awesome -->
 <link
-	href="${SITE_DOMAIN}/static/css/font-awesome.min.css"
+	href="${STATIC_DOMAIN}/static/css/font-awesome.min.css"
 	rel="stylesheet">
 <!-- Theme style -->
-<link href="${SITE_DOMAIN}/static/css/AdminLTE.css"
+<link href="${STATIC_DOMAIN}/static/css/AdminLTE.css"
 	rel="stylesheet">
 
 <!-- jQuery 2.0.2 -->
 <script
-	src="${SITE_DOMAIN}/static/js/jquery-2.0.3.min.js"></script>
+	src="${STATIC_DOMAIN}/static/js/jquery-2.0.3.min.js"></script>
 <script
-	src="${SITE_DOMAIN}/static/js/jquery.validate.min.js"></script>
+	src="${STATIC_DOMAIN}/static/js/jquery.validate.min.js"></script>
 <script
-	src="${SITE_DOMAIN}/static/js/jquery.form.min.js"></script>
+	src="${STATIC_DOMAIN}/static/js/jquery.form.min.js"></script>
 <!-- Bootstrap -->
 <script
-	src="${SITE_DOMAIN}/static/js/bootstrap.min.js"
+	src="${STATIC_DOMAIN}/static/js/bootstrap.min.js"
 	type="text/javascript"></script>
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

@@ -7,7 +7,7 @@
 <!-- Sidebar user panel -->
 <div class="user-panel">
 	<div class="pull-left image">
-		<img src="${SITE_DOMAIN}/static/img/touxiang.jpeg"
+		<img src="${STATIC_DOMAIN}/static/img/touxiang.jpeg"
 			class="img-circle" alt="User Image" />
 	</div>
 	<div class="pull-left info">

@@ -11,8 +11,8 @@
     <title>小橙子-跨越万里长城</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/static/css/jumbotron-narrow.css" rel="stylesheet">
+    <link href="${STATIC_DOMAIN}/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${STATIC_DOMAIN}/static/css/jumbotron-narrow.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

@@ -11,19 +11,19 @@
 <meta
 	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
 	name='viewport'>
-<link href="${SITE_DOMAIN}/static/bootstrap/css/bootstrap.min.css"
+<link href="${STATIC_DOMAIN}/static/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css" />
-<link href="${SITE_DOMAIN}/static/css/font-awesome.min.css"
+<link href="${STATIC_DOMAIN}/static/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css" />
 <!-- Ionicons -->
-<link href="${SITE_DOMAIN}/static/css/ionicons.min.css" rel="stylesheet"
+<link href="${STATIC_DOMAIN}/static/css/ionicons.min.css" rel="stylesheet"
 	type="text/css" />
 <!-- Morris chart -->
-<link href="${SITE_DOMAIN}/static/css/morris/morris.css"
+<link href="${STATIC_DOMAIN}/static/css/morris/morris.css"
 	rel="stylesheet" type="text/css" />
 
 <!-- Theme style -->
-<link href="${SITE_DOMAIN}/static/css/AdminLTE.css" rel="stylesheet"
+<link href="${STATIC_DOMAIN}/static/css/AdminLTE.css" rel="stylesheet"
 	type="text/css" />
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -32,7 +32,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-		<script src="${SITE_DOMAIN}/static/js/jquery-2.1.1.js"></script>    
+		<script src="${STATIC_DOMAIN}/static/js/jquery-2.1.1.js"></script>    
 </head>
 <body class="skin-blue">
 	<!-- header logo: style can be found in header.less -->
@@ -121,53 +121,53 @@
 		</form>
 		
 
-		<script src="${SITE_DOMAIN}/static/js/bootstrap.min.js"
+		<script src="${STATIC_DOMAIN}/static/js/bootstrap.min.js"
 			type="text/javascript"></script>
-		<script src="${SITE_DOMAIN}/static/js/jquery-ui.min.js"
+		<script src="${STATIC_DOMAIN}/static/js/jquery-ui.min.js"
 			type="text/javascript"></script>
 		<!-- Morris.js charts -->
-		<script src="${SITE_DOMAIN}/static/js/raphael-min.js"></script>
-		<script src="${SITE_DOMAIN}/static/js/plugins/morris/morris.min.js"
+		<script src="${STATIC_DOMAIN}/static/js/raphael-min.js"></script>
+		<script src="${STATIC_DOMAIN}/static/js/plugins/morris/morris.min.js"
 			type="text/javascript"></script>
 		<!-- Sparkline -->
 		<script
-			src="${SITE_DOMAIN}/static/js/plugins/sparkline/jquery.sparkline.min.js"
+			src="${STATIC_DOMAIN}/static/js/plugins/sparkline/jquery.sparkline.min.js"
 			type="text/javascript"></script>
 		<!-- jvectormap -->
 		<script
-			src="${SITE_DOMAIN}/static/js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"
+			src="${STATIC_DOMAIN}/static/js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"
 			type="text/javascript"></script>
 		<script
-			src="${SITE_DOMAIN}/static/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"
+			src="${STATIC_DOMAIN}/static/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"
 			type="text/javascript"></script>
 		<!-- jQuery Knob Chart -->
 		<script
-			src="${SITE_DOMAIN}/static/js/plugins/jqueryKnob/jquery.knob.js"
+			src="${STATIC_DOMAIN}/static/js/plugins/jqueryKnob/jquery.knob.js"
 			type="text/javascript"></script>
 		<!-- Moment JS -->
-		<script src="${SITE_DOMAIN}/static/js/plugins/moment/moment.min.js"></script>
+		<script src="${STATIC_DOMAIN}/static/js/plugins/moment/moment.min.js"></script>
 		<!-- daterangepicker -->
 		<script
-			src="${SITE_DOMAIN}/static/js/plugins/daterangepicker/daterangepicker.js"
+			src="${STATIC_DOMAIN}/static/js/plugins/daterangepicker/daterangepicker.js"
 			type="text/javascript"></script>
 		<!-- datepicker -->
 		<script
-			src="${SITE_DOMAIN}/static/js/plugins/datepicker/bootstrap-datepicker.js"
+			src="${STATIC_DOMAIN}/static/js/plugins/datepicker/bootstrap-datepicker.js"
 			type="text/javascript"></script>
 		<!-- Bootstrap WYSIHTML5 -->
 		<script
-			src="${SITE_DOMAIN}/static/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"
+			src="${STATIC_DOMAIN}/static/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"
 			type="text/javascript"></script>
 		<!-- iCheck -->
-		<script src="${SITE_DOMAIN}/static/js/plugins/iCheck/icheck.min.js"
+		<script src="${STATIC_DOMAIN}/static/js/plugins/iCheck/icheck.min.js"
 			type="text/javascript"></script>
 		<!-- AdminLTE App -->
-		<script src="${SITE_DOMAIN}/static/js/AdminLTE/app.js"
+		<script src="${STATIC_DOMAIN}/static/js/AdminLTE/app.js"
 			type="text/javascript"></script>
 
 		<!-- Select js -->
-		<script src="${SITE_DOMAIN}/static/js/bootstrap-select.js"></script>
-		<script src="${SITE_DOMAIN}/static/js/bootstrap-switch.js"></script>
+		<script src="${STATIC_DOMAIN}/static/js/bootstrap-select.js"></script>
+		<script src="${STATIC_DOMAIN}/static/js/bootstrap-switch.js"></script>
 
 		<script type="text/javascript">
 		 $(window).on('load', function () {

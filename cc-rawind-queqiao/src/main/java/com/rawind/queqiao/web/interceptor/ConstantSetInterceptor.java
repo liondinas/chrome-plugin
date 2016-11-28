@@ -39,6 +39,9 @@ public class ConstantSetInterceptor extends ControllerInterceptorAdapter {
 		try{
 			inv.addModel("SITE_DOMAIN", Constants.SITE_URL);
 			inv.addModel("SITE_NAME", Constants.SITE_NAME);
+			
+			inv.addModel("STATIC_DOMAIN", "http://static.qichemishu.com");
+			//inv.addModel("STATIC_DOMAIN", Constants.SITE_URL);
 			String passport = CookieUtils.getInstance().getCookieValue(inv.getRequest(), Constants.userCookie);
 			long adminId = CwStringUtil.conver2Int(passportService.obtainAdminId(passport), 0);
 			inv.addModel("_adminId", adminId);
