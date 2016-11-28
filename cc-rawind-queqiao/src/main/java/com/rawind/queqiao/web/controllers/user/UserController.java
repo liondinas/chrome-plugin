@@ -227,6 +227,26 @@ public class UserController {
 	}
 	
 	
+	
+	@Get("order_detail")
+	public String goOrderDetail(Invocation inv, @Param("out_trade_no") String queqiaoTradeNo){
+		
+		QueqiaoUser user = hostHolderService.getQueqiaoUser();
+		
+		
+		inv.addModel("user", user);
+		
+		QueqiaoOrder order = queqiaoOrderService.getByTradeNO(queqiaoTradeNo);
+		
+		if(order == null){
+			return "@付款成功";
+		}
+		inv.addModel("url", "?1=1");
+		
+		return "order_detail";
+	}
+	
+	
 	@Post("update_userextr")
 	public String updateProxyPwd(Invocation inv, @Param("userId") long userId, 
 			@Param("userName") String userName, @Param("userPwd") String userPwd){

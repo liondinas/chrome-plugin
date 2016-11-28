@@ -190,7 +190,7 @@ public class AliPayController {
 				logger.info("out_trade_no=" + out_trade_no + ", trade_no="+trade_no + ", trade_status=" + trade_status);
 				//该页面可做页面美工编辑
 				
-				return "@验证成功";
+				return "r:/user/order_detail?out_trade_no="+out_trade_no;
 				//——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
 
 				//////////////////////////////////////////////////////////////////////////////////////////
