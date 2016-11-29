@@ -242,6 +242,7 @@ public class UserController {
 			return "@付款成功";
 		}
 		inv.addModel("url", "?1=1");
+		inv.addModel("order", order);
 		
 		return "order_detail";
 	}

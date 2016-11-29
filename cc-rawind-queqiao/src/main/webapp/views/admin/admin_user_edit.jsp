@@ -108,6 +108,42 @@
 					<!-- /.box -->
 				</div>
 				<!-- /.row -->
+				
+				<div class="row">
+					<!-- left column -->
+					<div class="col-md-12">
+						<!-- general form elements -->
+						<div class="box box-primary">
+							<div class="box-header">
+								<h3 class="box-title">用户密码重置</h3>								
+							</div>
+
+							<form  name="editForm" id="updatePwdForm" method="post"
+								action="/admin/user/update_pwd" accept-charset="utf-8">
+								<div class="box-body">
+									<div class="form-group">
+										<label>用户名：${user.name}</label>
+									</div>
+									<div class="form-group">
+										<label>Email：${user.email}</label>
+									</div>														
+									<div class="form-group">
+										<input type="password" class="form-control"
+											placeholder="新密码(不修改请留空)" id="repassword" name="repassword">
+									</div>			
+									<input type="hidden" name="userId" value="${user.id}" />
+								</div>
+								<!-- /.box-body -->
+								<div class="box-footer">
+									<button type="submit" name="action" value="add"
+										class="btn btn-primary">提交</button>
+								</div>
+							</form>
+						</div>
+					</div>
+					<!-- /.box -->
+				</div>
+				<!-- /.row -->
 			</section>
 			<!-- /.content -->
 		</aside>
@@ -165,7 +201,7 @@
     <script src="${STATIC_DOMAIN}/static/js/md5.js" type="text/javascript"></script>
 		<script type="text/javascript">						
 			$(document).ready(function() {
-	        	console.log('admin login');
+				
 	            var options = {
 	                target:        '#editForm',   // target element(s) to be updated with server response
 	                success:       showResponse,  // post-submit callback
@@ -189,13 +225,49 @@
 	                    	
 	                    }
 	                }
-	            )
+	            );
+	            
+	            
+	            var optionsUpdate = {
+		                target:        '#showResponseUpdate',   // target element(s) to be updated with server response
+		                success:       showResponseUpdate,  // post-submit callback
+		                dataType:  'json'        // 'xml', 'script', or 'json' (expected server response type)
+		            };
+	            
+ 				$('#updatePwdForm').submit(function() {
+	            	
+	                if ($(this).valid()) {	                   	                   
+	                    $(this).ajaxSubmit(optionsUpdate);
+	                    return false;
+	                }
+	            });
+ 				
+ 				 $('#updatePwdForm').validate( {
+	                    rules:{
+	                    	repassword : {
+								required : false,
+								minlength : 8,
+							}
+	                    }
+	                }
+	            );
+ 				
+	            
 	        });
 
 	        // post-submit callback
 	        function showResponse(data) {
 	            if (data.code == "0") {
 	                window.location.href = "/admin/user/list";
+	            } else {
+	                alert(data.msg);
+	            }
+	        }
+	        
+	        
+	        function showResponseUpdate(data) {
+	            if (data.code == "0") {
+	            	alert(data.msg);
 	            } else {
 	                alert(data.msg);
 	            }

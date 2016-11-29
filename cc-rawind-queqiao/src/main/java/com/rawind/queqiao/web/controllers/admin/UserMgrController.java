@@ -5,11 +5,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.chewen.tools.commons.util.AjaxOutput;
+import com.chewen.tools.commons.util.BCrypt;
+import com.rawind.queqiao.web.Constants;
 import com.rawind.queqiao.web.controllers.user.LoginController;
 import com.rawind.queqiao.web.model.QueqiaoProxy;
 import com.rawind.queqiao.web.model.QueqiaoUser;
@@ -133,6 +136,42 @@ public class UserMgrController {
 	
 	
 	
+	@Post("update_pwd")
+	public String updateUserPwd(Invocation inv, @Param("userId") long userId, 
+			@Param("repassword") String repassword, @Param("email") String email){
+		
+		
+		if(StringUtils.isNotBlank(email)){
+			return AjaxOutput.failure("暂不支持修改油箱，如需修改，请联系客服。");
+		}
+		
+		if(userId<=0){
+			return AjaxOutput.failure("参数错误");
+		}
+		
+		
+		
+		
+		if(StringUtils.isBlank(repassword)){
+			return AjaxOutput.failure("请填写确认密码");
+		}
+		
+		
+		
+		QueqiaoUser user = queqiaoUserService.getQueqiaoUserById(userId);
+		if(user == null){
+			return AjaxOutput.failure("用户不存在("+userId+")");
+		}
+					
+		
+		String passwordBcr = BCrypt.hashpw(repassword, BCrypt.gensalt(Constants.LOG_ROUNDS));
+		user.setPassWord(passwordBcr);
+		
+		queqiaoUserService.update(user);
+		
+		return AjaxOutput.success(user.getEmail() +":"+user.getName()+":" + repassword);
+		
+	}
 	
 	
 	
