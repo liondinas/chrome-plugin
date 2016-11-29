@@ -77,7 +77,7 @@ CREATE TABLE `queqiao_order` (
 	public int countAll();
 	
 	
-	@SQL("select " + FIELDS_ALL + " from " + TABLE + " limit :offset,:limit")
+	@SQL("select " + FIELDS_ALL + " from " + TABLE + " order by id desc limit :offset,:limit")
 	public List<QueqiaoOrder> listAll(@SQLParam("offset")int offset, @SQLParam("limit")int limit);
 	
 	@SQL("update " + TABLE + " set amount =:amount where id =:orderId and version=:version and status="+QueqiaoOrder.STATUS_CREATED)
