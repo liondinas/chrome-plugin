@@ -28,7 +28,10 @@ AdLocalConfig.init = function () {
         this.addUrl("doubleclick.net");
         this.addUrl("pos.baidu.com");
         this.addUrl("a1.alicdn.com");
-        this.addUrl("l.qq.com");        
+        this.addUrl("l.qq.com");      
+        this.addUrl("asearch.alicdn.com");
+        this.addUrl("im-x.jd.com");  
+        this.addUrl("img1.360buyimg.com");  
         Logger.info("init first adDomain"+ this.data.length);
     }
 
