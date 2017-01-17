@@ -45,9 +45,10 @@ AdLocalConfig.isAdUrl = function isAdUrl(url){
         if(url.indexOf("chrome-extension://")>=0){
             return false;
         }
-       
+
+       //Logger.info(url + "=" + "http://exmail.qq.com/login".indexOf("l.qq.com"));
         for (var i = 0; i < this.data.length; i++) {
-            if(url.indexOf(this.data[i])>-1){
+            if(url.indexOf("//"+this.data[i])>-1){    
                 return true;
             }           
         }
@@ -132,6 +133,25 @@ AdLocalConfig.getUrlDomain = function getUrlDomain(url){
 };
 
 
+AdLocalConfig.getUrlPathName = function getUrlPathName(url) {
+    var pos = url.indexOf("?");
+    if(pos >1) {
+        return url.substring(0, pos);
+    }
+
+    return url;
+}
+
+
+
+AdLocalConfig.isStaticUrl = function isStaticUrl(url){
+    url = this.getUrlPathName(url);
+    if(url.endWith('.js') || url.endWith('.css') || url.endWith('.mp4') || url.endWith('.jpg') || url.endWith('.jpeg') || url.endWith('.gif')){
+        return true;
+    }
+    return false;
+}
+
 
 AdLocalConfig.getDataJSONStr = function () {
     var dataStr = {};
@@ -140,6 +160,8 @@ AdLocalConfig.getDataJSONStr = function () {
     }
     return JSON.stringify(dataStr);
 };
+
+
 
 
 /**

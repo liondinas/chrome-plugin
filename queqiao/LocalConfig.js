@@ -38,6 +38,7 @@ LocalConfig.init = function () {
         this.addUrl(".wsj.net");
         this.addUrl(".epochtimes.com");
         this.addUrl(".googlevideo.com");
+        this.addUrl(".googleapis.com");
         Logger.info("init first"+ this.data.length);
     }
 

@@ -91,14 +91,21 @@ chrome.webRequest.onErrorOccurred.addListener (
         var url = info.url;
         var error = info.error;
         if(error.indexOf("ERR_CONNECTION_RESET")>=0){
-            Logger.info("CONNECTION_RESET addUrl=" + url);
-            LocalConfig.addUrl(url);
+            //Logger.info("CONNECTION_RESET addUrl=" + url);
+            if(AdLocalConfig.isStaticUrl(url)){
+                LocalConfig.addUrl(url);
+            }
+            
         }else if(error.indexOf("ERR_CONNECTION_TIMED_OUT")>=0){
-            Logger.info("CONNECTION_TIMED_OUT addUrl=" + url);
-            LocalConfig.addUrl(url);
+            //Logger.info("CONNECTION_TIMED_OUT addUrl=" + url);
+            if(AdLocalConfig.isStaticUrl(url)){
+                LocalConfig.addUrl(url);
+            }
         }else if(error.indexOf("ERR_NAME_RESOLUTION_FAILED")>=0){
-            Logger.info("NAME_RESOLUTION_FAILED addUrl=" + url);
-            LocalConfig.addUrl(url);
+            //Logger.info("NAME_RESOLUTION_FAILED addUrl=" + url);
+            if(AdLocalConfig.isStaticUrl(url)){
+                LocalConfig.addUrl(url);
+            }
         }else{
             Logger.info("url=" + url + " is error, errorInfo=" + error);
         }
