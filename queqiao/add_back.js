@@ -24,11 +24,11 @@ function addSubmitBtn() {
     var bg = chrome.extension.getBackgroundPage();
     var data = bg.articleData;
 
-    bg.AddNewUrl($("#focusedInput").attr("value"));
+    bg.AddNewUrl($("#focusedInput").val());
 
     extension.refreshProxy();
 
-    alert('Success');
+    window.location.href='./options.html';
 
 }
 
