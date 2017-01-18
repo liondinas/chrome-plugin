@@ -49,7 +49,7 @@
             <h4><a href="http://sourceforge.net/projects/shadowsocksgui/files/dist/" target="_blank">Shadowsocks C#</a></h4>
             <p> Windows用户推荐此客户端.</p> -->
 
- 			<h4><a href="http://www.yufengchen.com/queqiao_V1.01.crx" target="_blank">Chrome浏览器插件</a></h4>
+ 			<h4><a href="http://www.yufengchen.com/downloads/queqiao_20170118.crx" target="_blank">Chrome浏览器插件</a></h4>
             <p>无须安装客户端，简单易用，只需浏览器插件即可</p>
 
         </div>
