@@ -23,6 +23,21 @@ import com.mongodb.MongoOptions;
 import com.mongodb.ServerAddress;
 import com.rawind.queqiao.mongo.exception.MongoDataStoreException;
 
+
+/**
+ * # 拒绝所有访问27017端口的请求
+sudo iptables -I INPUT -p tcp --dport 27017 -j DROP
+ 
+# 允许本地访问mongo端口
+sudo iptables -I INPUT -s 127.0.0.1 -p tcp --dport 27017 -j ACCEPT
+
+sudo iptables-save
+
+http://www.tuicool.com/articles/euiuyy
+
+ * @author rd
+ *
+ */
 public class MongoDataStoreFactory {
 	private static Map<String,Datastore> dataStoreMap = new HashMap<String,Datastore>();
 	private static Log logger = LogFactory.getLog(MongoDataStoreFactory.class);

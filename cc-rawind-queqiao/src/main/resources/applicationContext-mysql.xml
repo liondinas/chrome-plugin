@@ -14,8 +14,9 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 
 	<bean id="shoDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://101.200.121.195:3306/squid?autoReconnect=true&amp;failOverReadOnly=false&amp;useUnicode=true&amp;characterEncoding=utf8"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/squid?autoReconnect=true&amp;failOverReadOnly=false&amp;useUnicode=true&amp;characterEncoding=utf8"></property>
 		<property name="username" value="squidfar"></property>
+		<!-- <property name="password" value="chewen18181818"></property> -->
 		<property name="password" value="chewen.18181818"></property>
 		<property name="initialSize" value="20" />
 		<property name="maxActive" value="300" />
